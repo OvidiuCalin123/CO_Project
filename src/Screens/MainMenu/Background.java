@@ -1,4 +1,4 @@
-package Screens.MainMenu.ImageLogic;
+package Screens.MainMenu;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
