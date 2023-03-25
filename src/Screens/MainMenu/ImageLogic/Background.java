@@ -9,7 +9,7 @@ import javafx.stage.Screen;
 public class Background {
 
     public void setBackgroundImage(StackPane root){
-        Image img = new Image("https://static.kino.de/49/f5/12/13a24538eed5b8b8a3c832e30e_ZmMgN2JmMWM0ZThmZmZmIDE2MDAgMTIwMAM0NTEyM2ViOGMyMA==_scooby-doo.jpg");
+        Image img = new Image("https://images.wallpapersden.com/image/download/the-mystery-machine-van-scooby-doo_a25uZW2UmZqaraWkpJRmZ21lrWxnZQ.jpg");
         ImageView imageView = new ImageView(img);
 
         BackgroundImage bImg = new BackgroundImage(img,
