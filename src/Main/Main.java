@@ -1,7 +1,6 @@
 package Main;
 
-import Screens.MainMenu.Buttons;
-import Screens.MainMenu.Background;
+import Screens.MainMenu.MainMenuMain;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
@@ -12,18 +11,14 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage){
         StackPane root = new StackPane();
+        BorderPane pane = new BorderPane();
 
-        // Title
         primaryStage.setTitle("Ovi si Echipa Misterelor");
 
-        // Set the background image
-        new Background().setBackgroundImage(root);
+        new MainMenuMain(root, pane);
 
-        // Add buttons
-        new Buttons().addButtonsToScreen(root);
-
-        // Screen width and height
         primaryStage.setScene(new Scene(root, 1280, 720));
+
         primaryStage.show();
     }
 
