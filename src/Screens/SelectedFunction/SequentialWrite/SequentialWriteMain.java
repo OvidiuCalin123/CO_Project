@@ -7,7 +7,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
 public class SequentialWriteMain {
-    public void setTitle(StackPane root, BorderPane pane, StackPane randomReadMainScreen){
+    public void setTitle(StackPane root, BorderPane pane, StackPane sequentialWriteMainScreen){
         Image img = new Image("file:DesignFiles/Background/SequentialWrite_Title.png");
         ImageView imageView = new ImageView(img);
 
@@ -27,7 +27,7 @@ public class SequentialWriteMain {
 
         pane.setCenter(imageView);
 
-        randomReadMainScreen.getChildren().add(imageView);
+        sequentialWriteMainScreen.getChildren().add(imageView);
     }
 
     public SequentialWriteMain(StackPane root, BorderPane pane){

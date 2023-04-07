@@ -9,39 +9,68 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 
 public class Buttons {
 
-    public void buttonBuilder(String buttonName, double xCoords, double yCoords, StackPane root, EventHandler<ActionEvent> event, BorderPane pane){
-
-        Button b = new Button(buttonName);
-
-        // Higher means smaller size, lower value means higher size
-        int scaleToScreenValX = 700;
-        int scaleToScreenValY = 400;
-
-        b.setOnAction(event);
+    public void scaleButton(Button b, StackPane root, double xScale, double yScale, double xCoords, double yCoords){
 
         // Bind scale properties to root pane dimensions
-        b.scaleXProperty().bind(root.widthProperty().divide(scaleToScreenValX));
-        b.scaleYProperty().bind(root.heightProperty().divide(scaleToScreenValY));
+        b.scaleXProperty().bind(root.widthProperty().divide(xScale));
+        b.scaleYProperty().bind(root.heightProperty().divide(yScale));
 
         // Set the initial position of the button
-        b.setTranslateX(xCoords * root.getWidth() / scaleToScreenValX);
-        b.setTranslateY(yCoords * root.getHeight() / scaleToScreenValY);
+        b.setTranslateX(xCoords * root.getWidth() / xScale);
+        b.setTranslateY(yCoords * root.getHeight() / yScale);
 
         // Reposition the button when the root pane dimensions change
         root.widthProperty().addListener((obs, oldVal, newVal) -> {
-            b.setTranslateX(xCoords * newVal.doubleValue() / scaleToScreenValX);
+            b.setTranslateX(xCoords * newVal.doubleValue() / xScale);
         });
         root.heightProperty().addListener((obs, oldVal, newVal) -> {
-            b.setTranslateY(yCoords * newVal.doubleValue() / scaleToScreenValY);
+            b.setTranslateY(yCoords * newVal.doubleValue() / yScale);
         });
 
+    }
+
+    public void playSoundOnHover(){
+
+    }
+
+    public Button buttonBuilder(String buttonName, StackPane root, EventHandler<ActionEvent> event, BorderPane pane){
+
+        Image img = new Image("file:DesignFiles/Buttons/" + buttonName + ".png");
+        ImageView imageView = new ImageView(img);
+        Button b = new Button();
+
+        b.setOnAction(event);
+
+        b.setOnMouseEntered(e -> {
+            b.setStyle("-fx-cursor: hand; -fx-background-color: transparent;");
+            DropShadow dropShadow = new DropShadow();
+            dropShadow.setRadius(20);
+            dropShadow.setOffsetX(20);
+            dropShadow.setOffsetY(20);
+            dropShadow.setColor(Color.ORANGE);
+            imageView.setEffect(dropShadow);
+        });
+
+        b.setOnMouseExited(e -> {
+            b.setStyle("-fx-background-color: transparent;");
+            imageView.setEffect(null);
+        });
+
+        b.setStyle("-fx-background-color: transparent;");
+        b.setGraphic(imageView);
         pane.setCenter(b);
         root.getChildren().add(b);
+
+        return b;
 
     }
 
@@ -49,31 +78,54 @@ public class Buttons {
 
         EventHandler<ActionEvent> event = e -> new RandomWriteMain(root, pane);
 
-        buttonBuilder("Random Write", -280, -50, root, event, pane);
+        double xCoords = -1000;
+        double yCoords = -200;
 
+        double xScale = 2600;
+        double yScale = 1500;
+
+        Button b = buttonBuilder("randomWrite", root, event, pane);
+
+        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
     }
     public void randomRead(StackPane root, BorderPane pane){
         EventHandler<ActionEvent> event = e -> new RandomReadMain(root, pane);
 
-        buttonBuilder("Random Read", -150, -50, root, event, pane);
+        double xCoords = -400;
+        double yCoords = -200;
+
+        double xScale = 2600;
+        double yScale = 1500;
+
+        Button b = buttonBuilder("randomRead",  root, event, pane);
+
+        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
     }
     public void sequentialWrite(StackPane root, BorderPane pane){
         EventHandler<ActionEvent> event = e -> new SequentialWriteMain(root, pane);
 
-        buttonBuilder("Sequential Write", -280, 0, root, event, pane);
+        double xCoords = -1000;
+        double yCoords = 100;
+
+        double xScale = 2600;
+        double yScale = 1500;
+
+        Button b = buttonBuilder("sequentialWrite",  root, event, pane);
+
+        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
     }
     public void sequentialRead(StackPane root, BorderPane pane){
         EventHandler<ActionEvent> event = e -> new SequentialReadMain(root, pane);
 
-        buttonBuilder("Sequential Read", -150, 0, root, event, pane);
-    }
-    public void quit(StackPane root, BorderPane pane){
-        EventHandler<ActionEvent> event = e -> {
-            Platform.exit();
-            System.exit(0);
-        };
+        double xCoords = -400;
+        double yCoords = 100;
 
-        buttonBuilder("Quit", -220, 125, root, event, pane);
+        double xScale = 2600;
+        double yScale = 1500;
+
+        Button b = buttonBuilder("sequentialRead",  root, event, pane);
+
+        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
     }
 
     public void checkSize(StackPane root, BorderPane pane){
@@ -81,7 +133,32 @@ public class Buttons {
             new CheckSizeMain(root, pane);
         };
 
-        buttonBuilder("Check Size", -220, 60, root, event, pane);
+        double xCoords = -700;
+        double yCoords = 400;
+
+        double xScale = 2600;
+        double yScale = 1600;
+
+        Button b = buttonBuilder("checkSize",  root, event, pane);
+
+        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
+    }
+
+    public void quit(StackPane root, BorderPane pane){
+        EventHandler<ActionEvent> event = e -> {
+            Platform.exit();
+            System.exit(0);
+        };
+
+        double xCoords = -700;
+        double yCoords = 800;
+
+        double xScale = 2600;
+        double yScale = 2000;
+
+        Button b = buttonBuilder("quit",  root, event, pane);
+
+        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
     }
 
     public void addButtonsToScreen(StackPane root, BorderPane pane){

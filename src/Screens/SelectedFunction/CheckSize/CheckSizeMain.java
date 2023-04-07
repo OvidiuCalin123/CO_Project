@@ -7,7 +7,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
 public class CheckSizeMain {
-    public void setTitle(StackPane root, BorderPane pane, StackPane randomReadMainScreen){
+    public void setTitle(StackPane root, BorderPane pane, StackPane checkSizeMainScreen){
         Image img = new Image("file:DesignFiles/Background/MainMenu_Title.png");
         ImageView imageView = new ImageView(img);
 
@@ -27,7 +27,7 @@ public class CheckSizeMain {
 
         pane.setCenter(imageView);
 
-        randomReadMainScreen.getChildren().add(imageView);
+        checkSizeMainScreen.getChildren().add(imageView);
     }
 
     public CheckSizeMain(StackPane root, BorderPane pane){

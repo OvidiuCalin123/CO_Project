@@ -7,7 +7,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
 public class RandomWriteMain {
-    public void setTitle(StackPane root, BorderPane pane, StackPane randomReadMainScreen){
+    public void setTitle(StackPane root, BorderPane pane, StackPane randomWriteMainScreen){
         Image img = new Image("file:DesignFiles/Background/RandomWrite_Title.png");
         ImageView imageView = new ImageView(img);
 
@@ -27,7 +27,7 @@ public class RandomWriteMain {
 
         pane.setCenter(imageView);
 
-        randomReadMainScreen.getChildren().add(imageView);
+        randomWriteMainScreen.getChildren().add(imageView);
     }
 
     public RandomWriteMain(StackPane root, BorderPane pane){

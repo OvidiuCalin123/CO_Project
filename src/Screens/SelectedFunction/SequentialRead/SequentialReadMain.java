@@ -7,7 +7,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
 public class SequentialReadMain {
-    public void setTitle(StackPane root, BorderPane pane, StackPane randomReadMainScreen){
+    public void setTitle(StackPane root, BorderPane pane, StackPane sequentialReadMainScreen){
         Image img = new Image("file:DesignFiles/Background/SequentialRead_Title.png");
         ImageView imageView = new ImageView(img);
 
@@ -27,7 +27,7 @@ public class SequentialReadMain {
 
         pane.setCenter(imageView);
 
-        randomReadMainScreen.getChildren().add(imageView);
+        sequentialReadMainScreen.getChildren().add(imageView);
     }
 
     public SequentialReadMain(StackPane root, BorderPane pane){
