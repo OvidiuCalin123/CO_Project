@@ -45,7 +45,7 @@ public class LoadingMain {
         // Add buttons
         //new Buttons().addButtonsToScreen(loadingMainScreen, pane);
 
-        setTitle(root, pane, loadingMainScreen);
+        //setTitle(root, pane, loadingMainScreen);
 
     }
 

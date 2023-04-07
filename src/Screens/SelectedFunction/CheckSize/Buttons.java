@@ -73,11 +73,11 @@ public class Buttons {
             checkSizeMainScreen.toBack();
         };
 
-        double xCoords = -400;
-        double yCoords = -200;
+        double xCoords = -1150;
+        double yCoords = 715;
 
-        double xScale = 2600;
-        double yScale = 1500;
+        double xScale = 2800;
+        double yScale = 1700;
 
         Button b = buttonBuilder("back",checkSizeMainScreen, event, pane);
 
@@ -91,7 +91,14 @@ public class Buttons {
             System.exit(0);
         };
 
-        buttonBuilder("Quit", checkSizeMainScreen, event, pane);
+        double xCoords = 1100;
+        double yCoords = 650;
+
+        double xScale = 2600;
+        double yScale = 1500;
+
+        Button b = buttonBuilder("Quit", checkSizeMainScreen, event, pane);
+        scaleButton(b,checkSizeMainScreen,xScale,yScale, xCoords, yCoords);
     }
 
     public void run(StackPane checkSizeMainScreen, BorderPane pane){
@@ -100,7 +107,14 @@ public class Buttons {
             new CheckSizeLogic().run();
         };
 
-        buttonBuilder("Run", checkSizeMainScreen, event, pane);
+        double xCoords = -400;
+        double yCoords = 200;
+
+        double xScale = 2600;
+        double yScale = 1500;
+
+        Button b = buttonBuilder("run", checkSizeMainScreen, event, pane);
+        scaleButton(b,checkSizeMainScreen,xScale,yScale, xCoords, yCoords);
     }
 
 
