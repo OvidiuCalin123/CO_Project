@@ -43,7 +43,7 @@ public class SequentialReadMain {
         // Set the background image
         new Background().setBackgroundImage(root,sequentialReadMainScreen, "monster4.png");
         // Add buttons
-        new Buttons().addButtonsToScreen(sequentialReadMainScreen, pane);
+        new Buttons().addButtonsToScreen(root, sequentialReadMainScreen, pane);
 
         setTitle(root, pane, sequentialReadMainScreen);
 

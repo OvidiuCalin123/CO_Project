@@ -4,9 +4,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 import java.net.URLEncoder;
 
@@ -14,7 +13,15 @@ public class SequentialWriteLogic {
     public void dropbox(StackPane sequentialWriteMainScreen, BorderPane pane){
         // Create a ComboBox with some sample items
         ComboBox<String> dropdown = new ComboBox<>();
-        dropdown.getItems().addAll("Option 1", "Option 2", "Option 3");
+
+        dropdown.setStyle("-fx-background-image: url('file:DesignFiles/Buttons/randomRead.png');" +
+                "-fx-background-position: center;" +
+                "-fx-background-repeat: no-repeat;" +
+                "-fx-padding: 0 180 30 16;" +
+                "-fx-background-size: 100% 120%;" +
+                "-fx-background-color: transparent;");
+
+        dropdown.getItems().addAll("1 GB", "500 MB", "100 MB");
 
         // Set a listener to execute an action when an item is selected
         dropdown.setOnAction(event -> {
@@ -25,23 +32,10 @@ public class SequentialWriteLogic {
 
         // Create a layout and add the ComboBox to it
 
-        VBox root = new VBox(dropdown);
+        VBox dropboxRoot = new VBox(dropdown);
 
-        //dropdown.setScaleX(2);
-        //dropdown.setScaleY(2);
-
-        //dropdown.setStyle("-fx-font-size: 25px; -fx-background-image: url(\"C:\\Users\lenovo\Desktop\proiecte\CO--project\DesignFiles\Buttons\sequentialWriteTitle.png\");");
-        String stylesheet = ".list-cell { -fx-opacity: 0.5; }";
-
-        try {
-            // Add the CSS stylesheet to the scene
-            sequentialWriteMainScreen.getStylesheets().add("data:text/css," + URLEncoder.encode(stylesheet, "UTF-8"));
-        }catch(Exception e){
-
-        };
         dropdown.setCellFactory(param -> new ListCell<String>() {
             private final ImageView imageView = new ImageView();
-
 
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -51,24 +45,26 @@ public class SequentialWriteLogic {
                     setGraphic(null);
                 } else {
                     setText(item);
-                    imageView.setImage(new Image("file:DesignFiles/Buttons/sequentialWriteTitle.png"));
-                    setGraphic(imageView);
+//                    imageView.setImage(new Image("file:DesignFiles/Buttons/sequentialWriteTitle.png"));
+//                    imageView.fitWidthProperty().bind(sequentialWriteMainScreen.widthProperty().multiply(0.1));
+//                    imageView.fitHeightProperty().bind(sequentialWriteMainScreen.heightProperty().multiply(0.1));
+//                    setGraphic(imageView);
                 }
             }
         });
-
-        root.setTranslateX(250 * sequentialWriteMainScreen.getWidth() / 600);
-        root.setTranslateY(150 * sequentialWriteMainScreen.getHeight() / 350);
+        dropboxRoot.setStyle("-fx-background-color: transparent;");
+        dropboxRoot.setTranslateX(250 * sequentialWriteMainScreen.getWidth() / 600);
+        dropboxRoot.setTranslateY(150 * sequentialWriteMainScreen.getHeight() / 350);
 
         // Reposition the button when the root pane dimensions change
         sequentialWriteMainScreen.widthProperty().addListener((obs, oldVal, newVal) -> {
-            root.setTranslateX(250 * newVal.doubleValue() / 600);
+            dropboxRoot.setTranslateX(250 * newVal.doubleValue() / 600);
         });
         sequentialWriteMainScreen.heightProperty().addListener((obs, oldVal, newVal) -> {
-            root.setTranslateY(150 * newVal.doubleValue() / 350);
+            dropboxRoot.setTranslateY(150 * newVal.doubleValue() / 350);
         });
 
         //pane.setCenter(root);
-        sequentialWriteMainScreen.getChildren().add(root);
+        sequentialWriteMainScreen.getChildren().add(dropboxRoot);
     }
 }

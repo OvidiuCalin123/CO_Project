@@ -48,7 +48,7 @@ public class SequentialWriteMain {
 
         new SequentialWriteLogic().dropbox(sequentialWriteMainScreen, pane);
 
-        new Buttons().addButtonsToScreen(sequentialWriteMainScreen, pane);
+        new Buttons().addButtonsToScreen(root, sequentialWriteMainScreen, pane);
 
     }
 

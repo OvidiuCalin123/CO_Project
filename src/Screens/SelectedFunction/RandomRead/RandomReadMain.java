@@ -43,7 +43,7 @@ public class RandomReadMain {
         // Set the background image
         new Background().setBackgroundImage(root,randomReadMainScreen, "monster2.png");
         // Add buttons
-        new Buttons().addButtonsToScreen(randomReadMainScreen, pane);
+        new Buttons().addButtonsToScreen(root, randomReadMainScreen, pane);
 
         setTitle(root, pane, randomReadMainScreen);
 

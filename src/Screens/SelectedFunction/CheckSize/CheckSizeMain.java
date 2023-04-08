@@ -43,7 +43,7 @@ public class CheckSizeMain {
         // Set the background image
         new Background().setBackgroundImage(root,checkSizeMainScreen,"monster1.jpg");
         // Add buttons
-        new Buttons().addButtonsToScreen(checkSizeMainScreen, pane);
+        new Buttons().addButtonsToScreen(root, checkSizeMainScreen, pane);
 
         setTitle(root, pane, checkSizeMainScreen);
 

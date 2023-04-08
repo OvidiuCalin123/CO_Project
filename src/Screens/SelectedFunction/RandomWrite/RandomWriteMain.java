@@ -43,7 +43,7 @@ public class RandomWriteMain {
         // Set the background image
         new Background().setBackgroundImage(root,randomWriteMainScreen, "monster3.png");
         // Add buttons
-        new Buttons().addButtonsToScreen(randomWriteMainScreen, pane);
+        new Buttons().addButtonsToScreen(root, randomWriteMainScreen, pane);
 
         setTitle(root, pane, randomWriteMainScreen);
 

@@ -1,52 +1,90 @@
 package Screens.Loading;
 
 import Shared.Background;
+import javafx.application.Platform;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
+
+import static Screens.Result.ResultMain.showResult;
+
 public class LoadingMain {
-    public void setTitle(StackPane root, BorderPane pane, StackPane randomReadMainScreen){
-        Image img = new Image("file:DesignFiles/Background/MainMenu_Title.png");
-        ImageView imageView = new ImageView(img);
 
-        imageView.fitWidthProperty().bind(root.widthProperty().multiply(0.3));
-        imageView.fitHeightProperty().bind(root.heightProperty().multiply(0.1));
+    public void start(StackPane root, StackPane randomReadMainScreen) {
 
-        imageView.setTranslateX(-180 * root.getWidth() / 600);
-        imageView.setTranslateY(-140 * root.getHeight() / 350);
+        Thread t = new Thread(() -> {
+            try {
+                Stream<Path> paths = Files.walk(Paths.get("DesignFiles/LoadingBar"));
+                paths
+                        .filter(Files::isRegularFile)
+                        .forEach(path -> {
+                            try {
+                                Image img = new Image("file:" + path);
+                                ImageView imageView = new ImageView(img);
 
-        // Reposition the button when the root pane dimensions change
-        root.widthProperty().addListener((obs, oldVal, newVal) -> {
-            imageView.setTranslateX(-180 * newVal.doubleValue() / 600);
+                                imageView.setPreserveRatio(true);
+                                imageView.setFitWidth(600);
+                                imageView.setFitHeight(400);
+
+                                imageView.setTranslateX(0 * randomReadMainScreen.getWidth() / 600);
+                                imageView.setTranslateY(130 * randomReadMainScreen.getHeight() / 350);
+
+                                // Reposition the button when the root pane dimensions change
+                                randomReadMainScreen.widthProperty().addListener((obs, oldVal, newVal) -> {
+                                    imageView.setTranslateX(0 * newVal.doubleValue() / 600);
+                                });
+                                randomReadMainScreen.heightProperty().addListener((obs, oldVal, newVal) -> {
+                                    imageView.setTranslateY(130 * newVal.doubleValue() / 350);
+                                });
+
+                                Platform.runLater(() -> {
+                                    // Get the first child of the StackPane
+                                    Node firstChild = randomReadMainScreen.getChildren().get(0);
+
+                                    // Clear all children of the StackPane except for the first child
+                                    randomReadMainScreen.getChildren().removeIf(child -> child != firstChild);
+
+                                    // Add the new ImageView as the second child of the StackPane
+                                    randomReadMainScreen.getChildren().add(1, imageView);
+                                });
+
+                                Thread.sleep(100);
+                            } catch (Exception e) {
+                                // Handle the exception here
+                            }
+                        });
+
+                Platform.runLater(() -> {
+                    showResult(root);
+                });
+
+
+            } catch (Exception e) {
+                // Handle the exception here
+            }
         });
-        root.heightProperty().addListener((obs, oldVal, newVal) -> {
-            imageView.setTranslateY(-140 * newVal.doubleValue() / 350);
-        });
 
-        pane.setCenter(imageView);
-
-        randomReadMainScreen.getChildren().add(imageView);
+        t.start();
     }
 
-    public LoadingMain(StackPane root, BorderPane pane){
-        // Create a new pane for the new screen
+    public LoadingMain(StackPane root, StackPane previousScreen){
+
         StackPane loadingMainScreen = new StackPane();
 
-        // Add the new pane to the stack pane
-        root.getChildren().add(loadingMainScreen);
+        previousScreen.getChildren().add(loadingMainScreen);
 
-        // Bring the new pane to the front
         loadingMainScreen.toFront();
 
-        // Set the background image
-        new Background().setBackgroundImage(root,loadingMainScreen,"finalCar.png");
-        // Add buttons
-        //new Buttons().addButtonsToScreen(loadingMainScreen, pane);
+        new Background().setBackgroundImage(previousScreen,loadingMainScreen,"finalCar.png");
 
-        //setTitle(root, pane, loadingMainScreen);
-
+        start(root, loadingMainScreen);
     }
 
 }
