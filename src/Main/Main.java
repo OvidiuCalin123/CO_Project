@@ -13,7 +13,7 @@ public class Main extends Application {
         StackPane root = new StackPane();
         BorderPane pane = new BorderPane();
 
-        primaryStage.setTitle("Ovi si Echipa Misterelor");
+        primaryStage.setTitle("Ovi & The Mistery Team");
 
         new MainMenuMain(root, pane);
 
