@@ -8,21 +8,21 @@ import javafx.scene.layout.StackPane;
 
 public class SequentialWriteMain {
     public void setTitle(StackPane root, BorderPane pane, StackPane sequentialWriteMainScreen){
-        Image img = new Image("file:DesignFiles/Background/SequentialWrite_Title.png");
+        Image img = new Image("file:DesignFiles/Buttons/sequentialWriteTitle.png");
         ImageView imageView = new ImageView(img);
 
         imageView.fitWidthProperty().bind(root.widthProperty().multiply(0.3));
-        imageView.fitHeightProperty().bind(root.heightProperty().multiply(0.1));
+        imageView.fitHeightProperty().bind(root.heightProperty().multiply(0.275));
 
-        imageView.setTranslateX(-180 * root.getWidth() / 600);
-        imageView.setTranslateY(-140 * root.getHeight() / 350);
+        imageView.setTranslateX(0 * root.getWidth() / 600);
+        imageView.setTranslateY(-130 * root.getHeight() / 350);
 
         // Reposition the button when the root pane dimensions change
         root.widthProperty().addListener((obs, oldVal, newVal) -> {
-            imageView.setTranslateX(-180 * newVal.doubleValue() / 600);
+            imageView.setTranslateX(0 * newVal.doubleValue() / 600);
         });
         root.heightProperty().addListener((obs, oldVal, newVal) -> {
-            imageView.setTranslateY(-140 * newVal.doubleValue() / 350);
+            imageView.setTranslateY(-130 * newVal.doubleValue() / 350);
         });
 
         pane.setCenter(imageView);
@@ -43,9 +43,12 @@ public class SequentialWriteMain {
         // Set the background image
         new Background().setBackgroundImage(root,sequentialWriteMainScreen,"monster5.jpg");
         // Add buttons
-        new Buttons().addButtonsToScreen(sequentialWriteMainScreen, pane);
 
         setTitle(root, pane, sequentialWriteMainScreen);
+
+        new SequentialWriteLogic().dropbox(sequentialWriteMainScreen, pane);
+
+        new Buttons().addButtonsToScreen(sequentialWriteMainScreen, pane);
 
     }
 
