@@ -36,11 +36,11 @@ public class Buttons {
             System.exit(0);
         };
 
-        double xCoords = 1100;
-        double yCoords = 650;
+        double xCoords = 950;
+        double yCoords = 485;
 
-        double xScale = 2600;
-        double yScale = 1500;
+        double xScale = 2300;
+        double yScale = 1300;
 
         Button b = buttonBuilder("quit",  sequentialReadMainScreen, event, pane);
 
