@@ -55,7 +55,7 @@ public class LoadingMain {
                                     randomReadMainScreen.getChildren().add(1, imageView);
                                 });
 
-                                Thread.sleep(100);
+                                Thread.sleep(50);
                             } catch (Exception e) {
                                 // Handle the exception here
                             }
