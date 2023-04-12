@@ -8,9 +8,22 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 
+import java.io.File;
+
 public class ButtonsHelper {
+
+    public static void playSoundClick(String sound, double volumeLevel){
+        File file = new File("SoundFiles/" + sound);
+
+        AudioClip audioClip = new AudioClip(file.toURI().toString());
+        audioClip.setVolume(volumeLevel);
+        audioClip.play();
+    }
 
     public static void scaleButton(Button b, StackPane root, double xScale, double yScale, double xCoords, double yCoords){
 
@@ -48,6 +61,12 @@ public class ButtonsHelper {
             dropShadow.setOffsetY(20);
             dropShadow.setColor(Color.ORANGE);
             imageView.setEffect(dropShadow);
+
+            File file = new File("SoundFiles/OnHoverSound.wav");
+
+            AudioClip audioClip = new AudioClip(file.toURI().toString());
+            audioClip.setVolume(3);
+            audioClip.play();
         });
 
         b.setOnMouseExited(e -> {

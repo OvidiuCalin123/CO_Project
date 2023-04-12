@@ -16,67 +16,18 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
+import static Shared.ButtonsHelper.*;
+
 public class Buttons {
-
-    public void scaleButton(Button b, StackPane root, double xScale, double yScale, double xCoords, double yCoords){
-
-        // Bind scale properties to root pane dimensions
-        b.scaleXProperty().bind(root.widthProperty().divide(xScale));
-        b.scaleYProperty().bind(root.heightProperty().divide(yScale));
-
-        // Set the initial position of the button
-        b.setTranslateX(xCoords * root.getWidth() / xScale);
-        b.setTranslateY(yCoords * root.getHeight() / yScale);
-
-        // Reposition the button when the root pane dimensions change
-        root.widthProperty().addListener((obs, oldVal, newVal) -> {
-            b.setTranslateX(xCoords * newVal.doubleValue() / xScale);
-        });
-        root.heightProperty().addListener((obs, oldVal, newVal) -> {
-            b.setTranslateY(yCoords * newVal.doubleValue() / yScale);
-        });
-
-    }
-
-    public void playSoundOnHover(){
-
-    }
-
-    public Button buttonBuilder(String buttonName, StackPane root, EventHandler<ActionEvent> event, BorderPane pane){
-
-        Image img = new Image("file:DesignFiles/Buttons/" + buttonName + ".png");
-        ImageView imageView = new ImageView(img);
-        Button b = new Button();
-
-        b.setOnAction(event);
-
-        b.setOnMouseEntered(e -> {
-            b.setStyle("-fx-cursor: hand; -fx-background-color: transparent;");
-            DropShadow dropShadow = new DropShadow();
-            dropShadow.setRadius(20);
-            dropShadow.setOffsetX(20);
-            dropShadow.setOffsetY(20);
-            dropShadow.setColor(Color.ORANGE);
-            imageView.setEffect(dropShadow);
-        });
-
-        b.setOnMouseExited(e -> {
-            b.setStyle("-fx-background-color: transparent;");
-            imageView.setEffect(null);
-        });
-
-        b.setStyle("-fx-background-color: transparent;");
-        b.setGraphic(imageView);
-        pane.setCenter(b);
-        root.getChildren().add(b);
-
-        return b;
-
-    }
 
     public void randomWrite(StackPane root, BorderPane pane){
 
-        EventHandler<ActionEvent> event = e -> new RandomWriteMain(root, pane);
+        EventHandler<ActionEvent> event = e -> {
+
+            playSoundClick("ButtonCloudPressed.wav", 3);
+            new RandomWriteMain(root, pane);
+
+        };
 
         double xCoords = -1000;
         double yCoords = -200;
@@ -89,7 +40,12 @@ public class Buttons {
         scaleButton(b,root,xScale,yScale, xCoords, yCoords);
     }
     public void randomRead(StackPane root, BorderPane pane){
-        EventHandler<ActionEvent> event = e -> new RandomReadMain(root, pane);
+        EventHandler<ActionEvent> event = e -> {
+
+            playSoundClick("ButtonCloudPressed.wav", 3);
+            new RandomReadMain(root, pane);
+
+        };
 
         double xCoords = -400;
         double yCoords = -200;
@@ -102,7 +58,11 @@ public class Buttons {
         scaleButton(b,root,xScale,yScale, xCoords, yCoords);
     }
     public void sequentialWrite(StackPane root, BorderPane pane){
-        EventHandler<ActionEvent> event = e -> new SequentialWriteMain(root, pane);
+        EventHandler<ActionEvent> event = e -> {
+
+            playSoundClick("ButtonCloudPressed.wav", 3);
+            new SequentialWriteMain(root, pane);
+        };
 
         double xCoords = -1000;
         double yCoords = 100;
@@ -115,7 +75,12 @@ public class Buttons {
         scaleButton(b,root,xScale,yScale, xCoords, yCoords);
     }
     public void sequentialRead(StackPane root, BorderPane pane){
-        EventHandler<ActionEvent> event = e -> new SequentialReadMain(root, pane);
+        EventHandler<ActionEvent> event = e -> {
+
+            playSoundClick("ButtonCloudPressed.wav", 3);
+            new SequentialReadMain(root, pane);
+
+        };
 
         double xCoords = -400;
         double yCoords = 100;
@@ -130,6 +95,8 @@ public class Buttons {
 
     public void checkSize(StackPane root, BorderPane pane){
         EventHandler<ActionEvent> event = e -> {
+
+            playSoundClick("ButtonCloudPressed.wav", 3);
             new CheckSizeMain(root, pane);
         };
 
@@ -146,6 +113,8 @@ public class Buttons {
 
     public void quit(StackPane root, BorderPane pane){
         EventHandler<ActionEvent> event = e -> {
+
+            playSoundClick("ButtonCloudPressed.wav", 3);
             Platform.exit();
             System.exit(0);
         };
