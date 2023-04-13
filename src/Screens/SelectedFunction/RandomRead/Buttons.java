@@ -52,6 +52,7 @@ public class Buttons {
     public void run(StackPane root, StackPane randomReadMainScreen, BorderPane pane){
         EventHandler<ActionEvent> event = e -> {
             new LoadingMain(root, randomReadMainScreen);
+            new RandomReadLogic().run();
         };
 
         double xCoords = -700;  //daca cresti cu - il aduci catre stanga
