@@ -1,4 +1,4 @@
-package Shared;
+package Screens.MainMenu;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,43 +13,21 @@ import javafx.scene.paint.Color;
 
 import java.io.File;
 
-public class ButtonsHelper {
+public class SoundButton {
 
-    public static void playSoundClick(String sound, double volumeLevel){
-        File file = new File("SoundFiles/" + sound);
+    private static Button btn;
 
-        AudioClip audioClip = new AudioClip(file.toURI().toString());
-        audioClip.setVolume(volumeLevel);
-        audioClip.play();
+    public static void setEvent(EventHandler<ActionEvent> event){
+        btn.setOnAction(event);
     }
 
-    public static void scaleButton(Button b, StackPane root, double xScale, double yScale, double xCoords, double yCoords){
-
-        // Bind scale properties to root pane dimensions
-        b.scaleXProperty().bind(root.widthProperty().divide(xScale));
-        b.scaleYProperty().bind(root.heightProperty().divide(yScale));
-
-        // Set the initial position of the button
-        b.setTranslateX(xCoords * root.getWidth() / xScale);
-        b.setTranslateY(yCoords * root.getHeight() / yScale);
-
-        // Reposition the button when the root pane dimensions change
-        root.widthProperty().addListener((obs, oldVal, newVal) -> {
-            b.setTranslateX(xCoords * newVal.doubleValue() / xScale);
-        });
-        root.heightProperty().addListener((obs, oldVal, newVal) -> {
-            b.setTranslateY(yCoords * newVal.doubleValue() / yScale);
-        });
-
-    }
-
-    public static Button buttonBuilder(String buttonName, StackPane root, EventHandler<ActionEvent> event, BorderPane pane){
+    public static Button buttonBuilder(String buttonName, StackPane root, BorderPane pane){
 
         Image img = new Image("file:DesignFiles/Buttons/" + buttonName + ".png");
         ImageView imageView = new ImageView(img);
         Button b = new Button();
 
-        b.setOnAction(event);
+        btn = b;
 
         b.setOnMouseEntered(e -> {
             b.setStyle("-fx-cursor: hand; -fx-background-color: transparent;");
@@ -80,5 +58,4 @@ public class ButtonsHelper {
         return b;
 
     }
-
 }
