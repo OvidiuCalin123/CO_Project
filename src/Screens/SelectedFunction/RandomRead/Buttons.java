@@ -8,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
+import java.io.IOException;
+
 import static Shared.ButtonsHelper.buttonBuilder;
 import static Shared.ButtonsHelper.scaleButton;
 
@@ -52,7 +54,11 @@ public class Buttons {
     public void run(StackPane root, StackPane randomReadMainScreen, BorderPane pane, String screenName){
         EventHandler<ActionEvent> event = e -> {
             new LoadingMain(root, randomReadMainScreen, screenName);
-            new RandomReadLogic().run();
+            try {
+                new RandomReadLogic().run();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         };
 
         double xCoords = -700;  //daca cresti cu - il aduci catre stanga
