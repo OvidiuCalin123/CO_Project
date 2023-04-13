@@ -175,9 +175,9 @@ public class Buttons {
             volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
                 double volume = newValue.intValue();
                 audioClip.setVolume(volume/100);
-                if(volume > 70){
+                if(volume >= 70){
                     highButton.setGraphic(new ImageView(new Image("file:DesignFiles/Buttons/soundHigh.png", 200, 200, true, true)));
-                }else if(volume < 70 && volume > 30){
+                }else if(volume < 70 && volume >= 30){
                     highButton.setGraphic(new ImageView(new Image("file:DesignFiles/Buttons/soundMid.png", 200, 200, true, true)));
                 }else{
                     highButton.setGraphic(new ImageView(new Image("file:DesignFiles/Buttons/soundLow.png", 200, 200, true, true)));
