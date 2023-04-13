@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
-public class RandomReadBenchmark {
+public class RandomReadLogic {
     
     public double measureRandomReadSpeed(File file, long fileSize, int bufferSize) throws IOException {
         byte[] buffer = new byte[bufferSize];
