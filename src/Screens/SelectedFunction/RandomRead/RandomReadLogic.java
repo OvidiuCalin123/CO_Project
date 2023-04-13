@@ -42,6 +42,6 @@ public class RandomReadLogic {
         file.deleteOnExit();
         long fileSize = 1024 * 1024 * 1024; // 1 GB for testing, implement user input or dropdown later.
         int bufferSize = 4096;
-        double readSpeed = RandomReadBenchmark.measureRandomReadSpeed(file, fileSize, bufferSize);
+        double readSpeed = RandomReadLogic.measureRandomReadSpeed(file, fileSize, bufferSize);
         System.out.printf("Random read speed: %.2f MB/s\n", readSpeed);
   }
