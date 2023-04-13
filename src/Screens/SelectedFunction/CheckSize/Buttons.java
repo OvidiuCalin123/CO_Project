@@ -46,9 +46,9 @@ public class Buttons {
         scaleButton(b,checkSizeMainScreen,xScale,yScale, xCoords, yCoords);
     }
 
-    public void run(StackPane root, StackPane checkSizeMainScreen, BorderPane pane){
+    public void run(StackPane root, StackPane checkSizeMainScreen, BorderPane pane, String screenName){
         EventHandler<ActionEvent> event = e -> {
-            new LoadingMain(root, checkSizeMainScreen);
+            new LoadingMain(root, checkSizeMainScreen, screenName);
             new CheckSizeLogic().run();
         };
 
@@ -67,7 +67,7 @@ public class Buttons {
 
         back(checkSizeMainScreen, pane);
         quit(checkSizeMainScreen, pane);
-        run(root, checkSizeMainScreen, pane);
+        run(root, checkSizeMainScreen, pane, "catchMonster1.jpg");
     }
 
 }

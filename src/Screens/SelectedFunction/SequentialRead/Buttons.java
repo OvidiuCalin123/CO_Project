@@ -47,9 +47,9 @@ public class Buttons {
         scaleButton(b,sequentialReadMainScreen,xScale,yScale, xCoords, yCoords);
     }
 
-    public void run(StackPane root, StackPane sequentialReadMainScreen, BorderPane pane){
+    public void run(StackPane root, StackPane sequentialReadMainScreen, BorderPane pane, String screenName){
         EventHandler<ActionEvent> event = e -> {
-            new LoadingMain(root, sequentialReadMainScreen);
+            new LoadingMain(root, sequentialReadMainScreen, screenName);
         };
 
         double xCoords = -700;  //daca cresti cu - il aduci catre stanga
@@ -66,7 +66,7 @@ public class Buttons {
 
         back(sequentialReadMainScreen, pane);
         quit(sequentialReadMainScreen, pane);
-        run(root, sequentialReadMainScreen, pane);
+        run(root, sequentialReadMainScreen, pane, "catchMonster4.png");
 
 
     }

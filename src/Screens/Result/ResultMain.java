@@ -5,7 +5,7 @@ import javafx.scene.layout.StackPane;
 
 public class ResultMain {
 
-    public static void showResult(StackPane r){
+    public static void showResult(StackPane r, String screenName){
 
         StackPane resultMainScreen = new StackPane();
 
@@ -13,6 +13,6 @@ public class ResultMain {
 
         resultMainScreen.toFront();
 
-        new Background().setBackgroundImage(r,resultMainScreen,"menu.jpg");
+        new Background().setBackgroundImage(r,resultMainScreen,screenName);
     }
 }

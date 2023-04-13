@@ -49,9 +49,9 @@ public class Buttons {
         scaleButton(b,randomReadMainScreen,xScale,yScale, xCoords, yCoords);
     }
 
-    public void run(StackPane root, StackPane randomReadMainScreen, BorderPane pane){
+    public void run(StackPane root, StackPane randomReadMainScreen, BorderPane pane, String screenName){
         EventHandler<ActionEvent> event = e -> {
-            new LoadingMain(root, randomReadMainScreen);
+            new LoadingMain(root, randomReadMainScreen, screenName);
             new RandomReadLogic().run();
         };
 
@@ -70,7 +70,7 @@ public class Buttons {
 
         back(randomReadMainScreen, pane);
         quit(randomReadMainScreen, pane);
-        run(root, randomReadMainScreen, pane);
+        run(root, randomReadMainScreen, pane, "catchMonster2.png");
 
     }
 
