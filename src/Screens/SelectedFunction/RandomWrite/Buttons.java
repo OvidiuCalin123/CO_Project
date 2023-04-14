@@ -50,6 +50,11 @@ public class Buttons {
     public void run(StackPane root, StackPane sequentialWriteMainScreen, BorderPane pane, String screenName){
         EventHandler<ActionEvent> event = e -> {
             new LoadingMain(root, sequentialWriteMainScreen, screenName, pane);
+            try {
+                new RandomWriteLogic().run();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         };
 
         double xCoords = -700;  //daca cresti cu - il aduci catre stanga
