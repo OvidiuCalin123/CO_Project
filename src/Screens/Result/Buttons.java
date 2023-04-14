@@ -1,6 +1,8 @@
-package Screens.SelectedFunction.SequentialRead;
+package Screens.Result;
+
 
 import Screens.Loading.LoadingMain;
+import Screens.SelectedFunction.CheckSize.CheckSizeMain;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,7 +17,7 @@ public class Buttons {
 
     public void back(StackPane sequentialReadMainScreen, BorderPane pane){
         EventHandler<ActionEvent> event = e -> {
-            sequentialReadMainScreen.toBack();
+           new CheckSizeMain(sequentialReadMainScreen, pane);
         };
 
         double xCoords = -1050;
@@ -47,26 +49,13 @@ public class Buttons {
         scaleButton(b,sequentialReadMainScreen,xScale,yScale, xCoords, yCoords);
     }
 
-    public void run(StackPane root, StackPane sequentialReadMainScreen, BorderPane pane, String screenName){
-        EventHandler<ActionEvent> event = e -> {
-            new LoadingMain(root, sequentialReadMainScreen, screenName, pane);
-        };
 
-        double xCoords = -700;  //daca cresti cu - il aduci catre stanga
-        double yCoords = -100;
-
-        double xScale = 2800;
-        double yScale = 1800;
-
-        Button b = buttonBuilder("run", sequentialReadMainScreen, event, pane);
-        scaleButton(b,sequentialReadMainScreen,xScale,yScale, xCoords, yCoords);
-    }
 
     public void addButtonsToScreen(StackPane root, StackPane sequentialReadMainScreen, BorderPane pane){
 
         back(sequentialReadMainScreen, pane);
         quit(sequentialReadMainScreen, pane);
-        run(root, sequentialReadMainScreen, pane, "catchMonster4.png");
+
 
 
     }

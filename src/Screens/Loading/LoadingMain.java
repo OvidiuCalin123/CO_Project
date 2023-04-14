@@ -17,7 +17,7 @@ import static Screens.Result.ResultMain.showResult;
 
 public class LoadingMain {
 
-    public void start(StackPane root, StackPane randomReadMainScreen, String screenName) {
+    public void start(StackPane root, StackPane randomReadMainScreen, String screenName, BorderPane pane) {
 
         Thread t = new Thread(() -> {
             try {
@@ -62,7 +62,7 @@ public class LoadingMain {
                         });
 
                 Platform.runLater(() -> {
-                    showResult(root, screenName);
+                    showResult(root, screenName, pane);
                 });
 
 
@@ -74,7 +74,7 @@ public class LoadingMain {
         t.start();
     }
 
-    public LoadingMain(StackPane root, StackPane previousScreen, String screenName){
+    public LoadingMain(StackPane root, StackPane previousScreen, String screenName, BorderPane pane){
 
         StackPane loadingMainScreen = new StackPane();
 
@@ -84,7 +84,7 @@ public class LoadingMain {
 
         new Background().setBackgroundImage(previousScreen,loadingMainScreen,"finalCar.png");
 
-        start(root, loadingMainScreen, screenName);
+        start(root, loadingMainScreen, screenName, pane);
     }
 
 }

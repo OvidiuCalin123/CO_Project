@@ -14,11 +14,11 @@ public class SequentialWriteLogic {
         // Create a ComboBox with some sample items
         ComboBox<String> dropdown = new ComboBox<>();
 
-        dropdown.setStyle("-fx-background-image: url('file:DesignFiles/Buttons/randomRead.png');" +
+        dropdown.setStyle("-fx-background-image: url('file:DesignFiles/Buttons/selectSize.png');" +
                 "-fx-background-position: center;" +
                 "-fx-background-repeat: no-repeat;" +
-                "-fx-padding: 0 180 30 16;" +
-                "-fx-background-size: 100% 120%;" +
+                "-fx-padding: 0 350 50 20;" +
+                "-fx-background-size: 100% 100%;" +
                 "-fx-background-color: transparent;");
 
         dropdown.getItems().addAll("1 GB", "500 MB", "100 MB");

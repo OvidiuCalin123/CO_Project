@@ -53,7 +53,7 @@ public class Buttons {
 
     public void run(StackPane root, StackPane randomReadMainScreen, BorderPane pane, String screenName){
         EventHandler<ActionEvent> event = e -> {
-            new LoadingMain(root, randomReadMainScreen, screenName);
+            new LoadingMain(root, randomReadMainScreen, screenName, pane);
             try {
                 new RandomReadLogic().run();
             } catch (IOException ioException) {

@@ -157,6 +157,8 @@ public class Buttons {
 
 
         Slider volumeSlider = new Slider(0, 100, 1);
+        volumeSlider.setStyle("-fx-background-color: green;-fx-background-repeat: no-repeat; -fx-background-size: cover;");
+
         StackPane volumePane = new StackPane(volumeSlider);
 
         Button highButton = SoundButton.buttonBuilder("soundMid", root, pane);
@@ -179,8 +181,10 @@ public class Buttons {
                     highButton.setGraphic(new ImageView(new Image("file:DesignFiles/Buttons/soundHigh.png", 200, 200, true, true)));
                 }else if(volume < 70 && volume >= 30){
                     highButton.setGraphic(new ImageView(new Image("file:DesignFiles/Buttons/soundMid.png", 200, 200, true, true)));
-                }else{
+                }else if(volume < 30 && volume > 1){
                     highButton.setGraphic(new ImageView(new Image("file:DesignFiles/Buttons/soundLow.png", 200, 200, true, true)));
+                }else{
+                    highButton.setGraphic(new ImageView(new Image("file:DesignFiles/Buttons/soundMute.png", 200, 200, true, true)));
                 }
 
             });
