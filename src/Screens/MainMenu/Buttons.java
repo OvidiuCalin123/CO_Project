@@ -157,7 +157,7 @@ public class Buttons {
 
 
         Slider volumeSlider = new Slider(0, 100, 1);
-        volumeSlider.setStyle("-fx-background-color: green;-fx-background-repeat: no-repeat; -fx-background-size: cover;");
+
 
         StackPane volumePane = new StackPane(volumeSlider);
 
@@ -170,7 +170,6 @@ public class Buttons {
             playSoundClick("ButtonCloudPressed.wav", 3);
 
             Label volumeLabel = new Label();
-
             volumeSlider.setMajorTickUnit(1);
             volumeSlider.setMinorTickCount(0);
 

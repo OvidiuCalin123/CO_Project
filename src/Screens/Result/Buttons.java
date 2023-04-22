@@ -17,8 +17,6 @@ import static Shared.ButtonsHelper.scaleButton;
 
 public class Buttons {
 
-
-
     public void back(StackPane sequentialReadMainScreen, BorderPane pane){
         EventHandler<ActionEvent> event = e -> {
             sequentialReadMainScreen.toBack();
@@ -29,7 +27,7 @@ public class Buttons {
             sequentialReadMainScreen.getChildren().get(index + 1).toBack();
             sequentialReadMainScreen.getChildren().get(index + 2).toBack();
             sequentialReadMainScreen.getChildren().get(index + 2).toBack();
-            System.out.println(sequentialReadMainScreen.getChildren());
+
         };
 
         double xCoords = -975;
@@ -61,14 +59,10 @@ public class Buttons {
         scaleButton(b,sequentialReadMainScreen,xScale,yScale, xCoords, yCoords);
     }
 
-
-
     public void addButtonsToScreen(StackPane root, StackPane sequentialReadMainScreen, BorderPane pane){
 
         back(root, pane);
         quit(root, pane);
-
-
 
     }
 

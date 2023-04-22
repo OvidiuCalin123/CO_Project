@@ -30,15 +30,15 @@ public class LoadingMain {
                                 ImageView imageView = new ImageView(img);
 
                                 imageView.setPreserveRatio(true);
-                                imageView.setFitWidth(600);
+                                imageView.setFitWidth(650);
                                 imageView.setFitHeight(400);
 
-                                imageView.setTranslateX(0 * randomReadMainScreen.getWidth() / 600);
+                                imageView.setTranslateX(0 * randomReadMainScreen.getWidth() / 650);
                                 imageView.setTranslateY(130 * randomReadMainScreen.getHeight() / 350);
 
                                 // Reposition the button when the root pane dimensions change
                                 randomReadMainScreen.widthProperty().addListener((obs, oldVal, newVal) -> {
-                                    imageView.setTranslateX(0 * newVal.doubleValue() / 600);
+                                    imageView.setTranslateX(0 * newVal.doubleValue() / 650);
                                 });
                                 randomReadMainScreen.heightProperty().addListener((obs, oldVal, newVal) -> {
                                     imageView.setTranslateY(130 * newVal.doubleValue() / 350);
