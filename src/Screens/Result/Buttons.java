@@ -32,13 +32,13 @@ public class Buttons {
             System.out.println(sequentialReadMainScreen.getChildren());
         };
 
-        double xCoords = -1050;
-        double yCoords = 550;
+        double xCoords = -975;
+        double yCoords = 725;
 
-        double xScale = 2600;
-        double yScale = 1500;
+        double xScale = 2300;
+        double yScale = 1950;
 
-        Button b = buttonBuilder("back", sequentialReadMainScreen, event, pane);
+        Button b = buttonBuilder("backToHome2", sequentialReadMainScreen, event, pane);
 
         scaleButton(b,sequentialReadMainScreen,xScale,yScale, xCoords, yCoords);
 
