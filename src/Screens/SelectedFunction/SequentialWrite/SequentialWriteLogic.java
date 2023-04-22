@@ -52,16 +52,24 @@ public class SequentialWriteLogic {
                 }
             }
         });
-        dropboxRoot.setStyle("-fx-background-color: transparent;");
-        dropboxRoot.setTranslateX(250 * sequentialWriteMainScreen.getWidth() / 600);
-        dropboxRoot.setTranslateY(150 * sequentialWriteMainScreen.getHeight() / 350);
+
+        // Reposition the button when the root pane dimensions change
+//        root.widthProperty().addListener((obs, oldVal, newVal) -> {
+//            imageView.setTranslateX(0 * newVal.doubleValue() / 600);
+//        });
+//        root.heightProperty().addListener((obs, oldVal, newVal) -> {
+//            imageView.setTranslateY(-130 * newVal.doubleValue() / 350);
+//        });
+        dropdown.setStyle("-fx-background-color: transparent;");
+        dropdown.setTranslateX(250 * sequentialWriteMainScreen.getWidth() / 1);
+        dropdown.setTranslateY(150 * sequentialWriteMainScreen.getHeight() / 1);
 
         // Reposition the button when the root pane dimensions change
         sequentialWriteMainScreen.widthProperty().addListener((obs, oldVal, newVal) -> {
-            dropboxRoot.setTranslateX(250 * newVal.doubleValue() / 600);
+            dropdown.setTranslateX(250 * newVal.doubleValue() / 1);
         });
         sequentialWriteMainScreen.heightProperty().addListener((obs, oldVal, newVal) -> {
-            dropboxRoot.setTranslateY(150 * newVal.doubleValue() / 350);
+            dropdown.setTranslateY(150 * newVal.doubleValue() / 1);
         });
 
         //pane.setCenter(root);

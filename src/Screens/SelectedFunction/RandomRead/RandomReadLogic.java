@@ -5,7 +5,8 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 public class RandomReadLogic {
-    
+
+    private static double speed;
     public static double measureRandomReadSpeed(File file, long fileSize, int bufferSize) throws IOException {
         byte[] buffer = new byte[bufferSize];
         // Fill the created file with random data.
@@ -41,6 +42,12 @@ public class RandomReadLogic {
         int bufferSize = 4096;
         double readSpeed = RandomReadLogic.measureRandomReadSpeed(file, fileSize, bufferSize);
         System.out.printf("Random read speed: %.2f MB/s\n", readSpeed);
+        speed=readSpeed;
+        System.out.println(speed);
+    }
+
+    public double getReadSpeed(){
+        return speed;
     }
 }
 

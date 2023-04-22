@@ -17,6 +17,8 @@ import static Shared.ButtonsHelper.scaleButton;
 
 public class Buttons {
 
+
+
     public void back(StackPane sequentialReadMainScreen, BorderPane pane){
         EventHandler<ActionEvent> event = e -> {
             sequentialReadMainScreen.toBack();
