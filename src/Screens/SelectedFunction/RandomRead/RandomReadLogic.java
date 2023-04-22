@@ -7,6 +7,7 @@ import java.io.RandomAccessFile;
 public class RandomReadLogic {
 
     private static double speed;
+    private static double time;
     public static double measureRandomReadSpeed(File file, long fileSize, int bufferSize) throws IOException {
         byte[] buffer = new byte[bufferSize];
         // Fill the created file with random data.
@@ -32,6 +33,7 @@ public class RandomReadLogic {
         // Calculate the time taken and return the results.
         long endTime = System.currentTimeMillis();
         long timeTaken = endTime - startTime;
+        time=timeTaken;
         double readSpeed = fileSize / (1024.0 * 1024.0 * timeTaken / 1000.0);
         return readSpeed;
     }
@@ -46,9 +48,12 @@ public class RandomReadLogic {
         System.out.println(speed);
     }
 
+    public double getTime(){ return time/1000; }
+
     public double getReadSpeed(){
         return speed;
     }
 }
+
 
 
