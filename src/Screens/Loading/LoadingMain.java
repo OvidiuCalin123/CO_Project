@@ -85,6 +85,6 @@ public class LoadingMain {
         new Background().setBackgroundImage(previousScreen,loadingMainScreen,"finalCar.png");
 
         start(root, loadingMainScreen, screenName, pane);
-    }
+     }
 
 }

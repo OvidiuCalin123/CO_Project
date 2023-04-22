@@ -4,8 +4,10 @@ package Screens.Result;
 import Screens.Loading.LoadingMain;
 import Screens.SelectedFunction.CheckSize.CheckSizeMain;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
@@ -17,7 +19,15 @@ public class Buttons {
 
     public void back(StackPane sequentialReadMainScreen, BorderPane pane){
         EventHandler<ActionEvent> event = e -> {
-           new CheckSizeMain(sequentialReadMainScreen, pane);
+            sequentialReadMainScreen.toBack();
+            sequentialReadMainScreen.toBack();
+            ObservableList<Node> children = sequentialReadMainScreen.getChildren();
+            int index = children.size() - 3;
+            sequentialReadMainScreen.getChildren().get(index).toBack();
+            sequentialReadMainScreen.getChildren().get(index + 1).toBack();
+            sequentialReadMainScreen.getChildren().get(index + 2).toBack();
+            sequentialReadMainScreen.getChildren().get(index + 2).toBack();
+            System.out.println(sequentialReadMainScreen.getChildren());
         };
 
         double xCoords = -1050;
@@ -53,8 +63,8 @@ public class Buttons {
 
     public void addButtonsToScreen(StackPane root, StackPane sequentialReadMainScreen, BorderPane pane){
 
-        back(sequentialReadMainScreen, pane);
-        quit(sequentialReadMainScreen, pane);
+        back(root, pane);
+        quit(root, pane);
 
 
 
