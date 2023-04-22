@@ -22,11 +22,12 @@ public class Buttons {
             sequentialReadMainScreen.toBack();
             sequentialReadMainScreen.toBack();
             ObservableList<Node> children = sequentialReadMainScreen.getChildren();
-            int index = children.size() - 3;
+            int index = children.size() - 4;
             sequentialReadMainScreen.getChildren().get(index).toBack();
             sequentialReadMainScreen.getChildren().get(index + 1).toBack();
             sequentialReadMainScreen.getChildren().get(index + 2).toBack();
             sequentialReadMainScreen.getChildren().get(index + 2).toBack();
+            sequentialReadMainScreen.getChildren().get(index + 3).toBack();
 
         };
 
@@ -42,6 +43,21 @@ public class Buttons {
 
     }
 
+    public void history(StackPane sequentialReadMainScreen, BorderPane pane){
+        EventHandler<ActionEvent> event = e -> {
+        };
+
+        double xCoords = 0;
+        double yCoords = 575;
+
+        double xScale = 2700;
+        double yScale = 1600;
+
+        Button b = buttonBuilder("history",  sequentialReadMainScreen, event, pane);
+
+        scaleButton(b,sequentialReadMainScreen,xScale,yScale, xCoords, yCoords);
+    }
+
     public void quit(StackPane sequentialReadMainScreen, BorderPane pane){
         EventHandler<ActionEvent> event = e -> {
             Platform.exit();
@@ -49,10 +65,10 @@ public class Buttons {
         };
 
         double xCoords = 950;
-        double yCoords = 485;
+        double yCoords = 400;
 
         double xScale = 2300;
-        double yScale = 1300;
+        double yScale = 1100;
 
         Button b = buttonBuilder("quit",  sequentialReadMainScreen, event, pane);
 
@@ -63,6 +79,7 @@ public class Buttons {
 
         back(root, pane);
         quit(root, pane);
+        history(root, pane);
 
     }
 
