@@ -33,12 +33,12 @@ public class Buttons {
         };
 
         double xCoords = -975;
-        double yCoords = 725;
+        double yCoords = 575;
 
         double xScale = 2300;
-        double yScale = 1950;
+        double yScale = 1600;
 
-        Button b = buttonBuilder("backToHome2", sequentialReadMainScreen, event, pane);
+        Button b = buttonBuilder("backToHome", sequentialReadMainScreen, event, pane);
 
         scaleButton(b,sequentialReadMainScreen,xScale,yScale, xCoords, yCoords);
 
