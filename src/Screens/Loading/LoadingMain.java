@@ -1,5 +1,6 @@
 package Screens.Loading;
 
+import Screens.SelectedFunction.RandomRead.RandomReadLogic;
 import Shared.Background;
 import javafx.application.Platform;
 import javafx.scene.Node;
@@ -55,7 +56,14 @@ public class LoadingMain {
                                     randomReadMainScreen.getChildren().add(1, imageView);
                                 });
 
-                                Thread.sleep(50);
+                                RandomReadLogic r = new RandomReadLogic();
+
+                                if(!r.getIsCompleted()){
+                                    Thread.sleep(300);
+                                }
+                                else{
+                                    Thread.sleep(50);
+                                }
                             } catch (Exception e) {
                                 // Handle the exception here
                             }
