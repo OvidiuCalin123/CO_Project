@@ -19,8 +19,8 @@ import static Shared.ScaleToScreen.resizeToScreen;
 
 public class ResultMain {
 
-    public static void setScore(StackPane root, BorderPane pane, StackPane scoreImage){
-        RandomReadLogic r=new RandomReadLogic();
+    public static void setScore(StackPane root, BorderPane pane, StackPane scoreImage) {
+        RandomReadLogic r = new RandomReadLogic();
         Text text = new Text(String.format("Score: %.2f", r.getReadSpeed()));
         Image img = new Image("file:DesignFiles/Buttons/" + "templateButton" + ".png");
         text.setFill(Color.ORANGE);
@@ -36,25 +36,38 @@ public class ResultMain {
         // Set the font size
         text.setFont(Font.font("Snap ITC", fontSize));
 
-        imageView.setTranslateX(-180 * root.getWidth() / 600);
-        imageView.setTranslateY(-80 * root.getHeight() / 350);
-        text.setTranslateX(-180 * root.getWidth() / 600);
-        text.setTranslateY(-80 * root.getHeight() / 350);
 
-        // Reposition the button when the root pane dimensions change
-        root.widthProperty().addListener((obs, oldVal, newVal) -> {
-            imageView.setTranslateX(-180 * newVal.doubleValue() / 600);
-            text.setTranslateX(-180 * newVal.doubleValue() / 600);
+        // Create an anchor pane to hold the image and text
+        AnchorPane anchorPane = new AnchorPane();
+        anchorPane.getChildren().addAll(imageView, text);
+
+        // Set the position of the text relative to the image using anchor points
+        AnchorPane.setTopAnchor(text, 10.0);
+        AnchorPane.setLeftAnchor(text, 10.0);
+
+        // Bind the size of the anchor pane to the size of the image view
+        anchorPane.prefWidthProperty().bind(imageView.fitWidthProperty());
+        anchorPane.prefHeightProperty().bind(imageView.fitHeightProperty());
+
+        // Set up a listener to update the font size of the text when the image scales
+        imageView.fitWidthProperty().addListener((observable, oldValue, newValue) -> {
+            double scaleFactor = newValue.doubleValue() / oldValue.doubleValue();
+            text.setFont(Font.font(text.getFont().getFamily(), text.getFont().getSize() * scaleFactor));
         });
-        root.heightProperty().addListener((obs, oldVal, newVal) -> {
-            imageView.setTranslateY(-80 * newVal.doubleValue() / 350);
-            text.setTranslateY(-80 * newVal.doubleValue() / 350);
+
+        imageView.fitHeightProperty().addListener((observable, oldValue, newValue) -> {
+            double scaleFactor = newValue.doubleValue() / oldValue.doubleValue();
+            text.setFont(Font.font(text.getFont().getFamily(), text.getFont().getSize() * scaleFactor));
         });
+
+        resizeToScreen(imageView, root, 1300, 730, -350, -167.5);
+        resizeToImage(text, root, 1300, 730, -350, -167.5);
 
         pane.setCenter(imageView);
 
         scoreImage.getChildren().add(imageView);
         scoreImage.getChildren().add(text);
+
     }
 
     public static void setTime(StackPane root, BorderPane pane, StackPane scoreImage){
