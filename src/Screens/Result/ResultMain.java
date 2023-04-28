@@ -87,8 +87,6 @@ public class ResultMain {
         // Set the font size
         text.setFont(Font.font("Snap ITC", fontSize));
 
-
-
         // Create an anchor pane to hold the image and text
         AnchorPane anchorPane = new AnchorPane();
         anchorPane.getChildren().addAll(imageView, text);

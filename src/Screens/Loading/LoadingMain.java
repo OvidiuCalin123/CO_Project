@@ -1,6 +1,7 @@
 package Screens.Loading;
 
 import Screens.SelectedFunction.RandomRead.RandomReadLogic;
+import Screens.SelectedFunction.SelectedFunctionLogicHandle;
 import Shared.Background;
 import javafx.application.Platform;
 import javafx.scene.Node;
@@ -12,15 +13,18 @@ import javafx.scene.layout.StackPane;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Stream;
 
 import static Screens.Result.ResultMain.showResult;
 
 public class LoadingMain {
 
-    public void start(StackPane root, StackPane randomReadMainScreen, String screenName, BorderPane pane) {
+    public void start(StackPane root, StackPane randomReadMainScreen, String screenName, BorderPane pane, SelectedFunctionLogicHandle functionLogic) {
 
-        Thread t = new Thread(() -> {
+        functionLogic.setIsCompleted(false);
+
+        CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
             try {
                 Stream<Path> paths = Files.walk(Paths.get("DesignFiles/LoadingBar"));
                 paths
@@ -56,33 +60,44 @@ public class LoadingMain {
                                     randomReadMainScreen.getChildren().add(1, imageView);
                                 });
 
-                                RandomReadLogic r = new RandomReadLogic();
+                                System.out.println(path.getFileName().toString());
 
-                                if(!r.getIsCompleted()){
-                                    Thread.sleep(300);
+                                switch (path.getFileName().toString()) {
+                                    case "loadingCar_007.png", "loadingCar_025.png", "loadingCar_029.png", "loadingCar_016.png" -> Thread.sleep(1000);
                                 }
-                                else{
+
+                                if (!functionLogic.getIsCompleted()) {
                                     Thread.sleep(50);
                                 }
                             } catch (Exception e) {
-                                // Handle the exception here
+                                System.out.println(e);
                             }
                         });
-
-                Platform.runLater(() -> {
-                    showResult(root, screenName, pane);
-                });
-
 
             } catch (Exception e) {
                 // Handle the exception here
             }
         });
 
-        t.start();
+        future.thenRunAsync(() -> {
+            // Wait for the isCompleted variable to be set to true
+            while (!functionLogic.getIsCompleted()) {
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    // Handle the exception here
+                }
+            }
+
+            // Show the result
+            Platform.runLater(() -> {
+                showResult(root, screenName, pane);
+            });
+        });
+
     }
 
-    public LoadingMain(StackPane root, StackPane previousScreen, String screenName, BorderPane pane){
+    public LoadingMain(StackPane root, StackPane previousScreen, String screenName, BorderPane pane, SelectedFunctionLogicHandle functionLogic){
 
         StackPane loadingMainScreen = new StackPane();
 
@@ -92,7 +107,7 @@ public class LoadingMain {
 
         new Background().setBackgroundImage(previousScreen,loadingMainScreen,"finalCar.png");
 
-        start(root, loadingMainScreen, screenName, pane);
+        start(root, loadingMainScreen, screenName, pane, functionLogic);
      }
 
 }

@@ -1,15 +1,18 @@
 package Screens.SelectedFunction.RandomRead;
 
+import Screens.SelectedFunction.SelectedFunctionLogicHandle;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
 
-public class RandomReadLogic {
+public class RandomReadLogic implements SelectedFunctionLogicHandle {
 
     private static double speed;
     private static double time;
     private static boolean isCompleted=false;
+
     public static double measureRandomReadSpeed(File file, long fileSize, int bufferSize) throws IOException {
         byte[] buffer = new byte[bufferSize];
         // Fill the created file with random data.
@@ -62,6 +65,10 @@ public class RandomReadLogic {
 
     public boolean getIsCompleted(){
         return isCompleted;
+    }
+
+    public void setIsCompleted(boolean value){
+        isCompleted = value;
     }
 
     public double getTime(){ return time/1000; }

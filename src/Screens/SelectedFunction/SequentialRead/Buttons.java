@@ -1,6 +1,7 @@
 package Screens.SelectedFunction.SequentialRead;
 
 import Screens.Loading.LoadingMain;
+import Screens.SelectedFunction.SequentialWrite.SequentialWriteLogic;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -49,10 +50,10 @@ public class Buttons {
 
     public void run(StackPane root, StackPane sequentialReadMainScreen, BorderPane pane, String screenName){
         EventHandler<ActionEvent> event = e -> {
-            new LoadingMain(root, sequentialReadMainScreen, screenName, pane);
+            new LoadingMain(root, sequentialReadMainScreen, screenName, pane, new SequentialWriteLogic());
         };
 
-        double xCoords = -700;  //daca cresti cu - il aduci catre stanga
+        double xCoords = -700;
         double yCoords = -100;
 
         double xScale = 2800;
