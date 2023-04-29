@@ -10,22 +10,24 @@ import javafx.stage.Stage;
 
 import java.util.Arrays;
 
+import static Icons.IconsLogic.setAppIcon;
+import static Icons.IconsLogic.setCursorImage;
+
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage){
         StackPane root = new StackPane();
         BorderPane pane = new BorderPane();
+        Scene scene = new Scene(root, 1280, 720);
 
         primaryStage.setTitle("Ovi & The Mystery Team");
 
-        // set app icon
-        Image icon = new Image("file:DesignFiles/Background/Car.png");
-        primaryStage.getIcons().add(icon);
-
+        setAppIcon(primaryStage);
+        setCursorImage(scene);
         new MainMenuMain(root, pane);
 
-        primaryStage.setScene(new Scene(root, 1280, 720));
+        primaryStage.setScene(scene);
 
         primaryStage.show();
 
