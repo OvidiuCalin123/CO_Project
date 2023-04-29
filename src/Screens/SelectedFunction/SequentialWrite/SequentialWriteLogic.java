@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -33,18 +34,18 @@ public class SequentialWriteLogic implements SelectedFunctionLogicHandle{
         Text option500MB = new Text("500 MB");
         Text option100MB = new Text("100 MB");
 
-        //option1GB.setFont(Font.font("Snap ITC", FontWeight.BOLD, 14));
+        setFontText(option1GB);
 
 
         dropdown.setScaleX(3);
         dropdown.setScaleY(2.70);
 
 
-
         dropdown.getItems().addAll(option1GB.getText(), option500MB.getText(), option100MB.getText());
         // Set a listener to execute an action when an item is selected
         // Create a layout and add the ComboBox to it
         VBox dropboxRoot = new VBox(dropdown);
+
         dropdown.setCellFactory(param -> new ListCell<String>() {
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -52,8 +53,14 @@ public class SequentialWriteLogic implements SelectedFunctionLogicHandle{
                 if (empty || item == null) {
                     setText(null);
                 } else {
-                    setText(item);
-                    setFont(Font.font("Snap ITC", FontWeight.BOLD, 14));
+
+                    Text text = new Text(item);
+                    text.setFont(Font.font("Snap ITC", FontWeight.BOLD, 20));
+
+                    text.setStyle("-fx-fill: orange; -fx-stroke: black; -fx-stroke-width: 1px; -fx-padding: 20px;");
+                    setStyle("-fx-fill: green; -fx-stroke: black;");
+
+                    setGraphic(text);
                 }
             }
         });
@@ -67,45 +74,28 @@ public class SequentialWriteLogic implements SelectedFunctionLogicHandle{
                 } else {
                     Text text = new Text(item);
                     text.setFont(Font.font("Snap ITC", FontWeight.BOLD, 14));
-                    text.setFill(Color.ORANGE);
-                    text.setStroke(Color.BLACK);
-                    text.setStrokeWidth(2);
-                    setText(text.getText());
+                    //setText(text.getText());
                     setFont(text.getFont());
-                    setTextFill(text.getFill());
-                    text.setStyle("-fx-background-color: orange; -fx-background-radius: 0; -fx-padding: 2px; -fx-text-fill: black;");;
+
+                    text.setStyle("-fx-fill: orange; -fx-stroke: black; -fx-stroke-width: 0.65px; -fx-padding: 2px;");
+
+                    setGraphic(text);
                 }
             }
         });
 
         dropdown.setOnAction(event -> {
             String selectedItem = dropdown.getSelectionModel().getSelectedItem();
-            System.out.println("Selected: " + selectedItem);
+            System.out.println(selectedItem);
             // Set font, color, and stroke for selected item
             if (selectedItem != null) {
+
                 Text text = new Text(selectedItem);
-                text.setFont(Font.font("Snap ITC", FontWeight.BOLD, 14));
-//                text.setFill(Color.ORANGE);
-                text.setStroke(Color.WHITE);
-                text.setStrokeWidth(500);
-                dropdown.setButtonCell(new ListCell<>() {
-                    @Override
-                    protected void updateItem(String item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty || item == null) {
-                            setText(null);
-                        } else {
-                            setText(text.getText());
-                            setFont(text.getFont());
-                            setTextFill(text.getFill());
-                            setStyle("-fx-background-color: transparent; -fx-background-radius: 0;");
-                        }
-                    }
-                });
+                text.setFont(Font.font("Snap ITC", FontWeight.BOLD, 12));
+                text.setFill(Color.ORANGE);
+
             }
         });
-
-
 
         dropboxRoot.setStyle("-fx-background-color: transparent;");
         dropboxRoot.setTranslateX(325 * sequentialWriteMainScreen.getWidth() / 600);
