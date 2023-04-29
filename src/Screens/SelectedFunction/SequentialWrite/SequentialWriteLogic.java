@@ -17,9 +17,11 @@ import java.net.URLEncoder;
 
 
 public class SequentialWriteLogic implements SelectedFunctionLogicHandle{
+
     private static double speed;
     private static double time;
     private static boolean isCompleted=true;
+
     public void dropbox(StackPane sequentialWriteMainScreen, BorderPane pane){
         // Create a ComboBox with some sample items
         ComboBox<String> dropdown = new ComboBox<>();
@@ -36,10 +38,8 @@ public class SequentialWriteLogic implements SelectedFunctionLogicHandle{
 
         setFontText(option1GB);
 
-
         dropdown.setScaleX(3);
         dropdown.setScaleY(2.70);
-
 
         dropdown.getItems().addAll(option1GB.getText(), option500MB.getText(), option100MB.getText());
         // Set a listener to execute an action when an item is selected
@@ -58,7 +58,6 @@ public class SequentialWriteLogic implements SelectedFunctionLogicHandle{
                     text.setFont(Font.font("Snap ITC", FontWeight.BOLD, 20));
 
                     text.setStyle("-fx-fill: orange; -fx-stroke: black; -fx-stroke-width: 1px; -fx-padding: 20px;");
-                    setStyle("-fx-fill: green; -fx-stroke: black;");
 
                     setGraphic(text);
                 }
@@ -70,7 +69,7 @@ public class SequentialWriteLogic implements SelectedFunctionLogicHandle{
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty || item == null) {
-                    setText(null);
+                    setText("SELECT");
                 } else {
                     Text text = new Text(item);
                     text.setFont(Font.font("Snap ITC", FontWeight.BOLD, 14));
