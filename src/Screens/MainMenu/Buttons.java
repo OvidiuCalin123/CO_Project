@@ -129,10 +129,10 @@ public class Buttons {
         };
 
         double xCoords = -700;
-        double yCoords = 800;
+        double yCoords = 625;
 
         double xScale = 2600;
-        double yScale = 2000;
+        double yScale = 1500;
 
         Button b = buttonBuilder("quit",  root, event, pane);
 
