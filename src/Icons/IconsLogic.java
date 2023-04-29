@@ -10,7 +10,7 @@ public class IconsLogic {
 
     public static void setAppIcon(Stage primaryStage){
 
-        Image icon = new Image("file:DesignFiles/Icons/AppIcon.jpg");
+        Image icon = new Image("file:DesignFiles/Icons/AppIcon30.jpg");
         primaryStage.getIcons().add(icon);
     }
 
