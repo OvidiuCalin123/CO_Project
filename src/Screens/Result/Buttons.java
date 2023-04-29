@@ -1,6 +1,7 @@
 package Screens.Result;
 
 
+import Screens.History.HistoryMain;
 import Screens.Loading.LoadingMain;
 import Screens.SelectedFunction.CheckSize.CheckSizeMain;
 import javafx.application.Platform;
@@ -32,10 +33,10 @@ public class Buttons {
         };
 
         double xCoords = -975;
-        double yCoords = 575;
+        double yCoords = 605;
 
-        double xScale = 2300;
-        double yScale = 1600;
+        double xScale = 2400;
+        double yScale = 1650;
 
         Button b = buttonBuilder("backToHome", sequentialReadMainScreen, event, pane);
 
@@ -45,13 +46,14 @@ public class Buttons {
 
     public void history(StackPane sequentialReadMainScreen, BorderPane pane){
         EventHandler<ActionEvent> event = e -> {
+            new HistoryMain(sequentialReadMainScreen, pane);
         };
 
         double xCoords = 0;
-        double yCoords = 575;
+        double yCoords = 750;
 
-        double xScale = 2700;
-        double yScale = 1600;
+        double xScale = 3250;
+        double yScale = 2000;
 
         Button b = buttonBuilder("history",  sequentialReadMainScreen, event, pane);
 
@@ -65,10 +67,10 @@ public class Buttons {
         };
 
         double xCoords = 950;
-        double yCoords = 400;
+        double yCoords = 485;
 
-        double xScale = 2300;
-        double yScale = 1100;
+        double xScale = 2400;
+        double yScale = 1300;
 
         Button b = buttonBuilder("quit",  sequentialReadMainScreen, event, pane);
 

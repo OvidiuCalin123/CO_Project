@@ -14,7 +14,7 @@ public class SequentialWriteLogic implements SelectedFunctionLogicHandle {
 
     private static double speed;
     private static double time;
-    private static boolean isCompleted=false;
+    private static boolean isCompleted=true;
 
     public void dropbox(StackPane sequentialWriteMainScreen, BorderPane pane){
         // Create a ComboBox with some sample items
@@ -51,15 +51,15 @@ public class SequentialWriteLogic implements SelectedFunctionLogicHandle {
                     setGraphic(null);
                 } else {
                     setText(item);
-//                    imageView.setImage(new Image("file:DesignFiles/Buttons/sequentialWriteTitle.png"));
-//                    imageView.fitWidthProperty().bind(sequentialWriteMainScreen.widthProperty().multiply(0.1));
-//                    imageView.fitHeightProperty().bind(sequentialWriteMainScreen.heightProperty().multiply(0.1));
-//                    setGraphic(imageView);
+                    imageView.setImage(new Image("file:DesignFiles/Buttons/sequentialWriteTitle.png"));
+                    imageView.fitWidthProperty().bind(sequentialWriteMainScreen.widthProperty().multiply(0.1));
+                    imageView.fitHeightProperty().bind(sequentialWriteMainScreen.heightProperty().multiply(0.1));
+                    setGraphic(imageView);
                 }
             }
         });
 
-        // Reposition the button when the root pane dimensions change
+        //        Reposition the button when the root pane dimensions change
 //        root.widthProperty().addListener((obs, oldVal, newVal) -> {
 //            imageView.setTranslateX(0 * newVal.doubleValue() / 600);
 //        });

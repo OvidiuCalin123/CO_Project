@@ -1,12 +1,15 @@
 package Screens.SelectedFunction.RandomWrite;
 
 import Screens.Loading.LoadingMain;
+import Screens.SelectedFunction.RandomRead.RandomReadLogic;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+
+import java.io.IOException;
 
 import static Shared.ButtonsHelper.buttonBuilder;
 import static Shared.ButtonsHelper.scaleButton;
@@ -50,6 +53,11 @@ public class Buttons {
     public void run(StackPane root, StackPane sequentialWriteMainScreen, BorderPane pane, String screenName){
         EventHandler<ActionEvent> event = e -> {
             new LoadingMain(root, sequentialWriteMainScreen, screenName, pane, new RandomWriteLogic());
+            try {
+                new RandomWriteLogic().run();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         };
 
         double xCoords = -700;

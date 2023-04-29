@@ -22,7 +22,7 @@ public class LoadingMain {
 
     public void start(StackPane root, StackPane randomReadMainScreen, String screenName, BorderPane pane, SelectedFunctionLogicHandle functionLogic) {
 
-        functionLogic.setIsCompleted(false);
+       // functionLogic.setIsCompleted(false);
 
         CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
             try {

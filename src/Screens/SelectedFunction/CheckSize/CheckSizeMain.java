@@ -14,12 +14,12 @@ public class CheckSizeMain {
         imageView.fitWidthProperty().bind(root.widthProperty().multiply(0.3));
         imageView.fitHeightProperty().bind(root.heightProperty().multiply(0.25));
 
-        imageView.setTranslateX(-180 * root.getWidth() / 600);
+        imageView.setTranslateX(0 * root.getWidth() / 600);
         imageView.setTranslateY(-125 * root.getHeight() / 350);
 
         // Reposition the button when the root pane dimensions change
         root.widthProperty().addListener((obs, oldVal, newVal) -> {
-            imageView.setTranslateX(-180 * newVal.doubleValue() / 600);
+            imageView.setTranslateX(0 * newVal.doubleValue() / 600);
         });
         root.heightProperty().addListener((obs, oldVal, newVal) -> {
             imageView.setTranslateY(-125 * newVal.doubleValue() / 350);
