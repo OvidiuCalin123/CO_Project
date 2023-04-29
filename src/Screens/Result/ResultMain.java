@@ -4,6 +4,8 @@ import Screens.SelectedFunction.CheckSize.CheckSizeLogic;
 import Screens.SelectedFunction.RandomRead.RandomReadLogic;
 import Screens.SelectedFunction.RandomWrite.RandomWriteLogic;
 import Screens.SelectedFunction.SelectedFunctionLogicHandle;
+import Screens.SelectedFunction.SequentialRead.SequentialReadLogic;
+import Screens.SelectedFunction.SequentialWrite.SequentialWriteLogic;
 import Shared.Background;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,10 +26,9 @@ public class ResultMain {
 
     public static void setScore(StackPane root, BorderPane pane, StackPane scoreImage, SelectedFunctionLogicHandle functionLogic) {
         Text text = new Text("");
-        if(functionLogic.getClass()==CheckSizeLogic.class){
-            text = new Text("Score: "+ (int)functionLogic.getReadSpeed()+" GB");
-        }
-        else {
+        if (functionLogic.getClass() == CheckSizeLogic.class) {
+            text = new Text("Score: " + (int) functionLogic.getReadSpeed() + " GB");
+        } else {
             text = new Text(String.format("Score: %.2f", functionLogic.getReadSpeed()));
         }
 
@@ -81,7 +82,7 @@ public class ResultMain {
 
     }
 
-    public static void setTime(StackPane root, BorderPane pane, StackPane scoreImage, SelectedFunctionLogicHandle functionLogic){
+    public static void setTime(StackPane root, BorderPane pane, StackPane scoreImage, SelectedFunctionLogicHandle functionLogic) {
         Text text = new Text(String.format("Time: %.2f s", functionLogic.getTime()));
         Image img = new Image("file:DesignFiles/Buttons/" + "templateButton" + ".png");
         text.setFill(Color.ORANGE);
@@ -120,8 +121,8 @@ public class ResultMain {
             text.setFont(Font.font(text.getFont().getFamily(), text.getFont().getSize() * scaleFactor));
         });
 
-         resizeToScreen(imageView, root, 1300, 730, 350, -135);
-         resizeToImage(text, root,1300, 730, 350, -135);
+        resizeToScreen(imageView, root, 1300, 730, 350, -135);
+        resizeToImage(text, root, 1300, 730, 350, -135);
 
         pane.setCenter(imageView);
 
@@ -129,8 +130,8 @@ public class ResultMain {
         scoreImage.getChildren().add(text);
     }
 
-    public static void setTitle(StackPane root, BorderPane pane, StackPane randomReadMainScreen, String screenTitle){
-        Image img = new Image("file:DesignFiles/Buttons/"+screenTitle+".png");
+    public static void setTitle(StackPane root, BorderPane pane, StackPane randomReadMainScreen, String screenTitle) {
+        Image img = new Image("file:DesignFiles/Buttons/" + screenTitle + ".png");
         ImageView imageView = new ImageView(img);
 
         imageView.fitWidthProperty().bind(root.widthProperty().multiply(0.3));
@@ -151,6 +152,7 @@ public class ResultMain {
 
         randomReadMainScreen.getChildren().add(imageView);
     }
+
     public static void showResult(StackPane r, String screenName, BorderPane pane) {
 
         StackPane resultMainScreen = new StackPane();
@@ -162,20 +164,26 @@ public class ResultMain {
         new Background().setBackgroundImage(r, resultMainScreen, screenName);
         new Buttons().addButtonsToScreen(r, resultMainScreen, pane);
 
-        if (screenName.substring(0, screenName.lastIndexOf('.')).equals("catchMonster2")) {
+        if (screenName.substring(0, screenName.lastIndexOf('.')).equals("catchMonster3")) {
+            setScore(r, pane, resultMainScreen, new RandomWriteLogic());
+            setTime(r, pane, resultMainScreen, new RandomWriteLogic());
+            setTitle(r, pane, resultMainScreen, "randomWriteTitle");
+        } else if (screenName.substring(0, screenName.lastIndexOf('.')).equals("catchMonster2")) {
             setScore(r, pane, resultMainScreen, new RandomReadLogic());
             setTime(r, pane, resultMainScreen, new RandomReadLogic());
             setTitle(r, pane, resultMainScreen, "randomReadTitle");
-
+        } else if (screenName.substring(0, screenName.lastIndexOf('.')).equals("catchMonster5")) {
+            setScore(r, pane, resultMainScreen, new SequentialWriteLogic());
+            setTime(r, pane, resultMainScreen, new SequentialWriteLogic());
+            setTitle(r, pane, resultMainScreen, "sequentialWriteTitle");
+        } else if (screenName.substring(0, screenName.lastIndexOf('.')).equals("catchMonster4")) {
+            setScore(r, pane, resultMainScreen, new SequentialReadLogic());
+            setTime(r, pane, resultMainScreen, new SequentialReadLogic());
+            setTitle(r, pane, resultMainScreen, "sequentialReadTitle");
         } else if (screenName.substring(0, screenName.lastIndexOf('.')).equals("catchMonster1")) {
             setScore(r, pane, resultMainScreen, new CheckSizeLogic());
             setTime(r, pane, resultMainScreen, new CheckSizeLogic());
             setTitle(r, pane, resultMainScreen, "checkSizeTitle");
-
-        } else if (screenName.substring(0, screenName.lastIndexOf('.')).equals("catchMonster3")) {
-            setScore(r, pane, resultMainScreen, new RandomWriteLogic());
-            setTime(r, pane, resultMainScreen, new RandomWriteLogic());
-            setTitle(r, pane, resultMainScreen, "randomWriteTitle");
         }
     }
 }
