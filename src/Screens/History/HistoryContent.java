@@ -18,7 +18,7 @@ import static Shared.ButtonsHelper.scaleButton;
 
 public class HistoryContent extends BorderPane {
 
-    private TableView<Person> tableView;
+    private TableView<HistoryModel> tableView;
 
     public HistoryContent(StackPane root, BorderPane pane) {
         // Set padding and background color
@@ -26,19 +26,19 @@ public class HistoryContent extends BorderPane {
         setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
 
         // Create the table columns
-        TableColumn<Person, String> scoreCol = new TableColumn<>("Score");
+        TableColumn<HistoryModel, String> scoreCol = new TableColumn<>("Score");
         scoreCol.setCellValueFactory(new PropertyValueFactory<>("score"));
         scoreCol.setResizable(false);
 
-        TableColumn<Person, String> runTimeCol = new TableColumn<>("Run time");
+        TableColumn<HistoryModel, String> runTimeCol = new TableColumn<>("Run Time");
         runTimeCol.setCellValueFactory(new PropertyValueFactory<>("run_time"));
         runTimeCol.setResizable(false);
 
-        TableColumn<Person, String> hdd_ssdCol = new TableColumn<>("HDD/SDD");
-        hdd_ssdCol.setCellValueFactory(new PropertyValueFactory<>("hdd_sdd"));
+        TableColumn<HistoryModel, String> hdd_ssdCol = new TableColumn<>("HDD/SSD");
+        hdd_ssdCol.setCellValueFactory(new PropertyValueFactory<>("hdd_ssd"));
         hdd_ssdCol.setResizable(false);
 
-        TableColumn<Person, String> testTimeCol = new TableColumn<>("Test time");
+        TableColumn<HistoryModel, String> testTimeCol = new TableColumn<>("Test Time");
         testTimeCol.setCellValueFactory(new PropertyValueFactory<>("test_time"));
         testTimeCol.setResizable(false);
 
@@ -69,12 +69,12 @@ public class HistoryContent extends BorderPane {
 
         back(root, pane);
 
-        Person newPerson = new Person("ceva", "altceva", "dcs", "ceva5");
+        HistoryModel newPerson = new HistoryModel("ceva", "altceva", "dcs", "ceva5");
         addData(newPerson);
 
     }
 
-    public void addData(Person person) {
+    public void addData(HistoryModel person) {
         tableView.getItems().add(person);
     }
 
@@ -116,55 +116,11 @@ public class HistoryContent extends BorderPane {
         });
 
     }
-    public void setData(ObservableList<Person> data) {
+    public void setData(ObservableList<HistoryModel> data) {
         // Set the data for the table view
         tableView.setItems(data);
     }
 }
 
-class Person {
-    private String score;
-    private String run_time;
-    private String hdd_ssd;
-    private String test_time;
 
-    public Person(String score, String run_time, String hdd_ssd, String test_time) {
-        this.score = score;
-        this.run_time = run_time;
-        this.hdd_ssd = hdd_ssd;
-        this.test_time = test_time;
-    }
-
-    public String getScore() {
-        return score;
-    }
-
-    public void setScore(String score) {
-        this.score = score;
-    }
-
-    public String getRun_time() {
-        return run_time;
-    }
-
-    public void setRun_time(String run_time) {
-        this.run_time = run_time;
-    }
-
-    public String getHdd_ssd() {
-        return hdd_ssd;
-    }
-
-    public void setHdd_ssd(String hdd_ssd) {
-        this.hdd_ssd = hdd_ssd;
-    }
-
-    public String getTest_time() {
-        return test_time;
-    }
-
-    public void setTest_time(String test_time) {
-        this.test_time = test_time;
-    }
-}
 
