@@ -153,7 +153,7 @@ public class ResultMain {
         randomReadMainScreen.getChildren().add(imageView);
     }
 
-    public static void showResult(StackPane r, String screenName, BorderPane pane) {
+    public static void showResult(StackPane r, String screenName, BorderPane pane, String historyBackgroundScreen) {
 
         StackPane resultMainScreen = new StackPane();
 
@@ -162,7 +162,7 @@ public class ResultMain {
         resultMainScreen.toFront();
 
         new Background().setBackgroundImage(r, resultMainScreen, screenName);
-        new Buttons().addButtonsToScreen(r, resultMainScreen, pane);
+        new Buttons().addButtonsToScreen(r, resultMainScreen, pane, historyBackgroundScreen);
 
         if (screenName.substring(0, screenName.lastIndexOf('.')).equals("catchMonster3")) {
             setScore(r, pane, resultMainScreen, new RandomWriteLogic());

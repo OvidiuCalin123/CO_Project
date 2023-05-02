@@ -52,7 +52,7 @@ public class Buttons {
 
     public void run(StackPane root, StackPane sequentialWriteMainScreen, BorderPane pane, String screenName){
         EventHandler<ActionEvent> event = e -> {
-            new LoadingMain(root, sequentialWriteMainScreen, screenName, pane, new RandomWriteLogic());
+            new LoadingMain(root, sequentialWriteMainScreen, screenName, pane, new RandomWriteLogic(), "monster3.png");
             try {
                 new RandomWriteLogic().run();
             } catch (IOException ioException) {

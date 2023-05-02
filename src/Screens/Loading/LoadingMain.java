@@ -20,7 +20,7 @@ import static Screens.Result.ResultMain.showResult;
 
 public class LoadingMain {
 
-    public void start(StackPane root, StackPane randomReadMainScreen, String screenName, BorderPane pane, SelectedFunctionLogicHandle functionLogic) {
+    public void start(StackPane root, StackPane randomReadMainScreen, String screenName, BorderPane pane, SelectedFunctionLogicHandle functionLogic, String historyBackgroundScreen) {
 
        // functionLogic.setIsCompleted(false);
 
@@ -91,13 +91,13 @@ public class LoadingMain {
 
             // Show the result
             Platform.runLater(() -> {
-                showResult(root, screenName, pane);
+                showResult(root, screenName, pane, historyBackgroundScreen);
             });
         });
 
     }
 
-    public LoadingMain(StackPane root, StackPane previousScreen, String screenName, BorderPane pane, SelectedFunctionLogicHandle functionLogic){
+    public LoadingMain(StackPane root, StackPane previousScreen, String screenName, BorderPane pane, SelectedFunctionLogicHandle functionLogic, String historyBackgroundScreen){
 
         StackPane loadingMainScreen = new StackPane();
 
@@ -107,7 +107,7 @@ public class LoadingMain {
 
         new Background().setBackgroundImage(previousScreen,loadingMainScreen,"finalCar.png");
 
-        start(root, loadingMainScreen, screenName, pane, functionLogic);
+        start(root, loadingMainScreen, screenName, pane, functionLogic, historyBackgroundScreen);
      }
 
 }

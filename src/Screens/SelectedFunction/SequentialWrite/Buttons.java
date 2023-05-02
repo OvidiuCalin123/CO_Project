@@ -49,7 +49,7 @@ public class Buttons {
     public void run(StackPane root, StackPane sequentialWriteMainScreen, BorderPane pane, String screenName){
         System.out.println(root.getChildren());
         EventHandler<ActionEvent> event = e -> {
-            new LoadingMain(root, sequentialWriteMainScreen, screenName, pane, new SequentialWriteLogic());
+            new LoadingMain(root, sequentialWriteMainScreen, screenName, pane, new SequentialWriteLogic(), "monster5.jpg");
         };
 
         double xCoords = -450;  //daca cresti cu - il aduci catre stanga

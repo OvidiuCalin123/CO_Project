@@ -48,7 +48,7 @@ public class Buttons {
 
     public void run(StackPane root, StackPane checkSizeMainScreen, BorderPane pane, String screenName){
         EventHandler<ActionEvent> event = e -> {
-            new LoadingMain(root, checkSizeMainScreen, screenName, pane, new CheckSizeLogic());
+            new LoadingMain(root, checkSizeMainScreen, screenName, pane, new CheckSizeLogic(), "monster1.jpg");
             new CheckSizeLogic().run();
         };
 

@@ -81,4 +81,26 @@ public class ButtonsHelper {
 
     }
 
+    public static Button buttonBuilder(StackPane root, EventHandler<ActionEvent> event, BorderPane pane){
+
+        Button b = new Button(" Back ");
+
+        b.setOnAction(event);
+
+        b.setOnMouseEntered(e -> {
+
+            File file = new File("SoundFiles/OnHoverSound.wav");
+
+            AudioClip audioClip = new AudioClip(file.toURI().toString());
+            audioClip.setVolume(3);
+            audioClip.play();
+        });
+
+        pane.setCenter(b);
+        root.getChildren().add(b);
+
+        return b;
+
+    }
+
 }

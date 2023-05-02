@@ -5,7 +5,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
 public class HistoryMain {
-    public HistoryMain(StackPane root, BorderPane pane){
+    public HistoryMain(StackPane root, BorderPane pane, String historyBackgroundScreen){
         StackPane historyMainScreen = new StackPane();
 
         // Add the new pane to the stack pane
@@ -15,8 +15,8 @@ public class HistoryMain {
         historyMainScreen.toFront();
 
         // Set the background image
-        new Background().setBackgroundImage(root,historyMainScreen,"monster5.jpg");
-        new HistoryContent(historyMainScreen);
+        new Background().setBackgroundImage(root,historyMainScreen,historyBackgroundScreen);
+        new HistoryContent(historyMainScreen, pane);
 
     }
 }

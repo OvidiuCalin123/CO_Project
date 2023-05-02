@@ -50,7 +50,7 @@ public class Buttons {
 
     public void run(StackPane root, StackPane sequentialReadMainScreen, BorderPane pane, String screenName){
         EventHandler<ActionEvent> event = e -> {
-            new LoadingMain(root, sequentialReadMainScreen, screenName, pane, new SequentialWriteLogic());
+            new LoadingMain(root, sequentialReadMainScreen, screenName, pane, new SequentialWriteLogic(), "monster4.png");
         };
 
         double xCoords = -700;
