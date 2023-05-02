@@ -1,31 +1,31 @@
 package Screens.History;
 
 public class HistoryModel {
-    public String score;
-    public String run_time;
+    public double score;
+    public double run_time;
     public String hdd_ssd;
     public String test_time;
 
-    public HistoryModel(String score, String run_time, String hdd_ssd, String test_time) {
+    public HistoryModel(double score, double run_time, String hdd_ssd, String test_time) {
         this.score = score;
         this.run_time = run_time;
         this.hdd_ssd = hdd_ssd;
         this.test_time = test_time;
     }
 
-    public String getScore() {
+    public double getScore() {
         return score;
     }
 
-    public void setScore(String score) {
+    public void setScore(double score) {
         this.score = score;
     }
 
-    public String getRun_time() {
+    public double getRun_time() {
         return run_time;
     }
 
-    public void setRun_time(String run_time) {
+    public void setRun_time(double run_time) {
         this.run_time = run_time;
     }
 

@@ -8,6 +8,6 @@ public interface SelectedFunctionLogicHandle {
 
     public double getTime();
 
-    public double getReadSpeed();
+    public double getScore();
 
 }

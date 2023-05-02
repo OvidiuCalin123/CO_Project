@@ -23,7 +23,7 @@ public class SequentialWriteLogic implements SelectedFunctionLogicHandle{
     private static boolean isCompleted=true;
 
     public void dropbox(StackPane sequentialWriteMainScreen, BorderPane pane){
-        // Create a ComboBox with some sample items
+
         ComboBox<String> dropdown = new ComboBox<>();
 
         dropdown.setStyle("-fx-background-image: url('file:DesignFiles/Buttons/templateButton.png');" +
@@ -42,11 +42,10 @@ public class SequentialWriteLogic implements SelectedFunctionLogicHandle{
         dropdown.setScaleY(2.70);
 
         dropdown.getItems().addAll(option1GB.getText(), option500MB.getText(), option100MB.getText());
-        // Set a listener to execute an action when an item is selected
-        // Create a layout and add the ComboBox to it
+
         VBox dropboxRoot = new VBox(dropdown);
 
-        dropdown.setCellFactory(param -> new ListCell<String>() {
+        dropdown.setCellFactory(param -> new ListCell<>() {
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
@@ -57,8 +56,7 @@ public class SequentialWriteLogic implements SelectedFunctionLogicHandle{
                     Text text = new Text(item);
                     text.setFont(Font.font("Snap ITC", FontWeight.BOLD, 20));
 
-                    text.setStyle("-fx-fill: orange; -fx-stroke: black; -fx-stroke-width: 1px; -fx-padding: 20px;");
-
+                    text.setStyle("-fx-fill: orange; -fx-stroke: black; -fx-stroke-width: 1px;");
                     setGraphic(text);
                 }
             }
@@ -76,7 +74,7 @@ public class SequentialWriteLogic implements SelectedFunctionLogicHandle{
                     //setText(text.getText());
                     setFont(text.getFont());
 
-                    text.setStyle("-fx-fill: orange; -fx-stroke: black; -fx-stroke-width: 0.65px; -fx-padding: 2px;");
+                    text.setStyle("-fx-fill: orange; -fx-stroke: black; -fx-stroke-width: 0.65px;");
 
                     setGraphic(text);
                 }
@@ -127,7 +125,7 @@ public class SequentialWriteLogic implements SelectedFunctionLogicHandle{
 
     public double getTime(){ return time/1000; }
 
-    public double getReadSpeed(){
+    public double getScore(){
         return speed;
     }
 }

@@ -15,8 +15,8 @@ public class HistoryMain {
         historyMainScreen.toFront();
 
         // Set the background image
-        new Background().setBackgroundImage(root,historyMainScreen,historyBackgroundScreen);
-        new HistoryContent(historyMainScreen, pane);
+        new Background().setBackgroundImage(root,historyMainScreen, historyBackgroundScreen);
+        new HistoryContent(historyMainScreen, pane, historyBackgroundScreen);
 
     }
 }

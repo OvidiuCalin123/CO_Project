@@ -27,9 +27,9 @@ public class ResultMain {
     public static void setScore(StackPane root, BorderPane pane, StackPane scoreImage, SelectedFunctionLogicHandle functionLogic) {
         Text text = new Text("");
         if (functionLogic.getClass() == CheckSizeLogic.class) {
-            text = new Text("Score: " + (int) functionLogic.getReadSpeed() + " GB");
+            text = new Text("Score: " + (int) functionLogic.getScore() + " GB");
         } else {
-            text = new Text(String.format("Score: %.2f", functionLogic.getReadSpeed()));
+            text = new Text(String.format("Score: %.2f", functionLogic.getScore()));
         }
 
         Image img = new Image("file:DesignFiles/Buttons/" + "templateButton" + ".png");
@@ -161,29 +161,33 @@ public class ResultMain {
 
         resultMainScreen.toFront();
 
-        new Background().setBackgroundImage(r, resultMainScreen, screenName);
-        new Buttons().addButtonsToScreen(r, resultMainScreen, pane, historyBackgroundScreen);
-
         if (screenName.substring(0, screenName.lastIndexOf('.')).equals("catchMonster3")) {
             setScore(r, pane, resultMainScreen, new RandomWriteLogic());
             setTime(r, pane, resultMainScreen, new RandomWriteLogic());
             setTitle(r, pane, resultMainScreen, "randomWriteTitle");
+
         } else if (screenName.substring(0, screenName.lastIndexOf('.')).equals("catchMonster2")) {
             setScore(r, pane, resultMainScreen, new RandomReadLogic());
             setTime(r, pane, resultMainScreen, new RandomReadLogic());
             setTitle(r, pane, resultMainScreen, "randomReadTitle");
+
         } else if (screenName.substring(0, screenName.lastIndexOf('.')).equals("catchMonster5")) {
             setScore(r, pane, resultMainScreen, new SequentialWriteLogic());
             setTime(r, pane, resultMainScreen, new SequentialWriteLogic());
             setTitle(r, pane, resultMainScreen, "sequentialWriteTitle");
+
         } else if (screenName.substring(0, screenName.lastIndexOf('.')).equals("catchMonster4")) {
             setScore(r, pane, resultMainScreen, new SequentialReadLogic());
             setTime(r, pane, resultMainScreen, new SequentialReadLogic());
             setTitle(r, pane, resultMainScreen, "sequentialReadTitle");
+
         } else if (screenName.substring(0, screenName.lastIndexOf('.')).equals("catchMonster1")) {
             setScore(r, pane, resultMainScreen, new CheckSizeLogic());
             setTime(r, pane, resultMainScreen, new CheckSizeLogic());
             setTitle(r, pane, resultMainScreen, "checkSizeTitle");
         }
+
+        new Background().setBackgroundImage(r, resultMainScreen, screenName);
+        new Buttons().addButtonsToScreen(r, resultMainScreen, pane, historyBackgroundScreen);
     }
 }

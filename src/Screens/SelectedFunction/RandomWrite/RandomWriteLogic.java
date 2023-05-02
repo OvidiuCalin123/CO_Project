@@ -62,7 +62,7 @@ public class RandomWriteLogic implements SelectedFunctionLogicHandle {
 
     public double getTime(){ return time/1000; }
 
-    public double getReadSpeed(){
+    public double getScore(){
         return speed;
     }
 
