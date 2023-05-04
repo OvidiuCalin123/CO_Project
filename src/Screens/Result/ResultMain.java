@@ -161,6 +161,9 @@ public class ResultMain {
 
         resultMainScreen.toFront();
 
+        new Background().setBackgroundImage(r, resultMainScreen, screenName);
+        new Buttons().addButtonsToScreen(r, resultMainScreen, pane, historyBackgroundScreen);
+
         if (screenName.substring(0, screenName.lastIndexOf('.')).equals("catchMonster3")) {
             setScore(r, pane, resultMainScreen, new RandomWriteLogic());
             setTime(r, pane, resultMainScreen, new RandomWriteLogic());
@@ -186,8 +189,5 @@ public class ResultMain {
             setTime(r, pane, resultMainScreen, new CheckSizeLogic());
             setTitle(r, pane, resultMainScreen, "checkSizeTitle");
         }
-
-        new Background().setBackgroundImage(r, resultMainScreen, screenName);
-        new Buttons().addButtonsToScreen(r, resultMainScreen, pane, historyBackgroundScreen);
     }
 }

@@ -1,7 +1,12 @@
 package Screens.History;
 
 import Screens.SelectedFunction.CheckSize.CheckSizeLogic;
+import Screens.SelectedFunction.RandomRead.RandomReadLogic;
+import Screens.SelectedFunction.RandomWrite.RandomWriteLogic;
 import Screens.SelectedFunction.SelectedFunctionLogicHandle;
+import Screens.SelectedFunction.SequentialRead.SequentialReadLogic;
+import Screens.SelectedFunction.SequentialWrite.SequentialWriteLogic;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -88,6 +93,7 @@ public class HistoryContent extends BorderPane {
         root.getChildren().add(tableView);
 
         back(root, pane);
+        quit(root, pane);
 
         createTableRow(historyBackgroundScreen);
 
@@ -103,6 +109,34 @@ public class HistoryContent extends BorderPane {
             SelectedFunctionLogicHandle checkSize = new CheckSizeLogic();
             run_time = checkSize.getTime();
             score = checkSize.getScore();
+
+        }
+        else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster2")){
+
+            SelectedFunctionLogicHandle randomRead = new RandomReadLogic();
+            run_time = randomRead.getTime();
+            score = randomRead.getScore();
+
+        }
+        else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster3")){
+
+            SelectedFunctionLogicHandle randomWrite = new RandomWriteLogic();
+            run_time = randomWrite.getTime();
+            score = randomWrite.getScore();
+
+        }
+        else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster4")){
+
+            SelectedFunctionLogicHandle sequentialRead = new SequentialReadLogic();
+            run_time = sequentialRead.getTime();
+            score = sequentialRead.getScore();
+
+        }
+        else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster5")){
+
+            SelectedFunctionLogicHandle sequentialWrite = new SequentialWriteLogic();
+            run_time = sequentialWrite.getTime();
+            score = sequentialWrite.getScore();
 
         }
 
@@ -132,7 +166,7 @@ public class HistoryContent extends BorderPane {
         };
 
         double xCoords = -975;
-        double yCoords = 605;
+        double yCoords = 705;
 
         double xScale = 2400;
         double yScale = 1650;
@@ -142,6 +176,21 @@ public class HistoryContent extends BorderPane {
         scaleButton(b,sequentialReadMainScreen,xScale,yScale, xCoords, yCoords);
 
 
+    }
+    public void quit(StackPane checkSizeMainScreen, BorderPane pane){
+        EventHandler<ActionEvent> event = e -> {
+            Platform.exit();
+            System.exit(0);
+        };
+
+        double xCoords = 850;
+        double yCoords = 625;
+
+        double xScale = 2050;
+        double yScale = 1450;
+
+        Button b = buttonBuilder("Quit", checkSizeMainScreen, event, pane);
+        scaleButton(b,checkSizeMainScreen,xScale,yScale, xCoords, yCoords);
     }
     public void setData(ObservableList<HistoryModel> data) {
         // Set the data for the table view

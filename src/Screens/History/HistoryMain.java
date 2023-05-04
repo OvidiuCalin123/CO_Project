@@ -1,10 +1,14 @@
 package Screens.History;
 
 import Shared.Background;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
+
 public class HistoryMain {
+
     public HistoryMain(StackPane root, BorderPane pane, String historyBackgroundScreen){
         StackPane historyMainScreen = new StackPane();
 
@@ -17,6 +21,6 @@ public class HistoryMain {
         // Set the background image
         new Background().setBackgroundImage(root,historyMainScreen, historyBackgroundScreen);
         new HistoryContent(historyMainScreen, pane, historyBackgroundScreen);
-
     }
+
 }

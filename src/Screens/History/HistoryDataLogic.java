@@ -14,7 +14,7 @@ public class HistoryDataLogic {
 
             Path root = FileSystems.getDefault().getRootDirectories().iterator().next();
             FileStore store = Files.getFileStore(root);
-
+            System.out.println(store.name()+" ceva ");
             return store.name();
 
         } catch (Exception e) {
