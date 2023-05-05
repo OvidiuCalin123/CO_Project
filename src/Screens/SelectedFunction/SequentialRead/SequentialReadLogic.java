@@ -45,7 +45,8 @@ public class SequentialReadLogic implements SelectedFunctionLogicHandle {
         try {
             File file = new File("testfile");
             file.deleteOnExit();
-            long fileSize = 1024 * 1024 * 1024; // 1 GB for testing, implement user input or dropdown later.
+            long fileSize =  1024; // 1 GB for testing, implement user input or dropdown later.
+            System.out.println("orice");
             int bufferSize = 4096;
             double sequentialReadSpeed = SequentialReadLogic.measureSequentialReadSpeed(file, fileSize, bufferSize);
             System.out.printf("Sequential read speed: %.2f MB/s\n", sequentialReadSpeed);

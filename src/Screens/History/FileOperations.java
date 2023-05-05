@@ -79,5 +79,14 @@ public class FileOperations {
         }
     }
 
+    public static void clearFile(String filePath) {
+        try {
+            FileWriter openFileForWriting = new FileWriter(filePath, false);
+            openFileForWriting.write("");
+            openFileForWriting.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

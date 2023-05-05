@@ -22,7 +22,8 @@ public class LoadingMain {
 
     public void start(StackPane root, StackPane randomReadMainScreen, String screenName, BorderPane pane, SelectedFunctionLogicHandle functionLogic, String historyBackgroundScreen) {
 
-       // functionLogic.setIsCompleted(false);
+        System.out.println(screenName);
+        functionLogic.setIsCompleted(false);
 
         CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
             try {
@@ -63,7 +64,6 @@ public class LoadingMain {
                                 switch (path.getFileName().toString()) {
                                     case "loadingCar_007.png", "loadingCar_025.png", "loadingCar_029.png", "loadingCar_016.png" -> Thread.sleep(1000);
                                 }
-
                                 if (!functionLogic.getIsCompleted()) {
                                     Thread.sleep(50);
                                 }
@@ -86,7 +86,6 @@ public class LoadingMain {
                     // Handle the exception here
                 }
             }
-
             // Show the result
             Platform.runLater(() -> {
                 showResult(root, screenName, pane, historyBackgroundScreen);

@@ -163,7 +163,7 @@ public class ResultMain {
 
         new Background().setBackgroundImage(r, resultMainScreen, screenName);
         new Buttons().addButtonsToScreen(r, resultMainScreen, pane, historyBackgroundScreen);
-
+        System.out.println("acasvsavsav");
         if (screenName.substring(0, screenName.lastIndexOf('.')).equals("catchMonster3")) {
             setScore(r, pane, resultMainScreen, new RandomWriteLogic());
             setTime(r, pane, resultMainScreen, new RandomWriteLogic());
