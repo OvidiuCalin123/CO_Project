@@ -20,13 +20,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-import java.nio.file.FileStore;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.*;
 
+import static Screens.History.FileOperations.readFromFile;
 import static Screens.History.HistoryDataLogic.getLocalTime;
 import static Screens.History.HistoryDataLogic.getStorage;
+import static Screens.History.FileOperations.writeToFile;
 import static Shared.ButtonsHelper.buttonBuilder;
 import static Shared.ButtonsHelper.scaleButton;
 
@@ -35,9 +34,16 @@ public class HistoryContent extends BorderPane {
     private final TableView<HistoryModel> tableView;
 
     public HistoryContent(StackPane root, BorderPane pane, String historyBackgroundScreen) {
+
         // Set padding and background color
         setPadding(new Insets(20));
         setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
+
+        TableColumn<HistoryModel, Double> rowNrCol = new TableColumn<>("Nr.");
+        rowNrCol.setCellValueFactory(new PropertyValueFactory<>("rowNumber"));
+        rowNrCol.setResizable(false);
+        rowNrCol.setStyle("-fx-font-size: 20pt;");
+        rowNrCol.setPrefWidth(75);
 
         // Create the table columns
         TableColumn<HistoryModel, Double> scoreCol = new TableColumn<>("Score");
@@ -69,7 +75,7 @@ public class HistoryContent extends BorderPane {
         tableView = new TableView<>();
 
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        tableView.getColumns().addAll(scoreCol, runTimeCol, hdd_ssdCol, testTimeCol);
+        tableView.getColumns().addAll(rowNrCol,scoreCol, runTimeCol, hdd_ssdCol, testTimeCol);
         tableView.setPrefHeight(400);
         tableView.setOpacity(0.6);
 
@@ -96,6 +102,14 @@ public class HistoryContent extends BorderPane {
         quit(root, pane);
 
         createTableRow(historyBackgroundScreen);
+        populateHistoryTable(historyBackgroundScreen);
+
+    }
+
+    public void populateHistoryTable(String historyBackgroundScreen){
+
+        // we need to check the historyBackgroundScreen
+        readFromFile("src\\Screens\\History\\historyStorage\\historyCheckSize.txt", tableView);
 
     }
 
@@ -103,12 +117,17 @@ public class HistoryContent extends BorderPane {
 
         double score = 0.0;
         double run_time = 0.0;
+        int rowNr = 0;
+        String storage = getStorage();
+        String localTime = getLocalTime();
 
         if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster1")){
 
             SelectedFunctionLogicHandle checkSize = new CheckSizeLogic();
             run_time = checkSize.getTime();
             score = checkSize.getScore();
+
+            writeToFile("src\\Screens\\History\\historyStorage\\historyCheckSize.txt", score, run_time, storage, localTime);
 
         }
         else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster2")){
@@ -140,16 +159,7 @@ public class HistoryContent extends BorderPane {
 
         }
 
-        HistoryModel newPerson = new HistoryModel(score, run_time, getStorage(), getLocalTime());
-        addData(newPerson);
-
     }
-
-    public void addData(HistoryModel person) {
-
-        tableView.getItems().add(person);
-    }
-
 
     public void back(StackPane sequentialReadMainScreen, BorderPane pane){
         EventHandler<ActionEvent> event = e -> {

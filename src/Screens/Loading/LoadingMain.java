@@ -60,8 +60,6 @@ public class LoadingMain {
                                     randomReadMainScreen.getChildren().add(1, imageView);
                                 });
 
-                                System.out.println(path.getFileName().toString());
-
                                 switch (path.getFileName().toString()) {
                                     case "loadingCar_007.png", "loadingCar_025.png", "loadingCar_029.png", "loadingCar_016.png" -> Thread.sleep(1000);
                                 }

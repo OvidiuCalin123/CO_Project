@@ -2,15 +2,26 @@ package Screens.History;
 
 public class HistoryModel {
     public double score;
+    public int rowNumber;
     public double run_time;
     public String hdd_ssd;
     public String test_time;
 
-    public HistoryModel(double score, double run_time, String hdd_ssd, String test_time) {
+    public HistoryModel(int rowNumber, double score, double run_time, String hdd_ssd, String test_time) {
+
+        this.rowNumber = rowNumber;
         this.score = score;
         this.run_time = run_time;
         this.hdd_ssd = hdd_ssd;
         this.test_time = test_time;
+    }
+
+    public int getRowNumber() {
+        return this.rowNumber;
+    }
+
+    public void setRowNumber(int rowNumber) {
+        this.rowNumber = rowNumber;
     }
 
     public double getScore() {
