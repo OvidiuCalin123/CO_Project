@@ -36,16 +36,16 @@ public class ResultMain {
         Image img = new Image("file:DesignFiles/Buttons/" + "templateButton" + ".png");
         text.setFill(Color.ORANGE);
         text.setStroke(Color.BLACK);
-        text.setStrokeWidth(2);
-        text.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
+        text.setStrokeWidth(1.5);
+        text.setFont(Font.font("Snap ITC", FontWeight.BOLD, 14));
         ImageView imageView = new ImageView(img);
 
         imageView.fitWidthProperty().bind(root.widthProperty().multiply(0.35));
         imageView.fitHeightProperty().bind(root.heightProperty().multiply(0.10));
         // Set the font size
         text.fontProperty().bind(Bindings.createObjectBinding(() -> {
-            double fontSize = 0.05 * Math.min(root.getWidth(), root.getHeight());
-            return Font.font(fontSize);
+            double fontSize = 0.05 * Math.min(root.getWidth()*0.65, root.getHeight()*1.25);
+            return Font.font("Snap ITC",fontSize);
         }, root.widthProperty(), root.heightProperty()));
 
 
@@ -90,7 +90,7 @@ public class ResultMain {
         Image img = new Image("file:DesignFiles/Buttons/" + "templateButton" + ".png");
         text.setFill(Color.ORANGE);
         text.setStroke(Color.BLACK);
-        text.setStrokeWidth(2);
+        text.setStrokeWidth(1.5);
         text.setFont(Font.font("Snap ITC", FontWeight.BOLD, 14));
         ImageView imageView = new ImageView(img);
 
@@ -99,8 +99,8 @@ public class ResultMain {
 
         // Set the font size
         text.fontProperty().bind(Bindings.createObjectBinding(() -> {
-            double fontSize = 0.05 * Math.min(root.getWidth(), root.getHeight());
-            return Font.font(fontSize);
+            double fontSize = 0.05 * Math.min(root.getWidth()*0.7, root.getHeight()*1.25);
+            return Font.font("Snap ITC",fontSize);
         }, root.widthProperty(), root.heightProperty()));
 
 //        // Create an anchor pane to hold the image and text
