@@ -16,9 +16,9 @@ import static Shared.ButtonsHelper.scaleButton;
 
 public class Buttons {
 
-    public void back(StackPane sequentialWriteMainScreen, BorderPane pane){
+    public void back(StackPane root, StackPane randomWriteMainScreen, BorderPane pane){
         EventHandler<ActionEvent> event = e -> {
-            sequentialWriteMainScreen.toBack();
+            randomWriteMainScreen.toBack();
         };
 
         double xCoords = -1050;
@@ -27,13 +27,13 @@ public class Buttons {
         double xScale = 2600;
         double yScale = 1500;
 
-        Button b = buttonBuilder("back", sequentialWriteMainScreen, event, pane);
+        Button b = buttonBuilder("back", randomWriteMainScreen, event, pane);
 
-        scaleButton(b,sequentialWriteMainScreen,xScale,yScale, xCoords, yCoords);
+        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
 
     }
 
-    public void quit(StackPane sequentialWriteMainScreen, BorderPane pane){
+    public void quit(StackPane root, StackPane randomWriteMainScreen, BorderPane pane){
         EventHandler<ActionEvent> event = e -> {
             Platform.exit();
             System.exit(0);
@@ -45,14 +45,14 @@ public class Buttons {
         double xScale = 2300;
         double yScale = 1300;
 
-        Button b = buttonBuilder("quit",  sequentialWriteMainScreen, event, pane);
+        Button b = buttonBuilder("quit",  randomWriteMainScreen, event, pane);
 
-        scaleButton(b,sequentialWriteMainScreen,xScale,yScale, xCoords, yCoords);
+        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
     }
 
-    public void run(StackPane root, StackPane sequentialWriteMainScreen, BorderPane pane, String screenName){
+    public void run(StackPane root, StackPane randomWriteMainScreen, BorderPane pane, String screenName){
         EventHandler<ActionEvent> event = e -> {
-            new LoadingMain(root, sequentialWriteMainScreen, screenName, pane, new RandomWriteLogic(), "monster3.png");
+            new LoadingMain(root, randomWriteMainScreen, screenName, pane, new RandomWriteLogic(), "monster3.png");
             try {
                 new RandomWriteLogic().run();
             } catch (IOException ioException) {
@@ -66,16 +66,16 @@ public class Buttons {
         double xScale = 2800;
         double yScale = 1800;
 
-        Button b = buttonBuilder("run", sequentialWriteMainScreen, event, pane);
-        scaleButton(b,sequentialWriteMainScreen,xScale,yScale, xCoords, yCoords);
+        Button b = buttonBuilder("run", randomWriteMainScreen, event, pane);
+        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
     }
 
 
-    public void addButtonsToScreen(StackPane root, StackPane sequentialWriteMainScreen, BorderPane pane){
+    public void addButtonsToScreen(StackPane root, StackPane randomWriteMainScreen, BorderPane pane){
 
-        back(sequentialWriteMainScreen, pane);
-        quit(sequentialWriteMainScreen, pane);
-        run(root, sequentialWriteMainScreen, pane, "catchMonster3.png");
+        back(root, randomWriteMainScreen, pane);
+        quit(root, randomWriteMainScreen, pane);
+        run(root, randomWriteMainScreen, pane, "catchMonster3.png");
 
     }
 

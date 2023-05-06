@@ -17,7 +17,7 @@ public class Buttons {
 
 
 
-    public void back(StackPane randomReadMainScreen, BorderPane pane){
+    public void back(StackPane root, StackPane randomReadMainScreen, BorderPane pane){
         EventHandler<ActionEvent> event = e -> {
             randomReadMainScreen.toBack();
         };
@@ -30,11 +30,11 @@ public class Buttons {
 
         Button b = buttonBuilder("back", randomReadMainScreen, event, pane);
 
-        scaleButton(b,randomReadMainScreen,xScale,yScale, xCoords, yCoords);
+        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
 
     }
 
-    public void quit(StackPane randomReadMainScreen, BorderPane pane){
+    public void quit(StackPane root, StackPane randomReadMainScreen, BorderPane pane){
         EventHandler<ActionEvent> event = e -> {
             Platform.exit();
             System.exit(0);
@@ -48,7 +48,7 @@ public class Buttons {
 
         Button b = buttonBuilder("quit",  randomReadMainScreen, event, pane);
 
-        scaleButton(b,randomReadMainScreen,xScale,yScale, xCoords, yCoords);
+        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
     }
 
     public void run(StackPane root, StackPane randomReadMainScreen, BorderPane pane, String screenName){
@@ -68,14 +68,14 @@ public class Buttons {
         double yScale = 1800;
 
         Button b = buttonBuilder("run", randomReadMainScreen, event, pane);
-        scaleButton(b,randomReadMainScreen,xScale,yScale, xCoords, yCoords);
+        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
     }
 
 
     public void addButtonsToScreen(StackPane root, StackPane randomReadMainScreen, BorderPane pane){
 
-        back(randomReadMainScreen, pane);
-        quit(randomReadMainScreen, pane);
+        back(root, randomReadMainScreen, pane);
+        quit(root, randomReadMainScreen, pane);
         run(root, randomReadMainScreen, pane, "catchMonster2.png");
 
     }

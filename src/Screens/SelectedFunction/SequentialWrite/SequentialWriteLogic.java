@@ -63,7 +63,7 @@ public class SequentialWriteLogic implements SelectedFunctionLogicHandle{
         });
         t2.start();
     }
-    public void dropbox(StackPane sequentialWriteMainScreen, BorderPane pane){
+    public void dropbox(StackPane root, StackPane sequentialWriteMainScreen, BorderPane pane){
 
         ComboBox<String> dropdown = new ComboBox<>();
 
@@ -79,9 +79,30 @@ public class SequentialWriteLogic implements SelectedFunctionLogicHandle{
 
         setFontText(option1GB);
 
-        dropdown.setScaleX(3);
-        dropdown.setScaleY(2.70);
+//      dropdown.setScaleX(3);
+//      dropdown.setScaleY(2.70);
 
+        double xCoords = 0;
+        double yCoords = 0;
+
+        double xScale = 2300;
+        double yScale = 1300;
+
+        // Bind scale properties to root pane dimensions
+        dropdown.scaleXProperty().bind(root.widthProperty().divide(xScale));
+        dropdown.scaleYProperty().bind(root.heightProperty().divide(yScale));
+
+        // Set the initial position of the button
+        dropdown.setTranslateX(xCoords * root.getWidth() / xScale);
+        dropdown.setTranslateY(yCoords * root.getHeight() / yScale);
+
+        // Reposition the button when the root pane dimensions change
+        root.widthProperty().addListener((obs, oldVal, newVal) -> {
+            dropdown.setTranslateX(xCoords * newVal.doubleValue() / xScale);
+        });
+        root.heightProperty().addListener((obs, oldVal, newVal) -> {
+            dropdown.setTranslateY(yCoords * newVal.doubleValue() / yScale);
+        });
         dropdown.getItems().addAll(option1GB.getText(), option500MB.getText(), option100MB.getText());
 
         VBox dropboxRoot = new VBox(dropdown);
@@ -136,14 +157,21 @@ public class SequentialWriteLogic implements SelectedFunctionLogicHandle{
         });
 
         dropboxRoot.setStyle("-fx-background-color: transparent;");
-        dropboxRoot.setTranslateX(325 * sequentialWriteMainScreen.getWidth() / 600);
-        dropboxRoot.setTranslateY(161.5 * sequentialWriteMainScreen.getHeight() / 350);
+
+        // Bind scale properties to root pane dimensions
+        dropboxRoot.scaleXProperty().bind(root.widthProperty().divide(xScale));
+        dropboxRoot.scaleYProperty().bind(root.heightProperty().divide(yScale));
+
+        // Set the initial position of the button
+        dropboxRoot.setTranslateX(xCoords * root.getWidth() / xScale);
+        dropboxRoot.setTranslateY(yCoords * root.getHeight() / yScale);
+
         // Reposition the button when the root pane dimensions change
-        sequentialWriteMainScreen.widthProperty().addListener((obs, oldVal, newVal) -> {
-            dropboxRoot.setTranslateX(325 * newVal.doubleValue() / 600);
+        root.widthProperty().addListener((obs, oldVal, newVal) -> {
+            dropboxRoot.setTranslateX(xCoords * newVal.doubleValue() / xScale);
         });
-        sequentialWriteMainScreen.heightProperty().addListener((obs, oldVal, newVal) -> {
-            dropboxRoot.setTranslateY(161.5 * newVal.doubleValue() / 350);
+        root.heightProperty().addListener((obs, oldVal, newVal) -> {
+            dropboxRoot.setTranslateY(yCoords * newVal.doubleValue() / yScale);
         });
         //pane.setCenter(root);
         sequentialWriteMainScreen.getChildren().add(dropboxRoot);

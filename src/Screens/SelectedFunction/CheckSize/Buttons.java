@@ -13,7 +13,7 @@ import static Shared.ButtonsHelper.scaleButton;
 
 public class Buttons {
 
-    public void back(StackPane checkSizeMainScreen, BorderPane pane){
+    public void back(StackPane root, StackPane checkSizeMainScreen, BorderPane pane){
         EventHandler<ActionEvent> event = e -> {
             checkSizeMainScreen.toBack();
         };
@@ -26,11 +26,11 @@ public class Buttons {
 
         Button b = buttonBuilder("back",checkSizeMainScreen, event, pane);
 
-        scaleButton(b,checkSizeMainScreen,xScale,yScale, xCoords, yCoords);
+        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
 
     }
 
-    public void quit(StackPane checkSizeMainScreen, BorderPane pane){
+    public void quit(StackPane root, StackPane checkSizeMainScreen, BorderPane pane){
         EventHandler<ActionEvent> event = e -> {
             Platform.exit();
             System.exit(0);
@@ -43,7 +43,7 @@ public class Buttons {
         double yScale = 1500;
 
         Button b = buttonBuilder("Quit", checkSizeMainScreen, event, pane);
-        scaleButton(b,checkSizeMainScreen,xScale,yScale, xCoords, yCoords);
+        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
     }
 
     public void run(StackPane root, StackPane checkSizeMainScreen, BorderPane pane, String screenName){
@@ -59,14 +59,14 @@ public class Buttons {
         double yScale = 1500;
 
         Button b = buttonBuilder("run", checkSizeMainScreen, event, pane);
-        scaleButton(b,checkSizeMainScreen,xScale,yScale, xCoords, yCoords);
+        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
     }
 
 
     public void addButtonsToScreen(StackPane root, StackPane checkSizeMainScreen, BorderPane pane){
 
-        back(checkSizeMainScreen, pane);
-        quit(checkSizeMainScreen, pane);
+        back(root, checkSizeMainScreen, pane);
+        quit(root, checkSizeMainScreen, pane);
         run(root, checkSizeMainScreen, pane, "catchMonster1.jpg");
     }
 
