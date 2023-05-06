@@ -27,10 +27,6 @@ public class ScaleToScreen {
     }
 
     public static void resizeToImage(Text text, StackPane root, double xScale, double yScale, double xCoords, double yCoords) {
-        Rectangle clip = new Rectangle();
-        clip.widthProperty().bind(root.widthProperty().multiply(1));
-        clip.heightProperty().bind(root.heightProperty().multiply(1));
-        text.setClip(clip);
 
         text.setTranslateX(xCoords * root.getWidth() / 600);
         text.setTranslateY(yCoords * root.getHeight() / 350);

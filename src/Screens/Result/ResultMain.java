@@ -7,6 +7,7 @@ import Screens.SelectedFunction.SelectedFunctionLogicHandle;
 import Screens.SelectedFunction.SequentialRead.SequentialReadLogic;
 import Screens.SelectedFunction.SequentialWrite.SequentialWriteLogic;
 import Shared.Background;
+import javafx.beans.binding.Bindings;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -41,10 +42,12 @@ public class ResultMain {
 
         imageView.fitWidthProperty().bind(root.widthProperty().multiply(0.35));
         imageView.fitHeightProperty().bind(root.heightProperty().multiply(0.10));
-        double fontSize = root.getHeight() * 0.06; // adjust the scaling factor as needed
-
         // Set the font size
-        text.setFont(Font.font("Snap ITC", fontSize));
+        text.fontProperty().bind(Bindings.createObjectBinding(() -> {
+            double fontSize = 0.05 * Math.min(root.getWidth(), root.getHeight());
+            return Font.font(fontSize);
+        }, root.widthProperty(), root.heightProperty()));
+
 
 
         // Create an anchor pane to hold the image and text
@@ -60,17 +63,17 @@ public class ResultMain {
 //        anchorPane.prefHeightProperty().bind(imageView.fitHeightProperty());
 
         // Set up a listener to update the font size of the text when the image scales
-        Text finalText = text;
-        imageView.fitWidthProperty().addListener((observable, oldValue, newValue) -> {
-            double scaleFactor = newValue.doubleValue() / oldValue.doubleValue();
-            finalText.setFont(Font.font(finalText.getFont().getFamily(), finalText.getFont().getSize() * scaleFactor));
-        });
-
-        Text finalText1 = text;
-        imageView.fitHeightProperty().addListener((observable, oldValue, newValue) -> {
-            double scaleFactor = newValue.doubleValue() / oldValue.doubleValue();
-            finalText1.setFont(Font.font(finalText1.getFont().getFamily(), finalText1.getFont().getSize() * scaleFactor));
-        });
+//        Text finalText = text;
+//        imageView.fitWidthProperty().addListener((observable, oldValue, newValue) -> {
+//            double scaleFactor = newValue.doubleValue() / oldValue.doubleValue();
+//            finalText.setFont(Font.font(finalText.getFont().getFamily(), finalText.getFont().getSize() * scaleFactor));
+//        });
+//
+//        Text finalText1 = text;
+//        imageView.fitHeightProperty().addListener((observable, oldValue, newValue) -> {
+//            double scaleFactor = newValue.doubleValue() / oldValue.doubleValue();
+//            finalText1.setFont(Font.font(finalText1.getFont().getFamily(), finalText1.getFont().getSize() * scaleFactor));
+//        });
 
         resizeToScreen(imageView, root, 1300, 730, -150, -65);
         resizeToImage(text, root, 1300, 730, -150, -65);
@@ -88,38 +91,40 @@ public class ResultMain {
         text.setFill(Color.ORANGE);
         text.setStroke(Color.BLACK);
         text.setStrokeWidth(2);
-        text.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
+        text.setFont(Font.font("Snap ITC", FontWeight.BOLD, 14));
         ImageView imageView = new ImageView(img);
 
         imageView.fitWidthProperty().bind(root.widthProperty().multiply(0.35));
         imageView.fitHeightProperty().bind(root.heightProperty().multiply(0.10));
-        double fontSize = root.getHeight() * 0.06; // adjust the scaling factor as needed
 
         // Set the font size
-        text.setFont(Font.font("Snap ITC", fontSize));
+        text.fontProperty().bind(Bindings.createObjectBinding(() -> {
+            double fontSize = 0.05 * Math.min(root.getWidth(), root.getHeight());
+            return Font.font(fontSize);
+        }, root.widthProperty(), root.heightProperty()));
 
-        // Create an anchor pane to hold the image and text
-        AnchorPane anchorPane = new AnchorPane();
-        anchorPane.getChildren().addAll(imageView, text);
-
-        // Set the position of the text relative to the image using anchor points
-        AnchorPane.setTopAnchor(text, 10.0);
-        AnchorPane.setLeftAnchor(text, 10.0);
-
-        // Bind the size of the anchor pane to the size of the image view
-        anchorPane.prefWidthProperty().bind(imageView.fitWidthProperty());
-        anchorPane.prefHeightProperty().bind(imageView.fitHeightProperty());
+//        // Create an anchor pane to hold the image and text
+//        AnchorPane anchorPane = new AnchorPane();
+//        anchorPane.getChildren().addAll(imageView, text);
+//
+//        // Set the position of the text relative to the image using anchor points
+//        AnchorPane.setTopAnchor(text, 10.0);
+//        AnchorPane.setLeftAnchor(text, 10.0);
+//
+//        // Bind the size of the anchor pane to the size of the image view
+//        anchorPane.prefWidthProperty().bind(imageView.fitWidthProperty());
+//        anchorPane.prefHeightProperty().bind(imageView.fitHeightProperty());
 
         // Set up a listener to update the font size of the text when the image scales
-        imageView.fitWidthProperty().addListener((observable, oldValue, newValue) -> {
-            double scaleFactor = newValue.doubleValue() / oldValue.doubleValue();
-            text.setFont(Font.font(text.getFont().getFamily(), text.getFont().getSize() * scaleFactor));
-        });
-
-        imageView.fitHeightProperty().addListener((observable, oldValue, newValue) -> {
-            double scaleFactor = newValue.doubleValue() / oldValue.doubleValue();
-            text.setFont(Font.font(text.getFont().getFamily(), text.getFont().getSize() * scaleFactor));
-        });
+//        imageView.fitWidthProperty().addListener((observable, oldValue, newValue) -> {
+//            double scaleFactor = newValue.doubleValue() / oldValue.doubleValue();
+//            text.setFont(Font.font(text.getFont().getFamily(), text.getFont().getSize() * scaleFactor));
+//        });
+//
+//        imageView.fitHeightProperty().addListener((observable, oldValue, newValue) -> {
+//            double scaleFactor = newValue.doubleValue() / oldValue.doubleValue();
+//            text.setFont(Font.font(text.getFont().getFamily(), text.getFont().getSize() * scaleFactor));
+//        });
 
         resizeToScreen(imageView, root, 1300, 730, 150, -65);
         resizeToImage(text, root, 1300, 730, 150, -65);
