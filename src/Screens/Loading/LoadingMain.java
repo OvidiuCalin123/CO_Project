@@ -36,19 +36,23 @@ public class LoadingMain {
                                 ImageView imageView = new ImageView(img);
 
                                 imageView.setPreserveRatio(true);
-                                imageView.setFitWidth(650);
-                                imageView.setFitHeight(400);
+//                                imageView.setFitWidth(650);
+//                                imageView.setFitHeight(400);
+                                imageView.fitWidthProperty().bind(root.widthProperty().multiply(0.4));
+                                imageView.fitHeightProperty().bind(root.heightProperty().multiply(0.325));
 
-                                imageView.setTranslateX(0 * randomReadMainScreen.getWidth() / 650);
-                                imageView.setTranslateY(130 * randomReadMainScreen.getHeight() / 350);
+
+                                imageView.setTranslateX(0 * root.getWidth() / 650);
+                                imageView.setTranslateY(130 * root.getHeight() / 350);
 
                                 // Reposition the button when the root pane dimensions change
-                                randomReadMainScreen.widthProperty().addListener((obs, oldVal, newVal) -> {
+                                root.widthProperty().addListener((obs, oldVal, newVal) -> {
                                     imageView.setTranslateX(0 * newVal.doubleValue() / 650);
                                 });
-                                randomReadMainScreen.heightProperty().addListener((obs, oldVal, newVal) -> {
+                                root.heightProperty().addListener((obs, oldVal, newVal) -> {
                                     imageView.setTranslateY(130 * newVal.doubleValue() / 350);
                                 });
+                                pane.setCenter(imageView);
 
                                 Platform.runLater(() -> {
                                     // Get the first child of the StackPane
@@ -102,7 +106,7 @@ public class LoadingMain {
 
         loadingMainScreen.toFront();
 
-        new Background().setBackgroundImage(previousScreen,loadingMainScreen,"finalCar.png");
+        new Background().setBackgroundImage(root,loadingMainScreen,"finalCar.png");
 
         start(root, loadingMainScreen, screenName, pane, functionLogic, historyBackgroundScreen);
      }

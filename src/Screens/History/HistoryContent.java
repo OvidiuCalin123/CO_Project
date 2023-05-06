@@ -291,7 +291,7 @@ public class HistoryContent extends BorderPane {
         double xScale = 2500;
         double yScale = 1800;
 
-        Button b = buttonBuilder("clearHistory", checkSizeMainScreen, event, pane);
+        Button b = buttonBuilder("clearHistory2", checkSizeMainScreen, event, pane);
         scaleButton(b,checkSizeMainScreen,xScale,yScale, xCoords, yCoords);
     }
 
