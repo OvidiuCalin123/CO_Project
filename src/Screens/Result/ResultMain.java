@@ -48,16 +48,16 @@ public class ResultMain {
 
 
         // Create an anchor pane to hold the image and text
-        AnchorPane anchorPane = new AnchorPane();
-        anchorPane.getChildren().addAll(imageView, text);
-
-        // Set the position of the text relative to the image using anchor points
-        AnchorPane.setTopAnchor(text, 10.0);
-        AnchorPane.setLeftAnchor(text, 10.0);
-
-        // Bind the size of the anchor pane to the size of the image view
-        anchorPane.prefWidthProperty().bind(imageView.fitWidthProperty());
-        anchorPane.prefHeightProperty().bind(imageView.fitHeightProperty());
+//        AnchorPane anchorPane = new AnchorPane();
+//        anchorPane.getChildren().addAll(imageView, text);
+//
+//        // Set the position of the text relative to the image using anchor points
+//        AnchorPane.setTopAnchor(text, 1.0);
+//        AnchorPane.setLeftAnchor(text, 1.0);
+//
+//        // Bind the size of the anchor pane to the size of the image view
+//        anchorPane.prefWidthProperty().bind(imageView.fitWidthProperty());
+//        anchorPane.prefHeightProperty().bind(imageView.fitHeightProperty());
 
         // Set up a listener to update the font size of the text when the image scales
         Text finalText = text;
@@ -72,8 +72,8 @@ public class ResultMain {
             finalText1.setFont(Font.font(finalText1.getFont().getFamily(), finalText1.getFont().getSize() * scaleFactor));
         });
 
-        resizeToScreen(imageView, root, 1300, 730, -350, -135);
-        resizeToImage(text, root, 1300, 730, -350, -135);
+        resizeToScreen(imageView, root, 1300, 730, -150, -65);
+        resizeToImage(text, root, 1300, 730, -150, -65);
 
         pane.setCenter(imageView);
 
@@ -121,8 +121,8 @@ public class ResultMain {
             text.setFont(Font.font(text.getFont().getFamily(), text.getFont().getSize() * scaleFactor));
         });
 
-        resizeToScreen(imageView, root, 1300, 730, 350, -135);
-        resizeToImage(text, root, 1300, 730, 350, -135);
+        resizeToScreen(imageView, root, 1300, 730, 150, -65);
+        resizeToImage(text, root, 1300, 730, 150, -65);
 
         pane.setCenter(imageView);
 
