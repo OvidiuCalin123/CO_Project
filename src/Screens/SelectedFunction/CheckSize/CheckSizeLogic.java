@@ -34,7 +34,7 @@ public class CheckSizeLogic implements SelectedFunctionLogicHandle {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("USB drive not found.");
+            System.out.println("Drive not found.");
         }
         speed = realSizeInGB;
         sizeInBytes=realSize;
