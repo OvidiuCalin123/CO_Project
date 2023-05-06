@@ -20,7 +20,7 @@ public class HistoryMain {
 
         // Set the background image
         new Background().setBackgroundImage(root,historyMainScreen, historyBackgroundScreen);
-        new HistoryContent(historyMainScreen, pane, historyBackgroundScreen);
+        new HistoryContent(root, historyMainScreen, pane, historyBackgroundScreen);
     }
 
 }

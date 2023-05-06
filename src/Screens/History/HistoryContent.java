@@ -35,7 +35,7 @@ public class HistoryContent extends BorderPane {
 
     private final TableView<HistoryModel> tableView;
 
-    public HistoryContent(StackPane root, BorderPane pane, String historyBackgroundScreen) {
+    public HistoryContent(StackPane realroot, StackPane root, BorderPane pane, String historyBackgroundScreen) {
 
         // Set padding and background color
         setPadding(new Insets(20));
@@ -100,15 +100,39 @@ public class HistoryContent extends BorderPane {
         setCenter(scrollPane);
         root.getChildren().add(tableView);
 
-        back(root, pane);
-        quit(root, pane);
-        clearHistory(root, pane, historyBackgroundScreen);
-        titleBuilder(root, pane, root, historyBackgroundScreen);
+        back(realroot, root, pane);
+        quit(realroot, root, pane);
+        clearHistory(realroot, root, pane, historyBackgroundScreen);
+        titleBuilder(realroot, root, pane, root, historyBackgroundScreen);
 
         createTableRow(historyBackgroundScreen);
         populateHistoryTable(historyBackgroundScreen);
+        scaleTable(tableView, realroot, root);
 
     }
+
+    public void scaleTable(TableView<HistoryModel> tableView, StackPane root, StackPane checkSizeMainScreen) {
+
+        double widthPercentage = 0.3;
+        double heightPercentage = 0.25;
+
+        tableView.prefWidthProperty().bind(root.widthProperty().multiply(widthPercentage));
+        tableView.prefHeightProperty().bind(root.heightProperty().multiply(heightPercentage));
+
+
+        tableView.setTranslateX(0 * root.getWidth() / 600);
+        tableView.setTranslateY(0 * root.getHeight() / 350);
+
+        // Reposition the button when the root pane dimensions change
+        root.widthProperty().addListener((obs, oldVal, newVal) -> {
+            tableView.setTranslateX(0 * newVal.doubleValue() / 600);
+        });
+        root.heightProperty().addListener((obs, oldVal, newVal) -> {
+            tableView.setTranslateY(0 * newVal.doubleValue() / 350);
+        });
+    }
+
+
 
     public void populateHistoryTable(String historyBackgroundScreen){
 
@@ -198,7 +222,7 @@ public class HistoryContent extends BorderPane {
 
     }
 
-    public void back(StackPane sequentialReadMainScreen, BorderPane pane){
+    public void back(StackPane realroot, StackPane sequentialReadMainScreen, BorderPane pane){
         EventHandler<ActionEvent> event = e -> {
             sequentialReadMainScreen.toBack();
             sequentialReadMainScreen.toBack();
@@ -220,11 +244,11 @@ public class HistoryContent extends BorderPane {
 
         Button b = buttonBuilder("back", sequentialReadMainScreen, event, pane);
 
-        scaleButton(b,sequentialReadMainScreen,xScale,yScale, xCoords, yCoords);
+        scaleButton(b,realroot,xScale,yScale, xCoords, yCoords);
 
 
     }
-    public void quit(StackPane checkSizeMainScreen, BorderPane pane){
+    public void quit(StackPane realroot, StackPane checkSizeMainScreen, BorderPane pane){
         EventHandler<ActionEvent> event = e -> {
             Platform.exit();
             System.exit(0);
@@ -237,10 +261,10 @@ public class HistoryContent extends BorderPane {
         double yScale = 1450;
 
         Button b = buttonBuilder("Quit", checkSizeMainScreen, event, pane);
-        scaleButton(b,checkSizeMainScreen,xScale,yScale, xCoords, yCoords);
+        scaleButton(b,realroot,xScale,yScale, xCoords, yCoords);
     }
 
-    public void clearHistory(StackPane checkSizeMainScreen, BorderPane pane, String historyBackgroundScreen){
+    public void clearHistory(StackPane realroot, StackPane checkSizeMainScreen, BorderPane pane, String historyBackgroundScreen){
         EventHandler<ActionEvent> event = e -> {
             if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster1")){
 
@@ -292,24 +316,24 @@ public class HistoryContent extends BorderPane {
         double yScale = 1800;
 
         Button b = buttonBuilder("clearHistory2", checkSizeMainScreen, event, pane);
-        scaleButton(b,checkSizeMainScreen,xScale,yScale, xCoords, yCoords);
+        scaleButton(b,realroot,xScale,yScale, xCoords, yCoords);
     }
 
-    public void setTitle(StackPane root, BorderPane pane, StackPane checkSizeMainScreen, String titleName){
+    public void setTitle(StackPane realroot, StackPane root, BorderPane pane, StackPane checkSizeMainScreen, String titleName){
         Image img = new Image("file:DesignFiles/Background/" + titleName + ".png");
         ImageView imageView = new ImageView(img);
 
-        imageView.fitWidthProperty().bind(root.widthProperty().multiply(0.40));
-        imageView.fitHeightProperty().bind(root.heightProperty().multiply(0.10));
+        imageView.fitWidthProperty().bind(realroot.widthProperty().multiply(0.40));
+        imageView.fitHeightProperty().bind(realroot.heightProperty().multiply(0.10));
 
-        imageView.setTranslateX(0 * root.getWidth() / 600);
-        imageView.setTranslateY(-145 * root.getHeight() / 350);
+        imageView.setTranslateX(0 * realroot.getWidth() / 600);
+        imageView.setTranslateY(-145 * realroot.getHeight() / 350);
 
         // Reposition the button when the root pane dimensions change
-        root.widthProperty().addListener((obs, oldVal, newVal) -> {
+        realroot.widthProperty().addListener((obs, oldVal, newVal) -> {
             imageView.setTranslateX(0 * newVal.doubleValue() / 600);
         });
-        root.heightProperty().addListener((obs, oldVal, newVal) -> {
+        realroot.heightProperty().addListener((obs, oldVal, newVal) -> {
             imageView.setTranslateY(-145 * newVal.doubleValue() / 350);
         });
 
@@ -318,29 +342,29 @@ public class HistoryContent extends BorderPane {
         checkSizeMainScreen.getChildren().add(imageView);
     }
 
-   public void titleBuilder(StackPane root, BorderPane pane, StackPane checkSizeMainScreen, String historyBackgroundScreen){
+   public void titleBuilder(StackPane realroot, StackPane root, BorderPane pane, StackPane checkSizeMainScreen, String historyBackgroundScreen){
        if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster1")){
 
-           setTitle(root, pane, checkSizeMainScreen, "checkSizeTitle2");
+           setTitle(realroot, root, pane, checkSizeMainScreen, "checkSizeTitle2");
        }
        else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster2")){
 
-           setTitle(root, pane, checkSizeMainScreen, "randomReadTitle2");
+           setTitle(realroot, root, pane, checkSizeMainScreen, "randomReadTitle2");
 
        }
        else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster3")){
 
-           setTitle(root, pane, checkSizeMainScreen, "randomWriteTitle2");
+           setTitle(realroot, root, pane, checkSizeMainScreen, "randomWriteTitle2");
 
        }
        else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster4")){
 
-           setTitle(root, pane, checkSizeMainScreen, "sequentialReadTitle2");
+           setTitle(realroot, root, pane, checkSizeMainScreen, "sequentialReadTitle2");
 
        }
        else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster5")){
 
-           setTitle(root, pane, checkSizeMainScreen, "sequentialWriteTitle2");
+           setTitle(realroot, root, pane, checkSizeMainScreen, "sequentialWriteTitle2");
 
        }
 
