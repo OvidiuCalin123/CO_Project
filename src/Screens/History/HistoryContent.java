@@ -166,12 +166,8 @@ public class HistoryContent extends BorderPane {
         tableView.setTranslateX(0 * root.getWidth() / 600);
         tableView.setTranslateY(0 * root.getHeight() / 350);
 
-        root.widthProperty().addListener((obs, oldVal, newVal) -> {
-            tableView.setTranslateX(0 * newVal.doubleValue() / 600);
-        });
-        root.heightProperty().addListener((obs, oldVal, newVal) -> {
-            tableView.setTranslateY(0 * newVal.doubleValue() / 350);
-        });
+        root.widthProperty().addListener((obs, oldVal, newVal) -> tableView.setTranslateX(0 * newVal.doubleValue() / 600));
+        root.heightProperty().addListener((obs, oldVal, newVal) -> tableView.setTranslateY(0 * newVal.doubleValue() / 350));
     }
 
     public void setTitle(StackPane realRoot, StackPane root, BorderPane pane, StackPane checkSizeMainScreen, String titleName){
@@ -184,13 +180,8 @@ public class HistoryContent extends BorderPane {
         imageView.setTranslateX(0 * realRoot.getWidth() / 600);
         imageView.setTranslateY(-145 * realRoot.getHeight() / 350);
 
-        // Reposition the button when the root pane dimensions change
-        realRoot.widthProperty().addListener((obs, oldVal, newVal) -> {
-            imageView.setTranslateX(0 * newVal.doubleValue() / 600);
-        });
-        realRoot.heightProperty().addListener((obs, oldVal, newVal) -> {
-            imageView.setTranslateY(-145 * newVal.doubleValue() / 350);
-        });
+        realRoot.widthProperty().addListener((obs, oldVal, newVal) -> imageView.setTranslateX(0 * newVal.doubleValue() / 600));
+        realRoot.heightProperty().addListener((obs, oldVal, newVal) -> imageView.setTranslateY(-145 * newVal.doubleValue() / 350));
 
         pane.setCenter(imageView);
 
