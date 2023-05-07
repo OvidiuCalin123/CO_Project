@@ -12,12 +12,13 @@ import javafx.scene.text.Text;
 
 public class Dropbox {
 
-    public static void dropbox(StackPane root, StackPane sequentialWriteMainScreen, String[] options){
+    private static Object selectedOption=null;
+    public static void dropbox(StackPane root, StackPane sequentialWriteMainScreen, String[] options, double xCoords, double yCoords){
 
         // Create a ComboBox
         ComboBox<String> dropdown = new ComboBox<>();
 
-        dropdown.setStyle("-fx-background-image: url('file:DesignFiles/Buttons/templateButton.png');" +
+        dropdown.setStyle("-fx-background-image: url('file:DesignFiles/Buttons/templateButton2.png');" +
                 "-fx-background-position: center right;" +
                 "-fx-background-repeat: no-repeat;" +
                 "-fx-background-size: 100% 100%;" +
@@ -30,19 +31,19 @@ public class Dropbox {
         dropdown.setPrefSize(100, 20);
 
         // Bind the width and height of the ComboBox to the size of the root StackPane
-        dropdown.prefWidthProperty().bind(root.widthProperty().multiply(0.25));
-        dropdown.prefHeightProperty().bind(root.heightProperty().multiply(0.09));
+        dropdown.prefWidthProperty().bind(root.widthProperty().multiply(0.225));
+        dropdown.prefHeightProperty().bind(root.heightProperty().multiply(0.0915));
 
         // Set the initial position of the ComboBox
-        dropdown.setTranslateX(65 * root.getWidth() / 1280);
-        dropdown.setTranslateY(-15 * root.getHeight() / 720);
+        dropdown.setTranslateX(xCoords * root.getWidth() / 1280);
+        dropdown.setTranslateY(yCoords * root.getHeight() / 720);
 
         // Reposition the ComboBox when the root StackPane dimensions change
         root.widthProperty().addListener((obs, oldVal, newVal) -> {
-            dropdown.setTranslateX(65 * newVal.doubleValue() / 1280);
+            dropdown.setTranslateX(xCoords * newVal.doubleValue() / 1280);
         });
         root.heightProperty().addListener((obs, oldVal, newVal) -> {
-            dropdown.setTranslateY(-15 * newVal.doubleValue() / 720);
+            dropdown.setTranslateY(yCoords * newVal.doubleValue() / 720);
         });
 
 
@@ -56,7 +57,7 @@ public class Dropbox {
 
                     Text text = new Text(item);
                     text.setFont(Font.font("Snap ITC", FontWeight.BOLD, 25));
-                    text.setStyle("-fx-fill: orange; -fx-stroke: black; -fx-stroke-width: 1px;");
+                    text.setStyle("-fx-fill: orange; -fx-stroke: black; -fx-stroke-width: 1.75px;");
 
                     text.fontProperty().bind(Bindings.createObjectBinding(() -> {
                         double fontSize = 0.03 * Math.min(root.getWidth()*0.65, root.getHeight()*1.25);
@@ -80,10 +81,11 @@ public class Dropbox {
                     //setText(text.getText());
                     setFont(text.getFont());
 
-                    text.setStyle("-fx-fill: orange; -fx-stroke: black; -fx-stroke-width: 1.25px;");
+                    text.setStyle("-fx-fill: orange; -fx-stroke: black; -fx-stroke-width: 2px;");
 
                     if(text.getText().equals("1 GB")){
 
+                        selectedOption=1024*1024*1024;
                         text.fontProperty().bind(Bindings.createObjectBinding(() -> {
                             double fontSize = 0.04 * Math.min(root.getWidth()*1.1, root.getHeight()*1.25);
                             return Font.font("Snap ITC",fontSize);
@@ -91,14 +93,26 @@ public class Dropbox {
 
                     }else if(text.getText().equals("500 MB")){
 
+                        selectedOption=Math.round(1024*1024*1024*0.5);
                         text.fontProperty().bind(Bindings.createObjectBinding(() -> {
                             double fontSize = 0.04 * Math.min(root.getWidth()*0.7, root.getHeight()*1.25);
                             return Font.font("Snap ITC",fontSize);
                         }, root.widthProperty(), root.heightProperty()));
 
-                    }else{
+                    }else if(text.getText().equals("100 MB")){
 
+                        selectedOption=Math.round(1024*1024*1024*0.1);
                         text.fontProperty().bind(Bindings.createObjectBinding(() -> {
+
+                            double fontSize = 0.04 * Math.min(root.getWidth()*0.7, root.getHeight()*1.25);
+                            return Font.font("Snap ITC",fontSize);
+                        }, root.widthProperty(), root.heightProperty()));
+
+                    }
+                    else{
+                        selectedOption=text.getText();
+                        text.fontProperty().bind(Bindings.createObjectBinding(() -> {
+
                             double fontSize = 0.04 * Math.min(root.getWidth()*0.7, root.getHeight()*1.25);
                             return Font.font("Snap ITC",fontSize);
                         }, root.widthProperty(), root.heightProperty()));
@@ -132,4 +146,7 @@ public class Dropbox {
         sequentialWriteMainScreen.getChildren().add(dropdown);
     }
 
+   public static Object getSelectedOption(){
+        return selectedOption;
+   }
 }

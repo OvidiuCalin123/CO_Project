@@ -48,7 +48,7 @@ public class SequentialWriteMain {
 
         setTitle(root, pane, sequentialWriteMainScreen);
 
-        dropbox(root, sequentialWriteMainScreen, new String[]{"1 GB", "500 MB", "100 MB"});
+        dropbox(root, sequentialWriteMainScreen, new String[]{"1 GB", "500 MB", "100 MB"}, 65, -14);
 
         new Buttons().addButtonsToScreen(root, sequentialWriteMainScreen, pane);
 

@@ -62,7 +62,7 @@ public class CheckSizeMain {
 
         // Set the background image
         new Background().setBackgroundImage(root,checkSizeMainScreen,"monster1.jpg");
-        dropbox(root, checkSizeMainScreen, getPCPartition());
+        dropbox(root, checkSizeMainScreen, getPCPartition(),-175,-15);
         // Add buttons
         new Buttons().addButtonsToScreen(root, checkSizeMainScreen, pane);
 

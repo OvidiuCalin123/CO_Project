@@ -13,6 +13,8 @@ import javafx.scene.paint.Color;
 
 import java.io.File;
 
+import static Shared.Dropbox.getSelectedOption;
+
 public class ButtonsHelper {
 
     public static void playSoundClick(String sound, double volumeLevel){
@@ -46,6 +48,7 @@ public class ButtonsHelper {
     public static Button buttonBuilder(String buttonName, StackPane root, EventHandler<ActionEvent> event, BorderPane pane){
 
         Image img = new Image("file:DesignFiles/Buttons/" + buttonName + ".png");
+        System.out.println(buttonName);
         ImageView imageView = new ImageView(img);
         Button b = new Button();
 
@@ -89,11 +92,14 @@ public class ButtonsHelper {
 
         b.setOnMouseEntered(e -> {
 
-            File file = new File("SoundFiles/OnHoverSound.wav");
+            if(getSelectedOption()!=null) {
+                File file = new File("SoundFiles/OnHoverSound.wav");
 
-            AudioClip audioClip = new AudioClip(file.toURI().toString());
-            audioClip.setVolume(3);
-            audioClip.play();
+                AudioClip audioClip = new AudioClip(file.toURI().toString());
+                audioClip.setVolume(3);
+                audioClip.play();
+            }
+
         });
 
         pane.setCenter(b);

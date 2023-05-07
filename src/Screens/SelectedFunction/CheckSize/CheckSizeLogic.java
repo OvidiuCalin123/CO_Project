@@ -3,6 +3,8 @@ package Screens.SelectedFunction.CheckSize;
 import Screens.SelectedFunction.SelectedFunctionLogicHandle;
 import java.io.File;
 
+import static Shared.Dropbox.getSelectedOption;
+
 public class CheckSizeLogic implements SelectedFunctionLogicHandle {
 
     private static double speed;
@@ -19,8 +21,8 @@ public class CheckSizeLogic implements SelectedFunctionLogicHandle {
 
     public void run(){
 
-        File hardDrive = new File("C:\\");
-
+        File hardDrive = new File((String) getSelectedOption());
+        System.out.println((String) getSelectedOption());
         long startTime = System.currentTimeMillis();
         long sizeInBytes = getHardDriveSizeInBytes(hardDrive);
         long sizeInGB = convertBytesToGB(sizeInBytes);

@@ -20,6 +20,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import static Shared.Dropbox.getSelectedOption;
+
 public class SequentialWriteLogic implements SelectedFunctionLogicHandle{
 
     private static double speed;
@@ -53,7 +55,7 @@ public class SequentialWriteLogic implements SelectedFunctionLogicHandle{
             try {
                 File file = new File("testfile");
                 file.deleteOnExit();
-                long fileSize = 1024 * 1024 * 1024; // 1 GB for testing, implement user input or dropdown later.
+                long fileSize = (long)getSelectedOption(); // 1 GB for testing, implement user input or dropdown later.
                 int bufferSize = 4096;
                 double writeSpeed = SequentialWriteLogic.measureSequentialWriteSpeed(file, fileSize, bufferSize);
                 System.out.printf("Sequential write speed: %.2f MB/s\n", writeSpeed);
