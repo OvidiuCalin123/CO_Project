@@ -19,7 +19,6 @@ public class LoadingMain {
 
     public void start(StackPane root, StackPane randomReadMainScreen, String screenName, BorderPane pane, SelectedFunctionLogicHandle functionLogic, String historyBackgroundScreen) {
 
-        System.out.println(screenName);
         functionLogic.setIsCompleted(false);
 
         CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
