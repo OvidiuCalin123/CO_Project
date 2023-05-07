@@ -2,7 +2,9 @@ package Screens.SelectedFunction.CheckSize;
 
 import Screens.SelectedFunction.SelectedFunctionLogicHandle;
 
+import org.apache.commons.io.FileUtils;
 import java.io.File;
+import java.io.IOException;
 
 public class CheckSizeLogic implements SelectedFunctionLogicHandle {
 
@@ -24,8 +26,18 @@ public class CheckSizeLogic implements SelectedFunctionLogicHandle {
         long sizeInBytes = getHardDriveSizeInBytes(hardDrive);
         long sizeInGB = convertBytesToGB(sizeInBytes);
         long endTime = System.currentTimeMillis();
-
-        speed = sizeInGB;
+        if (hardDrive.exists() && hardDrive.isDirectory()) {
+            try {
+                long realSize = FileUtils.sizeOfDirectory(hardDrive);
+                long realSizeInGB = convertBytesToGB(realSize);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Drive not found.");
+        }
+        speed = realSizeInGB;
+        sizeInBytes=realSize;
         time = endTime - startTime;
         isCompleted = true;
         System.out.println("Size of hard drive in bytes: " + sizeInBytes);
