@@ -39,7 +39,6 @@ public class ButtonsHelper {
     public static Button buttonBuilder(String buttonName, StackPane root, EventHandler<ActionEvent> event, BorderPane pane){
 
         Image img = new Image("file:DesignFiles/Buttons/" + buttonName + ".png");
-        System.out.println(buttonName);
         ImageView imageView = new ImageView(img);
         Button b = new Button();
 
