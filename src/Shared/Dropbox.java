@@ -18,10 +18,11 @@ public class Dropbox {
         ComboBox<String> dropdown = new ComboBox<>();
 
         dropdown.setStyle("-fx-background-image: url('file:DesignFiles/Buttons/templateButton2.png');" +
-                "-fx-background-position: center right;" +
+                "-fx-background-position: top;" +
                 "-fx-background-repeat: no-repeat;" +
                 "-fx-background-size: 100% 100%;" +
                 "-fx-background-color: transparent;");
+
 
         dropdown.getItems().addAll(options);
 
