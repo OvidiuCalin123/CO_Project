@@ -6,6 +6,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
+import java.io.File;
+
+import static Shared.Dropbox.dropbox;
+
 public class CheckSizeMain {
     public void setTitle(StackPane root, BorderPane pane, StackPane checkSizeMainScreen){
         Image img = new Image("file:DesignFiles/Buttons/" + "checkSizeTitle" + ".png");
@@ -30,6 +34,22 @@ public class CheckSizeMain {
         checkSizeMainScreen.getChildren().add(imageView);
     }
 
+    public String[] getPCPartition() {
+        // Get a list of partitions
+        File[] partitions = File.listRoots();
+
+        // Create a String array to hold partition names
+        String[] partitionNames = new String[partitions.length];
+
+        // Iterate over the list of partitions and get the partition name for each one
+        for (int i = 0; i < partitions.length; i++) {
+            partitionNames[i] = partitions[i].getAbsolutePath();
+        }
+
+        // Return the array of partition names
+        return partitionNames;
+    }
+
     public CheckSizeMain(StackPane root, BorderPane pane){
         // Create a new pane for the new screen
         StackPane checkSizeMainScreen = new StackPane();
@@ -42,6 +62,7 @@ public class CheckSizeMain {
 
         // Set the background image
         new Background().setBackgroundImage(root,checkSizeMainScreen,"monster1.jpg");
+        dropbox(root, checkSizeMainScreen, getPCPartition());
         // Add buttons
         new Buttons().addButtonsToScreen(root, checkSizeMainScreen, pane);
 

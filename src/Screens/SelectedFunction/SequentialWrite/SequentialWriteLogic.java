@@ -1,6 +1,7 @@
 package Screens.SelectedFunction.SequentialWrite;
 
 import Screens.SelectedFunction.SelectedFunctionLogicHandle;
+import javafx.beans.binding.Bindings;
 import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
@@ -62,126 +63,6 @@ public class SequentialWriteLogic implements SelectedFunctionLogicHandle{
 
         });
         t2.start();
-    }
-    public void dropbox(StackPane root, StackPane sequentialWriteMainScreen, BorderPane pane){
-
-        ComboBox<String> dropdown = new ComboBox<>();
-
-        dropdown.setStyle("-fx-background-image: url('file:DesignFiles/Buttons/templateButton.png');" +
-                "-fx-background-position: center right;" +
-                "-fx-background-repeat: no-repeat;" +
-                "-fx-background-size: 100% 100%;" +
-                "-fx-background-color: transparent;");
-
-        Text option1GB = new Text("1 GB");
-        Text option500MB = new Text("500 MB");
-        Text option100MB = new Text("100 MB");
-
-        setFontText(option1GB);
-
-//      dropdown.setScaleX(3);
-//      dropdown.setScaleY(2.70);
-
-        double xCoords = 0;
-        double yCoords = 0;
-
-        double xScale = 2300;
-        double yScale = 1300;
-
-        // Bind scale properties to root pane dimensions
-        dropdown.scaleXProperty().bind(root.widthProperty().divide(xScale));
-        dropdown.scaleYProperty().bind(root.heightProperty().divide(yScale));
-
-        // Set the initial position of the button
-        dropdown.setTranslateX(xCoords * root.getWidth() / xScale);
-        dropdown.setTranslateY(yCoords * root.getHeight() / yScale);
-
-        // Reposition the button when the root pane dimensions change
-        root.widthProperty().addListener((obs, oldVal, newVal) -> {
-            dropdown.setTranslateX(xCoords * newVal.doubleValue() / xScale);
-        });
-        root.heightProperty().addListener((obs, oldVal, newVal) -> {
-            dropdown.setTranslateY(yCoords * newVal.doubleValue() / yScale);
-        });
-        dropdown.getItems().addAll(option1GB.getText(), option500MB.getText(), option100MB.getText());
-
-        VBox dropboxRoot = new VBox(dropdown);
-
-        dropdown.setCellFactory(param -> new ListCell<>() {
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                } else {
-
-                    Text text = new Text(item);
-                    text.setFont(Font.font("Snap ITC", FontWeight.BOLD, 20));
-
-                    text.setStyle("-fx-fill: orange; -fx-stroke: black; -fx-stroke-width: 1px;");
-                    setGraphic(text);
-                }
-            }
-        });
-
-        dropdown.setButtonCell(new ListCell<>() {
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText("SELECT");
-                } else {
-                    Text text = new Text(item);
-                    text.setFont(Font.font("Snap ITC", FontWeight.BOLD, 14));
-                    //setText(text.getText());
-                    setFont(text.getFont());
-
-                    text.setStyle("-fx-fill: orange; -fx-stroke: black; -fx-stroke-width: 0.65px;");
-
-                    setGraphic(text);
-                }
-            }
-        });
-
-        dropdown.setOnAction(event -> {
-            String selectedItem = dropdown.getSelectionModel().getSelectedItem();
-            System.out.println(selectedItem);
-            // Set font, color, and stroke for selected item
-            if (selectedItem != null) {
-
-                Text text = new Text(selectedItem);
-                text.setFont(Font.font("Snap ITC", FontWeight.BOLD, 12));
-                text.setFill(Color.ORANGE);
-
-            }
-        });
-
-        dropboxRoot.setStyle("-fx-background-color: transparent;");
-
-        // Bind scale properties to root pane dimensions
-        dropboxRoot.scaleXProperty().bind(root.widthProperty().divide(xScale));
-        dropboxRoot.scaleYProperty().bind(root.heightProperty().divide(yScale));
-
-        // Set the initial position of the button
-        dropboxRoot.setTranslateX(xCoords * root.getWidth() / xScale);
-        dropboxRoot.setTranslateY(yCoords * root.getHeight() / yScale);
-
-        // Reposition the button when the root pane dimensions change
-        root.widthProperty().addListener((obs, oldVal, newVal) -> {
-            dropboxRoot.setTranslateX(xCoords * newVal.doubleValue() / xScale);
-        });
-        root.heightProperty().addListener((obs, oldVal, newVal) -> {
-            dropboxRoot.setTranslateY(yCoords * newVal.doubleValue() / yScale);
-        });
-        //pane.setCenter(root);
-        sequentialWriteMainScreen.getChildren().add(dropboxRoot);
-    }
-
-    public void setFontText(Text text){
-        text.setFill(Color.ORANGE);
-        text.setStroke(Color.BLACK);
-        text.setStrokeWidth(2);
-        text.setFont(Font.font("Snap ITC", FontWeight.BOLD, 14));
     }
 
     public boolean getIsCompleted(){

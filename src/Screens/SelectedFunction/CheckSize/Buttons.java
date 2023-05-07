@@ -52,11 +52,11 @@ public class Buttons {
             new CheckSizeLogic().run();
         };
 
-        double xCoords = -400;
-        double yCoords = 200;
+        double xCoords = -450;
+        double yCoords = -32.5;
 
-        double xScale = 2600;
-        double yScale = 1500;
+        double xScale = 2625;
+        double yScale = 1675;
 
         Button b = buttonBuilder("run", checkSizeMainScreen, event, pane);
         scaleButton(b,root,xScale,yScale, xCoords, yCoords);

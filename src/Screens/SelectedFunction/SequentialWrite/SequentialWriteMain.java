@@ -6,6 +6,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
+import static Shared.Dropbox.dropbox;
+
 public class SequentialWriteMain {
     public void setTitle(StackPane root, BorderPane pane, StackPane sequentialWriteMainScreen){
         Image img = new Image("file:DesignFiles/Buttons/sequentialWriteTitle.png");
@@ -46,7 +48,7 @@ public class SequentialWriteMain {
 
         setTitle(root, pane, sequentialWriteMainScreen);
 
-        new SequentialWriteLogic().dropbox(root, sequentialWriteMainScreen, pane);
+        dropbox(root, sequentialWriteMainScreen, new String[]{"1 GB", "500 MB", "100 MB"});
 
         new Buttons().addButtonsToScreen(root, sequentialWriteMainScreen, pane);
 

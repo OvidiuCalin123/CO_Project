@@ -61,7 +61,7 @@ public class Buttons {
             }
         };
 
-        double xCoords = -450;  //daca cresti cu - il aduci catre stanga
+        double xCoords = -450;
         double yCoords = -32.5;
 
         double xScale = 2625;
