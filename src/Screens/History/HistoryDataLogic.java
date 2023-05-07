@@ -31,5 +31,4 @@ public class HistoryDataLogic {
 
         return now.format(formatter);
     }
-
 }

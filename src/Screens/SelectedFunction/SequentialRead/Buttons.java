@@ -1,26 +1,49 @@
 package Screens.SelectedFunction.SequentialRead;
 
 import Screens.Loading.LoadingMain;
-import Screens.SelectedFunction.RandomRead.RandomReadLogic;
-import Screens.SelectedFunction.SequentialWrite.SequentialWriteLogic;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-
 import java.io.IOException;
-
 import static Shared.ButtonsHelper.buttonBuilder;
 import static Shared.ButtonsHelper.scaleButton;
 
 public class Buttons {
 
-    public void back(StackPane root, StackPane sequentialReadMainScreen, BorderPane pane){
+    public void addButtonsToScreen(StackPane root, StackPane sequentialReadMainScreen, BorderPane pane){
+
+        back(root, sequentialReadMainScreen, pane);
+        quit(root, sequentialReadMainScreen, pane);
+        run(root, sequentialReadMainScreen, pane, "catchMonster4.png");
+
+
+    }
+
+    public void run(StackPane root, StackPane sequentialReadMainScreen, BorderPane pane, String screenName){
         EventHandler<ActionEvent> event = e -> {
-            sequentialReadMainScreen.toBack();
+            new LoadingMain(root, sequentialReadMainScreen, screenName, pane, new SequentialReadLogic(), "monster4.png");
+            try {
+                new SequentialReadLogic().run();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         };
+
+        double xCoords = -700;
+        double yCoords = -100;
+
+        double xScale = 2800;
+        double yScale = 1800;
+
+        Button b = buttonBuilder("run", sequentialReadMainScreen, event, pane);
+        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
+    }
+
+    public void back(StackPane root, StackPane sequentialReadMainScreen, BorderPane pane){
+        EventHandler<ActionEvent> event = e -> sequentialReadMainScreen.toBack();
 
         double xCoords = -1050;
         double yCoords = 550;
@@ -50,34 +73,4 @@ public class Buttons {
 
         scaleButton(b,root,xScale,yScale, xCoords, yCoords);
     }
-
-    public void run(StackPane root, StackPane sequentialReadMainScreen, BorderPane pane, String screenName){
-        EventHandler<ActionEvent> event = e -> {
-            new LoadingMain(root, sequentialReadMainScreen, screenName, pane, new SequentialReadLogic(), "monster4.png");
-            try {
-                new SequentialReadLogic().run();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        };
-
-        double xCoords = -700;
-        double yCoords = -100;
-
-        double xScale = 2800;
-        double yScale = 1800;
-
-        Button b = buttonBuilder("run", sequentialReadMainScreen, event, pane);
-        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
-    }
-
-    public void addButtonsToScreen(StackPane root, StackPane sequentialReadMainScreen, BorderPane pane){
-
-        back(root, sequentialReadMainScreen, pane);
-        quit(root, sequentialReadMainScreen, pane);
-        run(root, sequentialReadMainScreen, pane, "catchMonster4.png");
-
-
-    }
-
 }

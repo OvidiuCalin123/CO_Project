@@ -10,7 +10,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
-
 import java.io.File;
 
 import static Shared.Dropbox.getSelectedOption;
@@ -27,22 +26,14 @@ public class ButtonsHelper {
 
     public static void scaleButton(Button b, StackPane root, double xScale, double yScale, double xCoords, double yCoords){
 
-        // Bind scale properties to root pane dimensions
         b.scaleXProperty().bind(root.widthProperty().divide(xScale));
         b.scaleYProperty().bind(root.heightProperty().divide(yScale));
 
-        // Set the initial position of the button
         b.setTranslateX(xCoords * root.getWidth() / xScale);
         b.setTranslateY(yCoords * root.getHeight() / yScale);
 
-        // Reposition the button when the root pane dimensions change
-        root.widthProperty().addListener((obs, oldVal, newVal) -> {
-            b.setTranslateX(xCoords * newVal.doubleValue() / xScale);
-        });
-        root.heightProperty().addListener((obs, oldVal, newVal) -> {
-            b.setTranslateY(yCoords * newVal.doubleValue() / yScale);
-        });
-
+        root.widthProperty().addListener((obs, oldVal, newVal) -> b.setTranslateX(xCoords * newVal.doubleValue() / xScale));
+        root.heightProperty().addListener((obs, oldVal, newVal) -> b.setTranslateY(yCoords * newVal.doubleValue() / yScale));
     }
 
     public static Button buttonBuilder(String buttonName, StackPane root, EventHandler<ActionEvent> event, BorderPane pane){
@@ -106,7 +97,5 @@ public class ButtonsHelper {
         root.getChildren().add(b);
 
         return b;
-
     }
-
 }

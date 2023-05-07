@@ -1,7 +1,6 @@
 package Screens.History;
 
 import javafx.scene.control.TableView;
-
 import java.io.*;
 import java.util.Stack;
 
@@ -10,10 +9,6 @@ public class FileOperations {
     public static void writeToFile(String filePath, Object ...content){
         try {
             File file = new File(filePath);
-
-            if (!file.exists()) {
-                file.createNewFile();
-            }
 
             FileWriter openFileForWriting = new FileWriter(file.getAbsoluteFile(), true);
             BufferedWriter writeToFile = new BufferedWriter(openFileForWriting);
@@ -88,5 +83,4 @@ public class FileOperations {
             e.printStackTrace();
         }
     }
-
 }

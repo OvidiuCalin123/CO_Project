@@ -18,10 +18,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.converter.NumberStringConverter;
-
 import java.io.File;
 import java.text.DecimalFormat;
-
 import static Screens.MainMenu.SoundButton.setEvent;
 import static Shared.ButtonsHelper.*;
 
@@ -220,11 +218,8 @@ public class Buttons {
                 root.getChildren().remove(volumeLabel);
                 isVolumeSliderOnScreen = false;
             }
-
         };
-
         setEvent(event);
-
     }
 
     public void addButtonsToScreen(StackPane root, BorderPane pane){
@@ -237,5 +232,4 @@ public class Buttons {
         quit(root, pane);
         volumeButton(root,pane);
     }
-
 }

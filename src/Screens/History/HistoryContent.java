@@ -1,7 +1,6 @@
 package Screens.History;
 
 import Screens.SelectedFunction.CheckSize.CheckSizeLogic;
-import Screens.SelectedFunction.CheckSize.CheckSizeMain;
 import Screens.SelectedFunction.RandomRead.RandomReadLogic;
 import Screens.SelectedFunction.RandomWrite.RandomWriteLogic;
 import Screens.SelectedFunction.SelectedFunctionLogicHandle;
@@ -22,9 +21,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-
-import java.io.*;
-
 import static Screens.History.FileOperations.*;
 import static Screens.History.HistoryDataLogic.getLocalTime;
 import static Screens.History.HistoryDataLogic.getStorage;
@@ -35,9 +31,8 @@ public class HistoryContent extends BorderPane {
 
     private final TableView<HistoryModel> tableView;
 
-    public HistoryContent(StackPane realroot, StackPane root, BorderPane pane, String historyBackgroundScreen) {
+    public HistoryContent(StackPane realRoot, StackPane root, BorderPane pane, String historyBackgroundScreen) {
 
-        // Set padding and background color
         setPadding(new Insets(20));
         setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
 
@@ -47,7 +42,6 @@ public class HistoryContent extends BorderPane {
         rowNrCol.setStyle("-fx-font-size: 20pt;");
         rowNrCol.setPrefWidth(75);
 
-        // Create the table columns
         TableColumn<HistoryModel, Double> scoreCol = new TableColumn<>("Score");
         scoreCol.setCellValueFactory(new PropertyValueFactory<>("score"));
         scoreCol.setResizable(false);
@@ -73,7 +67,6 @@ public class HistoryContent extends BorderPane {
 
         testTimeCol.setPrefWidth(400);
 
-        // Create the table view and add the columns
         tableView = new TableView<>();
 
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -84,93 +77,33 @@ public class HistoryContent extends BorderPane {
         tableView.setScaleX(0.7);
         tableView.setScaleY(0.7);
 
-        // Create the scroll pane and add the table view
         ScrollPane scrollPane = new ScrollPane(tableView);
         scrollPane.setFitToWidth(true);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
 
-        // Create the title label
         Label titleLabel = new Label("History Table");
         titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         titleLabel.setTextFill(Color.web("#0076a3"));
 
-        // Add the title label and scroll pane to this border pane
         setTop(titleLabel);
         setAlignment(titleLabel, Pos.CENTER);
         setCenter(scrollPane);
         root.getChildren().add(tableView);
 
-        back(realroot, root, pane);
-        quit(realroot, root, pane);
-        clearHistory(realroot, root, pane, historyBackgroundScreen);
-        titleBuilder(realroot, root, pane, root, historyBackgroundScreen);
+        back(realRoot, root, pane);
+        quit(realRoot, root, pane);
+        clearHistory(realRoot, root, pane, historyBackgroundScreen);
+        titleBuilder(realRoot, root, pane, root, historyBackgroundScreen);
 
         createTableRow(historyBackgroundScreen);
         populateHistoryTable(historyBackgroundScreen);
-        scaleTable(tableView, realroot, root);
+        scaleTable(tableView, realRoot);
 
     }
-
-    public void scaleTable(TableView<HistoryModel> tableView, StackPane root, StackPane checkSizeMainScreen) {
-
-        double widthPercentage = 0.3;
-        double heightPercentage = 0.25;
-
-        tableView.prefWidthProperty().bind(root.widthProperty().multiply(widthPercentage));
-        tableView.prefHeightProperty().bind(root.heightProperty().multiply(heightPercentage));
-
-
-        tableView.setTranslateX(0 * root.getWidth() / 600);
-        tableView.setTranslateY(0 * root.getHeight() / 350);
-
-        // Reposition the button when the root pane dimensions change
-        root.widthProperty().addListener((obs, oldVal, newVal) -> {
-            tableView.setTranslateX(0 * newVal.doubleValue() / 600);
-        });
-        root.heightProperty().addListener((obs, oldVal, newVal) -> {
-            tableView.setTranslateY(0 * newVal.doubleValue() / 350);
-        });
-    }
-
-
-
-    public void populateHistoryTable(String historyBackgroundScreen){
-
-        // we need to check the historyBackgroundScreen
-        //readFromFile("src\\Screens\\History\\historyStorage\\historyCheckSize.txt", tableView);
-        if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster1")){
-
-            readFromFile("src\\Screens\\History\\historyStorage\\historyCheckSize.txt", tableView);
-
-        }
-        else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster2")){
-
-            readFromFile("src\\Screens\\History\\historyStorage\\historyRandomRead.txt", tableView);
-
-        }
-        else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster3")){
-
-            readFromFile("src\\Screens\\History\\historyStorage\\historyRandomWrite.txt", tableView);
-
-        }
-        else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster4")){
-
-            readFromFile("src\\Screens\\History\\historyStorage\\historySequentialRead.txt", tableView);
-
-        }
-        else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster5")){
-
-            readFromFile("src\\Screens\\History\\historyStorage\\historySequentialWrite.txt", tableView);
-
-        }
-
-    }
-
     public void createTableRow(String historyBackgroundScreen){
 
         double score = 0.0;
         double run_time = 0.0;
-        int rowNr = 0;
         String storage = getStorage();
         String localTime = getLocalTime();
 
@@ -219,52 +152,110 @@ public class HistoryContent extends BorderPane {
             writeToFile("src\\Screens\\History\\historyStorage\\historySequentialWrite.txt", score, run_time, storage, localTime);
 
         }
+    }
+
+    public void scaleTable(TableView<HistoryModel> tableView, StackPane root) {
+
+        double widthPercentage = 0.3;
+        double heightPercentage = 0.25;
+
+        tableView.prefWidthProperty().bind(root.widthProperty().multiply(widthPercentage));
+        tableView.prefHeightProperty().bind(root.heightProperty().multiply(heightPercentage));
+
+
+        tableView.setTranslateX(0 * root.getWidth() / 600);
+        tableView.setTranslateY(0 * root.getHeight() / 350);
+
+        root.widthProperty().addListener((obs, oldVal, newVal) -> {
+            tableView.setTranslateX(0 * newVal.doubleValue() / 600);
+        });
+        root.heightProperty().addListener((obs, oldVal, newVal) -> {
+            tableView.setTranslateY(0 * newVal.doubleValue() / 350);
+        });
+    }
+
+    public void setTitle(StackPane realRoot, StackPane root, BorderPane pane, StackPane checkSizeMainScreen, String titleName){
+        Image img = new Image("file:DesignFiles/Background/" + titleName + ".png");
+        ImageView imageView = new ImageView(img);
+
+        imageView.fitWidthProperty().bind(realRoot.widthProperty().multiply(0.40));
+        imageView.fitHeightProperty().bind(realRoot.heightProperty().multiply(0.10));
+
+        imageView.setTranslateX(0 * realRoot.getWidth() / 600);
+        imageView.setTranslateY(-145 * realRoot.getHeight() / 350);
+
+        // Reposition the button when the root pane dimensions change
+        realRoot.widthProperty().addListener((obs, oldVal, newVal) -> {
+            imageView.setTranslateX(0 * newVal.doubleValue() / 600);
+        });
+        realRoot.heightProperty().addListener((obs, oldVal, newVal) -> {
+            imageView.setTranslateY(-145 * newVal.doubleValue() / 350);
+        });
+
+        pane.setCenter(imageView);
+
+        checkSizeMainScreen.getChildren().add(imageView);
+    }
+
+    public void titleBuilder(StackPane realRoot, StackPane root, BorderPane pane, StackPane checkSizeMainScreen, String historyBackgroundScreen){
+       if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster1")){
+
+           setTitle(realRoot, root, pane, checkSizeMainScreen, "checkSizeTitle2");
+       }
+       else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster2")){
+
+           setTitle(realRoot, root, pane, checkSizeMainScreen, "randomReadTitle2");
+
+       }
+       else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster3")){
+
+           setTitle(realRoot, root, pane, checkSizeMainScreen, "randomWriteTitle2");
+
+       }
+       else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster4")){
+
+           setTitle(realRoot, root, pane, checkSizeMainScreen, "sequentialReadTitle2");
+
+       }
+       else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster5")){
+
+           setTitle(realRoot, root, pane, checkSizeMainScreen, "sequentialWriteTitle2");
+
+       }
+
+   }
+
+    public void populateHistoryTable(String historyBackgroundScreen){
+
+        if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster1")){
+
+            readFromFile("src\\Screens\\History\\historyStorage\\historyCheckSize.txt", tableView);
+
+        }
+        else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster2")){
+
+            readFromFile("src\\Screens\\History\\historyStorage\\historyRandomRead.txt", tableView);
+
+        }
+        else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster3")){
+
+            readFromFile("src\\Screens\\History\\historyStorage\\historyRandomWrite.txt", tableView);
+
+        }
+        else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster4")){
+
+            readFromFile("src\\Screens\\History\\historyStorage\\historySequentialRead.txt", tableView);
+
+        }
+        else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster5")){
+
+            readFromFile("src\\Screens\\History\\historyStorage\\historySequentialWrite.txt", tableView);
+
+        }
 
     }
 
-    public void back(StackPane realroot, StackPane sequentialReadMainScreen, BorderPane pane){
-        EventHandler<ActionEvent> event = e -> {
-            sequentialReadMainScreen.toBack();
-            sequentialReadMainScreen.toBack();
-            ObservableList<Node> children = sequentialReadMainScreen.getChildren();
-            int index = children.size() - 4;
-            sequentialReadMainScreen.getChildren().get(index).toBack();
-            sequentialReadMainScreen.getChildren().get(index + 1).toBack();
-            sequentialReadMainScreen.getChildren().get(index + 2).toBack();
-            sequentialReadMainScreen.getChildren().get(index + 2).toBack();
-            sequentialReadMainScreen.getChildren().get(index + 3).toBack();
-
-        };
-
-        double xCoords = -975;
-        double yCoords = 705;
-
-        double xScale = 2400;
-        double yScale = 1650;
-
-        Button b = buttonBuilder("back", sequentialReadMainScreen, event, pane);
-
-        scaleButton(b,realroot,xScale,yScale, xCoords, yCoords);
-
-
-    }
-    public void quit(StackPane realroot, StackPane checkSizeMainScreen, BorderPane pane){
-        EventHandler<ActionEvent> event = e -> {
-            Platform.exit();
-            System.exit(0);
-        };
-
-        double xCoords = 850;
-        double yCoords = 625;
-
-        double xScale = 2050;
-        double yScale = 1450;
-
-        Button b = buttonBuilder("Quit", checkSizeMainScreen, event, pane);
-        scaleButton(b,realroot,xScale,yScale, xCoords, yCoords);
-    }
-
-    public void clearHistory(StackPane realroot, StackPane checkSizeMainScreen, BorderPane pane, String historyBackgroundScreen){
+    public void clearHistory(StackPane realRoot, StackPane checkSizeMainScreen, BorderPane pane, String historyBackgroundScreen){
         EventHandler<ActionEvent> event = e -> {
             if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster1")){
 
@@ -316,65 +307,49 @@ public class HistoryContent extends BorderPane {
         double yScale = 1800;
 
         Button b = buttonBuilder("clearHistory2", checkSizeMainScreen, event, pane);
-        scaleButton(b,realroot,xScale,yScale, xCoords, yCoords);
+        scaleButton(b,realRoot,xScale,yScale, xCoords, yCoords);
     }
 
-    public void setTitle(StackPane realroot, StackPane root, BorderPane pane, StackPane checkSizeMainScreen, String titleName){
-        Image img = new Image("file:DesignFiles/Background/" + titleName + ".png");
-        ImageView imageView = new ImageView(img);
+    public void back(StackPane realRoot, StackPane sequentialReadMainScreen, BorderPane pane){
+        EventHandler<ActionEvent> event = e -> {
+            sequentialReadMainScreen.toBack();
+            sequentialReadMainScreen.toBack();
+            ObservableList<Node> children = sequentialReadMainScreen.getChildren();
+            int index = children.size() - 4;
+            sequentialReadMainScreen.getChildren().get(index).toBack();
+            sequentialReadMainScreen.getChildren().get(index + 1).toBack();
+            sequentialReadMainScreen.getChildren().get(index + 2).toBack();
+            sequentialReadMainScreen.getChildren().get(index + 2).toBack();
+            sequentialReadMainScreen.getChildren().get(index + 3).toBack();
 
-        imageView.fitWidthProperty().bind(realroot.widthProperty().multiply(0.40));
-        imageView.fitHeightProperty().bind(realroot.heightProperty().multiply(0.10));
+        };
 
-        imageView.setTranslateX(0 * realroot.getWidth() / 600);
-        imageView.setTranslateY(-145 * realroot.getHeight() / 350);
+        double xCoords = -975;
+        double yCoords = 705;
 
-        // Reposition the button when the root pane dimensions change
-        realroot.widthProperty().addListener((obs, oldVal, newVal) -> {
-            imageView.setTranslateX(0 * newVal.doubleValue() / 600);
-        });
-        realroot.heightProperty().addListener((obs, oldVal, newVal) -> {
-            imageView.setTranslateY(-145 * newVal.doubleValue() / 350);
-        });
+        double xScale = 2400;
+        double yScale = 1650;
 
-        pane.setCenter(imageView);
+        Button b = buttonBuilder("back", sequentialReadMainScreen, event, pane);
 
-        checkSizeMainScreen.getChildren().add(imageView);
+        scaleButton(b,realRoot,xScale,yScale, xCoords, yCoords);
+
+
     }
 
-   public void titleBuilder(StackPane realroot, StackPane root, BorderPane pane, StackPane checkSizeMainScreen, String historyBackgroundScreen){
-       if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster1")){
+    public void quit(StackPane realRoot, StackPane checkSizeMainScreen, BorderPane pane){
+        EventHandler<ActionEvent> event = e -> {
+            Platform.exit();
+            System.exit(0);
+        };
 
-           setTitle(realroot, root, pane, checkSizeMainScreen, "checkSizeTitle2");
-       }
-       else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster2")){
+        double xCoords = 850;
+        double yCoords = 625;
 
-           setTitle(realroot, root, pane, checkSizeMainScreen, "randomReadTitle2");
+        double xScale = 2050;
+        double yScale = 1450;
 
-       }
-       else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster3")){
-
-           setTitle(realroot, root, pane, checkSizeMainScreen, "randomWriteTitle2");
-
-       }
-       else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster4")){
-
-           setTitle(realroot, root, pane, checkSizeMainScreen, "sequentialReadTitle2");
-
-       }
-       else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster5")){
-
-           setTitle(realroot, root, pane, checkSizeMainScreen, "sequentialWriteTitle2");
-
-       }
-
-   }
-
-    public void setData(ObservableList<HistoryModel> data) {
-        // Set the data for the table view
-        tableView.setItems(data);
+        Button b = buttonBuilder("Quit", checkSizeMainScreen, event, pane);
+        scaleButton(b,realRoot,xScale,yScale, xCoords, yCoords);
     }
 }
-
-
-

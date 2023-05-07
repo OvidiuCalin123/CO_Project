@@ -1,25 +1,9 @@
 package Screens.SelectedFunction.SequentialWrite;
 
 import Screens.SelectedFunction.SelectedFunctionLogicHandle;
-import javafx.beans.binding.Bindings;
-import javafx.geometry.Pos;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListCell;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-
-import java.net.URLEncoder;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
 import static Shared.Dropbox.getSelectedOption;
 
 public class SequentialWriteLogic implements SelectedFunctionLogicHandle{
@@ -30,7 +14,6 @@ public class SequentialWriteLogic implements SelectedFunctionLogicHandle{
 
        public static double measureSequentialWriteSpeed(File file, long fileSize, int bufferSize) throws IOException {
         byte[] buffer = new byte[bufferSize];
-        // Measure the sequential write speed
         long startTime = System.currentTimeMillis();
         try (FileOutputStream fos = new FileOutputStream(file)) {
             long bytesToWrite = fileSize;
@@ -40,7 +23,7 @@ public class SequentialWriteLogic implements SelectedFunctionLogicHandle{
                 bytesToWrite -= bytesToWriteNow;
             }
         }
-        // Calculate the time taken and return the results.
+
         long endTime = System.currentTimeMillis();
         long timeTaken = endTime - startTime;
         time=timeTaken;
@@ -55,12 +38,11 @@ public class SequentialWriteLogic implements SelectedFunctionLogicHandle{
             try {
                 File file = new File("testfile");
                 file.deleteOnExit();
-                long fileSize = (long)getSelectedOption(); // 1 GB for testing, implement user input or dropdown later.
+                long fileSize = (long)getSelectedOption();
                 int bufferSize = 4096;
                 double writeSpeed = SequentialWriteLogic.measureSequentialWriteSpeed(file, fileSize, bufferSize);
-                System.out.printf("Sequential write speed: %.2f MB/s\n", writeSpeed);
             } catch (IOException e) {
-                // handle the exception
+                System.out.println(e);
             }
 
         });

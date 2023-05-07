@@ -1,25 +1,20 @@
 package Screens.SelectedFunction.SequentialWrite;
 
 import Screens.Loading.LoadingMain;
-import Screens.SelectedFunction.RandomRead.RandomReadLogic;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-
 import java.io.IOException;
-
 import static Shared.ButtonsHelper.buttonBuilder;
 import static Shared.ButtonsHelper.scaleButton;
 
 public class Buttons {
 
     public void back(StackPane root, StackPane sequentialWriteMainScreen, BorderPane pane){
-        EventHandler<ActionEvent> event = e -> {
-            sequentialWriteMainScreen.toBack();
-        };
+        EventHandler<ActionEvent> event = e -> sequentialWriteMainScreen.toBack();
 
         double xCoords = -1050;
         double yCoords = 550;
@@ -51,7 +46,7 @@ public class Buttons {
     }
 
     public void run(StackPane root, StackPane sequentialWriteMainScreen, BorderPane pane, String screenName){
-        System.out.println(root.getChildren());
+
         EventHandler<ActionEvent> event = e -> {
             new LoadingMain(root, sequentialWriteMainScreen, screenName, pane, new SequentialWriteLogic(), "monster5.jpg");
             try {
@@ -76,7 +71,5 @@ public class Buttons {
         back(root, sequentialWriteMainScreen, pane);
         quit(root, sequentialWriteMainScreen, pane);
         run(root, sequentialWriteMainScreen, pane, "catchMonster5.png");
-
     }
-
 }

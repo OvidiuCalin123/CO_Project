@@ -3,13 +3,9 @@ package Main;
 import Screens.MainMenu.MainMenuMain;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
-import java.util.Arrays;
-
 import static Icons.IconsLogic.setAppIcon;
 
 public class Main extends Application {
@@ -32,6 +28,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+
         launch(args);
     }
 }
