@@ -102,7 +102,7 @@ public class HistoryContent extends BorderPane {
     }
     public void createTableRow(String historyBackgroundScreen){
 
-        double score = 0.0;
+        int score = 0;
         double run_time = 0.0;
         String storage = getStorage();
         String localTime = getLocalTime();
@@ -111,7 +111,7 @@ public class HistoryContent extends BorderPane {
 
             SelectedFunctionLogicHandle checkSize = new CheckSizeLogic();
             run_time = checkSize.getTime();
-            score = checkSize.getScore();
+            score = (int) checkSize.getScore();
 
             writeToFile("src\\Screens\\History\\historyStorage\\historyCheckSize.txt", score, run_time, storage, localTime);
 
@@ -120,7 +120,7 @@ public class HistoryContent extends BorderPane {
 
             SelectedFunctionLogicHandle randomRead = new RandomReadLogic();
             run_time = randomRead.getTime();
-            score = randomRead.getScore();
+            score = (int) randomRead.getScore();
 
             writeToFile("src\\Screens\\History\\historyStorage\\historyRandomRead.txt", score, run_time, storage, localTime);
 
@@ -129,7 +129,7 @@ public class HistoryContent extends BorderPane {
 
             SelectedFunctionLogicHandle randomWrite = new RandomWriteLogic();
             run_time = randomWrite.getTime();
-            score = randomWrite.getScore();
+            score = (int) randomWrite.getScore();
 
             writeToFile("src\\Screens\\History\\historyStorage\\historyRandomWrite.txt", score, run_time, storage, localTime);
 
@@ -138,7 +138,7 @@ public class HistoryContent extends BorderPane {
 
             SelectedFunctionLogicHandle sequentialRead = new SequentialReadLogic();
             run_time = sequentialRead.getTime();
-            score = sequentialRead.getScore();
+            score = (int) sequentialRead.getScore();
 
             writeToFile("src\\Screens\\History\\historyStorage\\historySequentialRead.txt", score, run_time, storage, localTime);
 
@@ -147,7 +147,7 @@ public class HistoryContent extends BorderPane {
 
             SelectedFunctionLogicHandle sequentialWrite = new SequentialWriteLogic();
             run_time = sequentialWrite.getTime();
-            score = sequentialWrite.getScore();
+            score = (int) sequentialWrite.getScore();
 
             writeToFile("src\\Screens\\History\\historyStorage\\historySequentialWrite.txt", score, run_time, storage, localTime);
 

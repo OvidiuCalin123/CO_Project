@@ -1,13 +1,13 @@
 package Screens.History;
 
 public class HistoryModel {
-    public double score;
+    public int score;
     public int rowNumber;
     public double run_time;
     public String hdd_ssd;
     public String test_time;
 
-    public HistoryModel(int rowNumber, double score, double run_time, String hdd_ssd, String test_time) {
+    public HistoryModel(int rowNumber, int score, double run_time, String hdd_ssd, String test_time) {
 
         this.rowNumber = rowNumber;
         this.score = score;
@@ -24,11 +24,11 @@ public class HistoryModel {
         this.rowNumber = rowNumber;
     }
 
-    public double getScore() {
+    public int getScore() {
         return score;
     }
 
-    public void setScore(double score) {
+    public void setScore(int score) {
         this.score = score;
     }
 

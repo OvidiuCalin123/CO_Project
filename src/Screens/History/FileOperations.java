@@ -54,7 +54,7 @@ public class FileOperations {
             while ((line = reader.readLine()) != null) {
 
                 String[] fields = line.split(",");
-                double score = Double.parseDouble(fields[0]);
+                int score = Integer.parseInt(fields[0]);
                 double run_time = Double.parseDouble(fields[1]);
                 String storage = fields[2];
                 String localTime = fields[3];
