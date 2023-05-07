@@ -85,7 +85,7 @@ public class Dropbox {
 
                     if(text.getText().equals("1 GB")){
 
-                        selectedOption=1024*1024*1024;
+                        selectedOption=(long)1024*1024*1024;
                         text.fontProperty().bind(Bindings.createObjectBinding(() -> {
                             double fontSize = 0.04 * Math.min(root.getWidth()*1.1, root.getHeight()*1.25);
                             return Font.font("Snap ITC",fontSize);
