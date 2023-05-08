@@ -78,7 +78,7 @@ public class Buttons {
         double xScale = 2625;
         double yScale = 1920;
 
-        Button b = buttonBuilder("run", sequentialWriteMainScreen, event, pane);
+        Button b = buttonBuilder("runOption", sequentialWriteMainScreen, event, pane);
         scaleButton(b,root,xScale,yScale, xCoords, yCoords);
     }
 

@@ -71,15 +71,15 @@ public class FileOperations {
                     String localTime = fields[4];
 
                     if ((fields[0]+"").equals(1073741824+"")) {
-                        HistoryModel newPerson = new HistoryModel(colNr, "1 Gb", score, run_time, storage, localTime);
+                        HistoryModel newPerson = new HistoryModel(colNr, "1 GB", score, run_time, storage, localTime);
                         historyStack.push(newPerson);
 
                     } else if ((fields[0]+"").equals(536870912+"")) {
-                        HistoryModel newPerson = new HistoryModel(colNr, "500 Mb", score, run_time, storage, localTime);
+                        HistoryModel newPerson = new HistoryModel(colNr, "500 MB", score, run_time, storage, localTime);
                         historyStack.push(newPerson);
 
                     } else if ((fields[0]+"").equals(107374182+"")) {
-                        HistoryModel newPerson = new HistoryModel(colNr, "100 Mb", score, run_time, storage, localTime);
+                        HistoryModel newPerson = new HistoryModel(colNr, "100 MB", score, run_time, storage, localTime);
                         historyStack.push(newPerson);
 
                     } else{

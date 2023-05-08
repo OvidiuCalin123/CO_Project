@@ -71,7 +71,7 @@ public class Buttons {
         double xScale = 2625;
         double yScale = 1915;
 
-        Button b = buttonBuilder("run", checkSizeMainScreen, event, pane);
+        Button b = buttonBuilder("runOption", checkSizeMainScreen, event, pane);
         scaleButton(b, root, xScale, yScale, xCoords, yCoords);
 
     }
