@@ -11,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import static Shared.ButtonsHelper.buttonBuilder;
 import static Shared.ButtonsHelper.scaleButton;
+import static Shared.Dropbox.resetSelectedOption;
 
 public class Buttons {
 
@@ -38,6 +39,8 @@ public class Buttons {
 
     public void back(StackPane sequentialReadMainScreen, BorderPane pane){
         EventHandler<ActionEvent> event = e -> {
+
+            resetSelectedOption();
             sequentialReadMainScreen.toBack();
             sequentialReadMainScreen.toBack();
             ObservableList<Node> children = sequentialReadMainScreen.getChildren();

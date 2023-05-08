@@ -11,11 +11,15 @@ import javafx.scene.layout.StackPane;
 import static Shared.ButtonsHelper.buttonBuilder;
 import static Shared.ButtonsHelper.scaleButton;
 import static Shared.Dropbox.getSelectedOption;
+import static Shared.Dropbox.resetSelectedOption;
 
 public class Buttons {
 
     public void back(StackPane root, StackPane checkSizeMainScreen, BorderPane pane){
         EventHandler<ActionEvent> event = e -> {
+
+            resetSelectedOption();
+
             checkSizeMainScreen.toBack();
         };
 
@@ -32,6 +36,7 @@ public class Buttons {
     }
 
     public void quit(StackPane root, StackPane checkSizeMainScreen, BorderPane pane){
+
         EventHandler<ActionEvent> event = e -> {
             Platform.exit();
             System.exit(0);
@@ -49,6 +54,7 @@ public class Buttons {
 
     public void run(StackPane root, StackPane checkSizeMainScreen, BorderPane pane, String screenName){
         EventHandler<ActionEvent> event = e -> {
+
             if(getSelectedOption()!=null){
                 new LoadingMain(root, checkSizeMainScreen, screenName, pane, new CheckSizeLogic(), "monster1.jpg");
                 new CheckSizeLogic().run();
@@ -61,14 +67,9 @@ public class Buttons {
         double xScale = 2625;
         double yScale = 1915;
 
-//        if(getSelectedOption()==null) {
-//            Button b = buttonBuilder("deadRun2", checkSizeMainScreen, event, pane);
-//            scaleButton(b, root, xScale, yScale, xCoords, yCoords);
-//        }
-//        else{
-            Button b = buttonBuilder("run", checkSizeMainScreen, event, pane);
-            scaleButton(b, root, xScale, yScale, xCoords, yCoords);
-//        }
+        Button b = buttonBuilder("run", checkSizeMainScreen, event, pane);
+        scaleButton(b, root, xScale, yScale, xCoords, yCoords);
+
     }
 
 

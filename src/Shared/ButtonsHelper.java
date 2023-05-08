@@ -45,19 +45,23 @@ public class ButtonsHelper {
         b.setOnAction(event);
 
         b.setOnMouseEntered(e -> {
-            b.setStyle("-fx-cursor: hand; -fx-background-color: transparent;");
-            DropShadow dropShadow = new DropShadow();
-            dropShadow.setRadius(20);
-            dropShadow.setOffsetX(20);
-            dropShadow.setOffsetY(20);
-            dropShadow.setColor(Color.ORANGE);
-            imageView.setEffect(dropShadow);
 
-            File file = new File("SoundFiles/OnHoverSound.wav");
+            if(!buttonName.equals("deadRun2")){
+                b.setStyle("-fx-cursor: hand; -fx-background-color: transparent;");
+                DropShadow dropShadow = new DropShadow();
+                dropShadow.setRadius(20);
+                dropShadow.setOffsetX(20);
+                dropShadow.setOffsetY(20);
+                dropShadow.setColor(Color.ORANGE);
+                imageView.setEffect(dropShadow);
 
-            AudioClip audioClip = new AudioClip(file.toURI().toString());
-            audioClip.setVolume(3);
-            audioClip.play();
+                File file = new File("SoundFiles/OnHoverSound.wav");
+
+                AudioClip audioClip = new AudioClip(file.toURI().toString());
+                audioClip.setVolume(3);
+                audioClip.play();
+            }
+
         });
 
         b.setOnMouseExited(e -> {

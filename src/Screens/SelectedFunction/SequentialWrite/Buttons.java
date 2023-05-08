@@ -10,11 +10,18 @@ import javafx.scene.layout.StackPane;
 import java.io.IOException;
 import static Shared.ButtonsHelper.buttonBuilder;
 import static Shared.ButtonsHelper.scaleButton;
+import static Shared.Dropbox.getSelectedOption;
+import static Shared.Dropbox.resetSelectedOption;
 
 public class Buttons {
 
     public void back(StackPane root, StackPane sequentialWriteMainScreen, BorderPane pane){
-        EventHandler<ActionEvent> event = e -> sequentialWriteMainScreen.toBack();
+        EventHandler<ActionEvent> event = e -> {
+
+            resetSelectedOption();
+            sequentialWriteMainScreen.toBack();
+
+        };
 
         double xCoords = -1050;
         double yCoords = 550;
@@ -48,11 +55,15 @@ public class Buttons {
     public void run(StackPane root, StackPane sequentialWriteMainScreen, BorderPane pane, String screenName){
 
         EventHandler<ActionEvent> event = e -> {
-            new LoadingMain(root, sequentialWriteMainScreen, screenName, pane, new SequentialWriteLogic(), "monster5.jpg");
-            try {
-                new SequentialWriteLogic().run();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
+
+            if(getSelectedOption()!=null) {
+
+                new LoadingMain(root, sequentialWriteMainScreen, screenName, pane, new SequentialWriteLogic(), "monster5.jpg");
+                try {
+                    new SequentialWriteLogic().run();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
             }
         };
 

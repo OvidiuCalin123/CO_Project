@@ -4,6 +4,8 @@ import javafx.scene.control.TableView;
 import java.io.*;
 import java.util.Stack;
 
+import static Shared.Dropbox.getSelectedOption;
+
 public class FileOperations {
 
     public static void writeToFile(String filePath, Object ...content){
@@ -13,7 +15,13 @@ public class FileOperations {
             FileWriter openFileForWriting = new FileWriter(file.getAbsoluteFile(), true);
             BufferedWriter writeToFile = new BufferedWriter(openFileForWriting);
 
-            writeToFile.write( content[0] + "," + content[1] + "," + content[2] + "," + content[3]);
+            if(getSelectedOption() != null ){
+
+                writeToFile.write( content[0] + "," + content[1] + "," + content[2] + "," + content[3] + "," + content[4]);
+            }else{
+                writeToFile.write( content[0] + "," + content[1] + "," + content[2] + "," + content[3]);
+            }
+
             writeToFile.newLine();
             writeToFile.close();
 
@@ -54,13 +62,42 @@ public class FileOperations {
             while ((line = reader.readLine()) != null) {
 
                 String[] fields = line.split(",");
-                int score = Integer.parseInt(fields[0]);
-                double run_time = Double.parseDouble(fields[1]);
-                String storage = fields[2];
-                String localTime = fields[3];
 
-                HistoryModel newPerson = new HistoryModel(colNr, score, run_time, storage, localTime);
-                historyStack.push(newPerson);
+                if(getSelectedOption() != null){
+
+                    String score = fields[1];
+                    double run_time = Double.parseDouble(fields[2]);
+                    String storage = fields[3];
+                    String localTime = fields[4];
+
+                    if ((fields[0]+"").equals(1073741824+"")) {
+                        HistoryModel newPerson = new HistoryModel(colNr, "1 Gb", score, run_time, storage, localTime);
+                        historyStack.push(newPerson);
+
+                    } else if ((fields[0]+"").equals(536870912+"")) {
+                        HistoryModel newPerson = new HistoryModel(colNr, "500 Mb", score, run_time, storage, localTime);
+                        historyStack.push(newPerson);
+
+                    } else if ((fields[0]+"").equals(107374182+"")) {
+                        HistoryModel newPerson = new HistoryModel(colNr, "100 Mb", score, run_time, storage, localTime);
+                        historyStack.push(newPerson);
+
+                    } else{
+
+                        HistoryModel newPerson = new HistoryModel(colNr, fields[0]+"", score, run_time, storage, localTime);
+                        historyStack.push(newPerson);
+                    }
+
+                }else{
+                    String score = fields[0];
+                    double run_time = Double.parseDouble(fields[1]);
+                    String storage = fields[2];
+                    String localTime = fields[3];
+
+                    HistoryModel newPerson = new HistoryModel(colNr, score, run_time, storage, localTime);
+                    historyStack.push(newPerson);
+                }
+
                 colNr--;
             }
 

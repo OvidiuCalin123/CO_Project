@@ -26,6 +26,7 @@ import static Screens.History.HistoryDataLogic.getLocalTime;
 import static Screens.History.HistoryDataLogic.getStorage;
 import static Shared.ButtonsHelper.buttonBuilder;
 import static Shared.ButtonsHelper.scaleButton;
+import static Shared.Dropbox.getSelectedOption;
 
 public class HistoryContent extends BorderPane {
 
@@ -41,6 +42,17 @@ public class HistoryContent extends BorderPane {
         rowNrCol.setResizable(false);
         rowNrCol.setStyle("-fx-font-size: 20pt;");
         rowNrCol.setPrefWidth(75);
+
+        TableColumn<HistoryModel, Double> optionCol = new TableColumn<>("Option");
+
+        if(getSelectedOption() != null){
+
+            optionCol.setCellValueFactory(new PropertyValueFactory<>("selectedOption"));
+            optionCol.setResizable(false);
+            optionCol.setStyle("-fx-font-size: 20pt;");
+            optionCol.setPrefWidth(200);
+
+        }
 
         TableColumn<HistoryModel, Double> scoreCol = new TableColumn<>("Score");
         scoreCol.setCellValueFactory(new PropertyValueFactory<>("score"));
@@ -58,7 +70,7 @@ public class HistoryContent extends BorderPane {
         hdd_ssdCol.setCellValueFactory(new PropertyValueFactory<>("hdd_ssd"));
         hdd_ssdCol.setResizable(false);
         hdd_ssdCol.setStyle("-fx-font-size: 20pt;");
-        hdd_ssdCol.setPrefWidth(400);
+        hdd_ssdCol.setPrefWidth(300);
 
         TableColumn<HistoryModel, String> testTimeCol = new TableColumn<>("Test Time");
         testTimeCol.setCellValueFactory(new PropertyValueFactory<>("test_time"));
@@ -70,7 +82,13 @@ public class HistoryContent extends BorderPane {
         tableView = new TableView<>();
 
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        tableView.getColumns().addAll(rowNrCol,scoreCol, runTimeCol, hdd_ssdCol, testTimeCol);
+
+        if(getSelectedOption() != null){
+            tableView.getColumns().addAll(rowNrCol, optionCol,scoreCol, runTimeCol, hdd_ssdCol, testTimeCol);
+        }else{
+            tableView.getColumns().addAll(rowNrCol,scoreCol, runTimeCol, hdd_ssdCol, testTimeCol);
+        }
+
         tableView.setPrefHeight(400);
         tableView.setOpacity(0.75);
 
@@ -100,6 +118,7 @@ public class HistoryContent extends BorderPane {
         scaleTable(tableView, realRoot);
 
     }
+
     public void createTableRow(String historyBackgroundScreen){
 
         int score = 0;
@@ -113,7 +132,8 @@ public class HistoryContent extends BorderPane {
             run_time = checkSize.getTime();
             score = (int) checkSize.getScore();
 
-            writeToFile("src\\Screens\\History\\historyStorage\\historyCheckSize.txt", score, run_time, storage, localTime);
+            writeToFile("src\\Screens\\History\\historyStorage\\historyCheckSize.txt", getSelectedOption() + "", score, run_time, storage, localTime);
+
 
         }
         else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster2")){
@@ -145,11 +165,13 @@ public class HistoryContent extends BorderPane {
         }
         else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster5")){
 
-            SelectedFunctionLogicHandle sequentialWrite = new SequentialWriteLogic();
-            run_time = sequentialWrite.getTime();
-            score = (int) sequentialWrite.getScore();
 
-            writeToFile("src\\Screens\\History\\historyStorage\\historySequentialWrite.txt", score, run_time, storage, localTime);
+                SelectedFunctionLogicHandle sequentialWrite = new SequentialWriteLogic();
+                run_time = sequentialWrite.getTime();
+                score = (int) sequentialWrite.getScore();
+
+                writeToFile("src\\Screens\\History\\historyStorage\\historySequentialWrite.txt",getSelectedOption() + "", score, run_time, storage, localTime);
+
 
         }
     }

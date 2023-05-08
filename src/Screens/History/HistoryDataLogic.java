@@ -1,23 +1,21 @@
 package Screens.History;
 
-import java.nio.file.FileStore;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.IOException;
+import java.nio.file.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class HistoryDataLogic {
 
-    public static String getStorage(){
+    public static String getStorage() {
         try {
 
-            Path root = FileSystems.getDefault().getRootDirectories().iterator().next();
+            Path root = Paths.get(System.getProperty("user.dir")).getRoot();
             FileStore store = Files.getFileStore(root);
-            System.out.println(store.name()+" ceva ");
+
             return store.name();
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println("Error: " + e);
         }
 

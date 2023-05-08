@@ -13,6 +13,11 @@ import javafx.scene.text.Text;
 public class Dropbox {
 
     private static Object selectedOption=null;
+
+    public static void resetSelectedOption(){
+        selectedOption = null;
+    }
+
     public static void dropbox(StackPane root, StackPane sequentialWriteMainScreen, String[] options, double xCoords, double yCoords){
 
         ComboBox<String> dropdown = new ComboBox<>();
