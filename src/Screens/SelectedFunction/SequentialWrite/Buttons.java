@@ -60,7 +60,12 @@ public class Buttons {
 
                 new LoadingMain(root, sequentialWriteMainScreen, screenName, pane, new SequentialWriteLogic(), "monster5.jpg");
                 try {
-                    new SequentialWriteLogic().run();
+
+                    SequentialWriteLogic s = new SequentialWriteLogic();
+
+                    s.runWarmUp();
+                    s.run();
+
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }

@@ -13,34 +13,64 @@ public class SequentialWriteLogic implements SelectedFunctionLogicHandle{
     private static boolean isCompleted=false;
 
        public static double measureSequentialWriteSpeed(File file, long fileSize, int bufferSize) throws IOException {
-        byte[] buffer = new byte[bufferSize];
-        long startTime = System.currentTimeMillis();
-        try (FileOutputStream fos = new FileOutputStream(file)) {
-            long bytesToWrite = fileSize;
-            while (bytesToWrite > 0) {
-                int bytesToWriteNow = (int) Math.min(bytesToWrite, buffer.length);
-                fos.write(buffer, 0, bytesToWriteNow);
-                bytesToWrite -= bytesToWriteNow;
-            }
-        }
 
-        long endTime = System.currentTimeMillis();
-        long timeTaken = endTime - startTime;
-        time=timeTaken;
-        double writeSpeed = fileSize / (1024.0 * 1024.0 * timeTaken / 1000.0);
-        speed=writeSpeed;
-        isCompleted=true;
-        return writeSpeed;
+            byte[] buffer = new byte[bufferSize];
+
+            long startTime = System.currentTimeMillis();
+
+            try (FileOutputStream fos = new FileOutputStream(file)) {
+                long bytesToWrite = fileSize;
+                while (bytesToWrite > 0) {
+                    int bytesToWriteNow = (int) Math.min(bytesToWrite, buffer.length);
+                    fos.write(buffer, 0, bytesToWriteNow);
+                    bytesToWrite -= bytesToWriteNow;
+                }
+            }
+
+            long endTime = System.currentTimeMillis();
+
+            return fileSize / (1024.0 * 1024.0 * (endTime - startTime) / 1000.0);
     }
 
     public void run() throws IOException {
         Thread t2 = new Thread(() -> {
             try {
+
                 File file = new File("testfile");
                 file.deleteOnExit();
+
                 long fileSize = (long)getSelectedOption();
                 int bufferSize = 4096;
-                double writeSpeed = SequentialWriteLogic.measureSequentialWriteSpeed(file, fileSize, bufferSize);
+
+                long startTime = System.currentTimeMillis();
+
+                speed = SequentialWriteLogic.measureSequentialWriteSpeed(file, fileSize, bufferSize);
+
+                long endTime = System.currentTimeMillis();
+                time = endTime - startTime;
+
+                isCompleted=true;
+
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+
+        });
+        t2.start();
+    }
+
+    public void runWarmUp() {
+        Thread t2 = new Thread(() -> {
+            try {
+
+                File file = new File("testfile");
+                file.deleteOnExit();
+
+                long fileSize = (long)getSelectedOption();
+                int bufferSize = 4096;
+
+                SequentialWriteLogic.measureSequentialWriteSpeed(file, fileSize, bufferSize);
+
             } catch (IOException e) {
                 System.out.println(e);
             }

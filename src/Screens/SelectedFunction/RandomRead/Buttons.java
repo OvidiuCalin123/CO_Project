@@ -24,7 +24,12 @@ public class Buttons {
         EventHandler<ActionEvent> event = e -> {
             new LoadingMain(root, randomReadMainScreen, screenName, pane, new RandomReadLogic(), "monster2.png");
             try {
-                new RandomReadLogic().run();
+
+                RandomReadLogic r = new RandomReadLogic();
+
+                r.runWarmUp();
+                r.run();
+
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }

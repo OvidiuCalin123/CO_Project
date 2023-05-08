@@ -56,8 +56,12 @@ public class Buttons {
         EventHandler<ActionEvent> event = e -> {
 
             if(getSelectedOption()!=null){
+
+                CheckSizeLogic c = new CheckSizeLogic();
+
                 new LoadingMain(root, checkSizeMainScreen, screenName, pane, new CheckSizeLogic(), "monster1.jpg");
-                new CheckSizeLogic().run();
+                c.runWarmUp();
+                c.run();
             }
         };
 

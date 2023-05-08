@@ -10,4 +10,6 @@ public interface SelectedFunctionLogicHandle {
 
     public double getScore();
 
+    public void runWarmUp();
+
 }

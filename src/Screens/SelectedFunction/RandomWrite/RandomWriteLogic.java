@@ -14,11 +14,43 @@ public class RandomWriteLogic implements SelectedFunctionLogicHandle {
     public void run() throws IOException {
         Thread t2 = new Thread(() -> {
             try {
+
                 File file = new File("testfile");
                 file.deleteOnExit();
+
                 long fileSize = 1024 * 1024 * 1024;
                 int bufferSize = 4096;
-                double writeSpeed = RandomWriteLogic.measureRandomWriteSpeed(file, fileSize, bufferSize);
+
+                long startTime = System.currentTimeMillis();
+
+                speed = RandomWriteLogic.measureRandomWriteSpeed(file, fileSize, bufferSize);
+
+                long endTime = System.currentTimeMillis();
+
+                time = endTime - startTime;
+                isCompleted=true;
+
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+
+        });
+
+        t2.start();
+    }
+
+    public void runWarmUp() {
+        Thread t2 = new Thread(() -> {
+            try {
+
+                File file = new File("testfile");
+                file.deleteOnExit();
+
+                long fileSize = 1024 * 1024 * 1024;
+                int bufferSize = 4096;
+
+                RandomWriteLogic.measureRandomWriteSpeed(file, fileSize, bufferSize);
+
             } catch (IOException e) {
                 System.out.println(e);
             }
@@ -30,7 +62,9 @@ public class RandomWriteLogic implements SelectedFunctionLogicHandle {
 
     public static double measureRandomWriteSpeed(File file, long fileSize, int bufferSize) throws IOException {
         byte[] buffer = new byte[bufferSize];
+
         long startTime = System.currentTimeMillis();
+
         try (RandomAccessFile raf = new RandomAccessFile(file, "rw")) {
             long bytesToWrite = fileSize;
             while (bytesToWrite > 0) {
@@ -42,12 +76,10 @@ public class RandomWriteLogic implements SelectedFunctionLogicHandle {
         }
 
         long endTime = System.currentTimeMillis();
+
         long timeTaken = endTime - startTime;
-        time=timeTaken;
-        double writeSpeed = fileSize / (1024.0 * 1024.0 * timeTaken / 1000.0);
-        speed=writeSpeed;
-        isCompleted=true;
-        return writeSpeed;
+
+        return fileSize / (1024.0 * 1024.0 * timeTaken / 1000.0);
     }
 
     public boolean getIsCompleted(){

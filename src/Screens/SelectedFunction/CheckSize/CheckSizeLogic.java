@@ -33,6 +33,15 @@ public class CheckSizeLogic implements SelectedFunctionLogicHandle {
         time = endTime - startTime;
         isCompleted = true;
     }
+    public void runWarmUp(){
+
+        File hardDrive = new File((String) getSelectedOption());
+        long sizeInBytes = getHardDriveSizeInBytes(hardDrive);
+        long sizeInGB = convertBytesToGB(sizeInBytes);
+
+        speed = sizeInGB;
+
+    }
 
     public boolean getIsCompleted(){
 

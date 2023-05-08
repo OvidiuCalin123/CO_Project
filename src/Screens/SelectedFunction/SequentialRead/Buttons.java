@@ -26,7 +26,12 @@ public class Buttons {
         EventHandler<ActionEvent> event = e -> {
             new LoadingMain(root, sequentialReadMainScreen, screenName, pane, new SequentialReadLogic(), "monster4.png");
             try {
-                new SequentialReadLogic().run();
+
+                SequentialReadLogic s = new SequentialReadLogic();
+
+                s.runWarmUp();
+                s.run();
+
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
