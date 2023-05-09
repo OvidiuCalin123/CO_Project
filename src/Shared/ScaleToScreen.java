@@ -6,8 +6,8 @@ import javafx.scene.text.Text;
 
 public class ScaleToScreen {
 
-    public static void resizeToScreen(ImageView image, StackPane root, double xCoords, double yCoords){
-        image.fitWidthProperty().bind(root.widthProperty().multiply(0.3));
+    public static void resizeToScreen(ImageView image, StackPane root, double xCoords, double yCoords, double xScale){
+        image.fitWidthProperty().bind(root.widthProperty().multiply(xScale));
         image.fitHeightProperty().bind(root.heightProperty().multiply(0.10));
 
         image.setTranslateX(xCoords * root.getWidth() / 600);
