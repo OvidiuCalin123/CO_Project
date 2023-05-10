@@ -24,7 +24,7 @@ public class ResultMain {
     public static void setScore(StackPane root, BorderPane pane, StackPane scoreImage, SelectedFunctionLogicHandle functionLogic) {
         Text text = new Text("");
         if (functionLogic.getClass() == CheckSizeLogic.class) {
-            text = new Text("Score: " + (int) functionLogic.getScore() + " GB");
+            text = new Text(String.format("Score: %.2f GB", functionLogic.getScore()));
         } else {
             text = new Text(String.format("Score: %.2f MB/s", functionLogic.getScore()));
         }

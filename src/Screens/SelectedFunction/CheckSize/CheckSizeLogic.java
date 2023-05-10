@@ -11,12 +11,12 @@ public class CheckSizeLogic implements SelectedFunctionLogicHandle {
     private static double time;
     private static boolean isCompleted=false;
 
-    public long getHardDriveSizeInBytes(File drive) {
+    public double getHardDriveSizeInBytes(File drive) {
 
         return drive.getTotalSpace();
     }
 
-    public long convertBytesToGB(long bytes) {
+    public double convertBytesToGB(double bytes) {
 
         return bytes / (1024 * 1024 * 1024);
     }
@@ -25,8 +25,8 @@ public class CheckSizeLogic implements SelectedFunctionLogicHandle {
 
         File hardDrive = new File((String) getSelectedOption());
         long startTime = System.currentTimeMillis();
-        long sizeInBytes = getHardDriveSizeInBytes(hardDrive);
-        long sizeInGB = convertBytesToGB(sizeInBytes);
+        double sizeInBytes = getHardDriveSizeInBytes(hardDrive);
+        double sizeInGB = convertBytesToGB(sizeInBytes);
         long endTime = System.currentTimeMillis();
 
         speed = sizeInGB;
@@ -36,8 +36,9 @@ public class CheckSizeLogic implements SelectedFunctionLogicHandle {
     public void runWarmUp(){
 
         File hardDrive = new File((String) getSelectedOption());
-        long sizeInBytes = getHardDriveSizeInBytes(hardDrive);
-        long sizeInGB = convertBytesToGB(sizeInBytes);
+        double sizeInBytes = getHardDriveSizeInBytes(hardDrive);
+        System.out.println(convertBytesToGB(sizeInBytes));
+        double sizeInGB = convertBytesToGB(sizeInBytes);
 
         speed = sizeInGB;
 

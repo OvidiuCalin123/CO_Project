@@ -21,6 +21,9 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+
+import java.util.Locale;
+
 import static Screens.History.FileOperations.*;
 import static Screens.History.HistoryDataLogic.getLocalTime;
 import static Screens.History.HistoryDataLogic.getStorage;
@@ -121,7 +124,7 @@ public class HistoryContent extends BorderPane {
 
     public void createTableRow(String historyBackgroundScreen){
 
-        int score = 0;
+        String score="";
         double run_time = 0.0;
         String storage = getStorage();
         String localTime = getLocalTime();
@@ -130,7 +133,7 @@ public class HistoryContent extends BorderPane {
 
             SelectedFunctionLogicHandle checkSize = new CheckSizeLogic();
             run_time = checkSize.getTime();
-            score = (int) checkSize.getScore();
+            score = String.format(Locale.US,"%.2f", checkSize.getScore());
 
             writeToFile("src\\Screens\\History\\historyStorage\\historyCheckSize.txt", getSelectedOption() + "", score, run_time, storage, localTime);
 
@@ -140,7 +143,7 @@ public class HistoryContent extends BorderPane {
 
             SelectedFunctionLogicHandle randomRead = new RandomReadLogic();
             run_time = randomRead.getTime();
-            score = (int) randomRead.getScore();
+            score = String.format(Locale.US,"%.2f",randomRead.getScore());
 
             writeToFile("src\\Screens\\History\\historyStorage\\historyRandomRead.txt", score, run_time, storage, localTime);
 
@@ -149,7 +152,7 @@ public class HistoryContent extends BorderPane {
 
             SelectedFunctionLogicHandle randomWrite = new RandomWriteLogic();
             run_time = randomWrite.getTime();
-            score = (int) randomWrite.getScore();
+            score = String.format(Locale.US,"%.2f",randomWrite.getScore());
 
             writeToFile("src\\Screens\\History\\historyStorage\\historyRandomWrite.txt", score, run_time, storage, localTime);
 
@@ -158,7 +161,7 @@ public class HistoryContent extends BorderPane {
 
             SelectedFunctionLogicHandle sequentialRead = new SequentialReadLogic();
             run_time = sequentialRead.getTime();
-            score = (int) sequentialRead.getScore();
+            score = String.format(Locale.US,"%.2f",sequentialRead.getScore());
 
             writeToFile("src\\Screens\\History\\historyStorage\\historySequentialRead.txt", score, run_time, storage, localTime);
 
@@ -168,7 +171,7 @@ public class HistoryContent extends BorderPane {
 
                 SelectedFunctionLogicHandle sequentialWrite = new SequentialWriteLogic();
                 run_time = sequentialWrite.getTime();
-                score = (int) sequentialWrite.getScore();
+                score = String.format(Locale.US,"%.2f",sequentialWrite.getScore());
 
                 writeToFile("src\\Screens\\History\\historyStorage\\historySequentialWrite.txt",getSelectedOption() + "", score, run_time, storage, localTime);
 
