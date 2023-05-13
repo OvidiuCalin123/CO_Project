@@ -51,20 +51,17 @@ public class CheckSizeMain {
     }
 
     public CheckSizeMain(StackPane root, BorderPane pane){
-        // Create a new pane for the new screen
+
         StackPane checkSizeMainScreen = new StackPane();
 
-        // Add the new pane to the stack pane
         root.getChildren().add(checkSizeMainScreen);
 
-        // Bring the new pane to the front
         checkSizeMainScreen.toFront();
 
-        // Set the background image
         new Background().setBackgroundImage(root,checkSizeMainScreen,"monster1.jpg");
-        dropbox(root, checkSizeMainScreen, getPCPartition(),-400,-15);
-        // Add buttons
         new Buttons().addButtonsToScreen(root, checkSizeMainScreen, pane);
+
+        dropbox(root, checkSizeMainScreen, getPCPartition(),-400,-15);
 
         setTitle(root, pane, checkSizeMainScreen);
 

@@ -18,8 +18,10 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.converter.NumberStringConverter;
+
 import java.io.File;
 import java.text.DecimalFormat;
+
 import static Screens.MainMenu.SoundButton.setEvent;
 import static Shared.ButtonsHelper.*;
 
@@ -27,7 +29,7 @@ public class Buttons {
 
     private boolean isVolumeSliderOnScreen = false;
 
-    public void randomWrite(StackPane root, BorderPane pane){
+    public void randomWrite(StackPane root, BorderPane pane) {
 
         EventHandler<ActionEvent> event = e -> {
 
@@ -44,9 +46,10 @@ public class Buttons {
 
         Button b = buttonBuilder("randomWrite", root, event, pane);
 
-        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
+        scaleButton(b, root, xScale, yScale, xCoords, yCoords);
     }
-    public void randomRead(StackPane root, BorderPane pane){
+
+    public void randomRead(StackPane root, BorderPane pane) {
         EventHandler<ActionEvent> event = e -> {
 
             playSoundClick("ButtonCloudPressed.wav", 3);
@@ -60,11 +63,12 @@ public class Buttons {
         double xScale = 2600;
         double yScale = 1500;
 
-        Button b = buttonBuilder("randomRead",  root, event, pane);
+        Button b = buttonBuilder("randomRead", root, event, pane);
 
-        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
+        scaleButton(b, root, xScale, yScale, xCoords, yCoords);
     }
-    public void sequentialWrite(StackPane root, BorderPane pane){
+
+    public void sequentialWrite(StackPane root, BorderPane pane) {
         EventHandler<ActionEvent> event = e -> {
 
             playSoundClick("ButtonCloudPressed.wav", 3);
@@ -77,11 +81,12 @@ public class Buttons {
         double xScale = 2600;
         double yScale = 1500;
 
-        Button b = buttonBuilder("sequentialWrite",  root, event, pane);
+        Button b = buttonBuilder("sequentialWrite", root, event, pane);
 
-        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
+        scaleButton(b, root, xScale, yScale, xCoords, yCoords);
     }
-    public void sequentialRead(StackPane root, BorderPane pane){
+
+    public void sequentialRead(StackPane root, BorderPane pane) {
         EventHandler<ActionEvent> event = e -> {
 
             playSoundClick("ButtonCloudPressed.wav", 3);
@@ -95,12 +100,12 @@ public class Buttons {
         double xScale = 2600;
         double yScale = 1500;
 
-        Button b = buttonBuilder("sequentialRead",  root, event, pane);
+        Button b = buttonBuilder("sequentialRead", root, event, pane);
 
-        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
+        scaleButton(b, root, xScale, yScale, xCoords, yCoords);
     }
 
-    public void checkSize(StackPane root, BorderPane pane){
+    public void checkSize(StackPane root, BorderPane pane) {
         EventHandler<ActionEvent> event = e -> {
 
             playSoundClick("ButtonCloudPressed.wav", 3);
@@ -113,12 +118,12 @@ public class Buttons {
         double xScale = 2600;
         double yScale = 1600;
 
-        Button b = buttonBuilder("checkSize",  root, event, pane);
+        Button b = buttonBuilder("checkSize", root, event, pane);
 
-        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
+        scaleButton(b, root, xScale, yScale, xCoords, yCoords);
     }
 
-    public void quit(StackPane root, BorderPane pane){
+    public void quit(StackPane root, BorderPane pane) {
         EventHandler<ActionEvent> event = e -> {
 
             playSoundClick("ButtonCloudPressed.wav", 3);
@@ -132,12 +137,12 @@ public class Buttons {
         double xScale = 2600;
         double yScale = 1500;
 
-        Button b = buttonBuilder("quit",  root, event, pane);
+        Button b = buttonBuilder("quit", root, event, pane);
 
-        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
+        scaleButton(b, root, xScale, yScale, xCoords, yCoords);
     }
 
-    public void volumeButton(StackPane root, BorderPane pane){
+    public void volumeButton(StackPane root, BorderPane pane) {
 
         File file = new File("SoundFiles/ScoobyDooMusic.wav");
         Media media = new Media(file.toURI().toString());
@@ -161,7 +166,7 @@ public class Buttons {
 
         Button highButton = SoundButton.buttonBuilder("soundMid", root, pane);
 
-        scaleButton(highButton,root,xScale,yScale, xCoords, yCoords);
+        scaleButton(highButton, root, xScale, yScale, xCoords, yCoords);
 
         EventHandler<ActionEvent> event = e -> {
 
@@ -173,14 +178,14 @@ public class Buttons {
 
             volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
                 double volume = newValue.intValue();
-                audioClip.setVolume(volume/100);
-                if(volume >= 70){
+                audioClip.setVolume(volume / 100);
+                if (volume >= 70) {
                     highButton.setGraphic(new ImageView(new Image("file:DesignFiles/Buttons/soundHigh.png", 200, 200, true, true)));
-                }else if(volume < 70 && volume >= 30){
+                } else if (volume < 70 && volume >= 30) {
                     highButton.setGraphic(new ImageView(new Image("file:DesignFiles/Buttons/soundMid.png", 200, 200, true, true)));
-                }else if(volume < 30 && volume > 1){
+                } else if (volume < 30 && volume > 1) {
                     highButton.setGraphic(new ImageView(new Image("file:DesignFiles/Buttons/soundLow.png", 200, 200, true, true)));
-                }else{
+                } else {
                     highButton.setGraphic(new ImageView(new Image("file:DesignFiles/Buttons/soundMute.png", 200, 200, true, true)));
                 }
 
@@ -207,12 +212,12 @@ public class Buttons {
             volumePane.setScaleX(0.2);
             volumePane.setScaleY(4);
 
-            if(!isVolumeSliderOnScreen){
+            if (!isVolumeSliderOnScreen) {
 
                 root.getChildren().add(volumePane);
                 root.getChildren().add(volumeLabel);
                 isVolumeSliderOnScreen = true;
-            }else{
+            } else {
 
                 root.getChildren().remove(volumePane);
                 root.getChildren().remove(volumeLabel);
@@ -222,7 +227,7 @@ public class Buttons {
         setEvent(event);
     }
 
-    public void addButtonsToScreen(StackPane root, BorderPane pane){
+    public void addButtonsToScreen(StackPane root, BorderPane pane) {
 
         randomWrite(root, pane);
         randomRead(root, pane);
@@ -230,6 +235,6 @@ public class Buttons {
         sequentialWrite(root, pane);
         checkSize(root, pane);
         quit(root, pane);
-        volumeButton(root,pane);
+        volumeButton(root, pane);
     }
 }

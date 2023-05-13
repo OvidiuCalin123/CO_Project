@@ -5,11 +5,11 @@ public class HistoryModel {
     public String selectedOption;
     public String score;
     public int rowNumber;
-    public double run_time;
+    public String run_time;
     public String hdd_ssd;
     public String test_time;
 
-    public HistoryModel(int rowNumber, String score, double run_time, String hdd_ssd, String test_time) {
+    public HistoryModel(int rowNumber, String score, String run_time, String hdd_ssd, String test_time) {
 
         this.rowNumber = rowNumber;
         this.score = score;
@@ -18,7 +18,7 @@ public class HistoryModel {
         this.test_time = test_time;
     }
 
-    public HistoryModel(int rowNumber, String selectedOption, String score, double run_time, String hdd_ssd, String test_time) {
+    public HistoryModel(int rowNumber, String selectedOption, String score, String run_time, String hdd_ssd, String test_time) {
 
         this.selectedOption = selectedOption;
         this.rowNumber = rowNumber;
@@ -54,11 +54,11 @@ public class HistoryModel {
         this.score = score;
     }
 
-    public double getRun_time() {
+    public String getRun_time() {
         return run_time;
     }
 
-    public void setRun_time(double run_time) {
+    public void setRun_time(String run_time) {
         this.run_time = run_time;
     }
 

@@ -8,11 +8,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Stream;
+
+import static Screens.History.HistoryContent.createTableRow;
 import static Screens.Result.ResultMain.showResult;
 
 public class LoadingMain {
@@ -57,7 +60,8 @@ public class LoadingMain {
                                 });
 
                                 switch (path.getFileName().toString()) {
-                                    case "loadingCar_007.png", "loadingCar_025.png", "loadingCar_029.png", "loadingCar_016.png" -> Thread.sleep(1000);
+                                    case "loadingCar_007.png", "loadingCar_025.png", "loadingCar_029.png", "loadingCar_016.png" ->
+                                            Thread.sleep(1000);
                                 }
                                 if (!functionLogic.getIsCompleted()) {
                                     Thread.sleep(50);
@@ -81,12 +85,13 @@ public class LoadingMain {
                 }
             }
             Platform.runLater(() -> {
+                createTableRow(historyBackgroundScreen);
                 showResult(root, screenName, pane, historyBackgroundScreen);
             });
         });
     }
 
-    public LoadingMain(StackPane root, StackPane previousScreen, String screenName, BorderPane pane, SelectedFunctionLogicHandle functionLogic, String historyBackgroundScreen){
+    public LoadingMain(StackPane root, StackPane previousScreen, String screenName, BorderPane pane, SelectedFunctionLogicHandle functionLogic, String historyBackgroundScreen) {
 
         StackPane loadingMainScreen = new StackPane();
 
@@ -94,8 +99,8 @@ public class LoadingMain {
 
         loadingMainScreen.toFront();
 
-        new Background().setBackgroundImage(root,loadingMainScreen,"finalCar.png");
+        new Background().setBackgroundImage(root, loadingMainScreen, "finalCar.png");
 
         start(root, loadingMainScreen, screenName, pane, functionLogic, historyBackgroundScreen);
-     }
+    }
 }

@@ -34,11 +34,11 @@ public class Buttons {
             }
         };
 
-        double xCoords = -700;
-        double yCoords = -100;
+        double xCoords = -315;
+        double yCoords = -80;
 
         double xScale = 2800;
-        double yScale = 1800;
+        double yScale = 1915;
 
         Button b = buttonBuilder("run", randomWriteMainScreen, event, pane);
         scaleButton(b,root,xScale,yScale, xCoords, yCoords);
