@@ -72,7 +72,7 @@ public class Buttons {
             }
         };
 
-        double xCoords = -400;
+        double xCoords = 305;
         double yCoords = -35;
 
         double xScale = 2625;

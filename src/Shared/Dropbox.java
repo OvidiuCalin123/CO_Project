@@ -36,6 +36,7 @@ public class Dropbox {
         dropdown.prefWidthProperty().bind(root.widthProperty().multiply(0.225));
         dropdown.prefHeightProperty().bind(root.heightProperty().multiply(0.0915));
 
+
         dropdown.setTranslateX(xCoords * root.getWidth() / 1280);
         dropdown.setTranslateY(yCoords * root.getHeight() / 720);
 
@@ -76,39 +77,27 @@ public class Dropbox {
 
                     text.setStyle("-fx-fill: orange; -fx-stroke: black; -fx-stroke-width: 2px;");
 
+                    text.fontProperty().bind(Bindings.createObjectBinding(() -> {
+                        double fontSize = 0.04 * Math.min(root.getWidth()*0.7, root.getHeight()*1.25);
+                        return Font.font("Snap ITC",fontSize);
+                    }, root.widthProperty(), root.heightProperty()));
+
                     if(text.getText().equals("1 GB")){
 
                         selectedOption=(long)1024*1024*1024;
-                        text.fontProperty().bind(Bindings.createObjectBinding(() -> {
-                            double fontSize = 0.04 * Math.min(root.getWidth()*1.1, root.getHeight()*1.25);
-                            return Font.font("Snap ITC",fontSize);
-                        }, root.widthProperty(), root.heightProperty()));
 
                     }else if(text.getText().equals("500 MB")){
 
                         selectedOption=Math.round(1024*1024*1024*0.5);
-                        text.fontProperty().bind(Bindings.createObjectBinding(() -> {
-                            double fontSize = 0.04 * Math.min(root.getWidth()*0.7, root.getHeight()*1.25);
-                            return Font.font("Snap ITC",fontSize);
-                        }, root.widthProperty(), root.heightProperty()));
+
 
                     }else if(text.getText().equals("100 MB")){
 
                         selectedOption=Math.round(1024*1024*1024*0.1);
-                        text.fontProperty().bind(Bindings.createObjectBinding(() -> {
-
-                            double fontSize = 0.04 * Math.min(root.getWidth()*0.7, root.getHeight()*1.25);
-                            return Font.font("Snap ITC",fontSize);
-                        }, root.widthProperty(), root.heightProperty()));
 
                     }
                     else{
                         selectedOption=text.getText();
-                        text.fontProperty().bind(Bindings.createObjectBinding(() -> {
-
-                            double fontSize = 0.04 * Math.min(root.getWidth()*0.7, root.getHeight()*1.25);
-                            return Font.font("Snap ITC",fontSize);
-                        }, root.widthProperty(), root.heightProperty()));
 
                     }
 

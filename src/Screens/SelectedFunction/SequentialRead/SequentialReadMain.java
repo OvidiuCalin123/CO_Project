@@ -6,6 +6,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
+import static Shared.Dropbox.dropbox;
+
 public class SequentialReadMain {
     public void setTitle(StackPane root, BorderPane pane, StackPane sequentialReadMainScreen){
         Image img = new Image("file:DesignFiles/Buttons/SequentialReadTitle.png");
@@ -35,6 +37,8 @@ public class SequentialReadMain {
 
         new Background().setBackgroundImage(root,sequentialReadMainScreen, "monster4.png");
         new Buttons().addButtonsToScreen(root, sequentialReadMainScreen, pane);
+
+        dropbox(root, sequentialReadMainScreen, new String[]{"1 GB", "500 MB", "100 MB"}, -400, -45);
 
         setTitle(root, pane, sequentialReadMainScreen);
     }

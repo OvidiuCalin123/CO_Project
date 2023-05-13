@@ -133,9 +133,9 @@ public class HistoryContent extends BorderPane {
 
             SelectedFunctionLogicHandle checkSize = new CheckSizeLogic();
             run_time = checkSize.getTime();
-            score = String.format(Locale.US,"%.2f", checkSize.getScore());
+            score = String.format(Locale.US,"%.2f GB", checkSize.getScore());
 
-            writeToFile("src\\Screens\\History\\historyStorage\\historyCheckSize.txt", getSelectedOption() + "", score, run_time, storage, localTime);
+            writeToFile("src\\Screens\\History\\historyStorage\\historyCheckSize.txt", getSelectedOption() + "", score+" s", run_time, storage, localTime);
 
 
         }
@@ -143,7 +143,7 @@ public class HistoryContent extends BorderPane {
 
             SelectedFunctionLogicHandle randomRead = new RandomReadLogic();
             run_time = randomRead.getTime();
-            score = String.format(Locale.US,"%.2f",randomRead.getScore());
+            score = String.format(Locale.US,"%.2f MB/s",randomRead.getScore());
 
             writeToFile("src\\Screens\\History\\historyStorage\\historyRandomRead.txt", score, run_time, storage, localTime);
 
@@ -152,7 +152,7 @@ public class HistoryContent extends BorderPane {
 
             SelectedFunctionLogicHandle randomWrite = new RandomWriteLogic();
             run_time = randomWrite.getTime();
-            score = String.format(Locale.US,"%.2f",randomWrite.getScore());
+            score = String.format(Locale.US,"%.2f MB/s",randomWrite.getScore());
 
             writeToFile("src\\Screens\\History\\historyStorage\\historyRandomWrite.txt", score, run_time, storage, localTime);
 
@@ -161,7 +161,7 @@ public class HistoryContent extends BorderPane {
 
             SelectedFunctionLogicHandle sequentialRead = new SequentialReadLogic();
             run_time = sequentialRead.getTime();
-            score = String.format(Locale.US,"%.2f",sequentialRead.getScore());
+            score = String.format(Locale.US,"%.2f MB/s",sequentialRead.getScore());
 
             writeToFile("src\\Screens\\History\\historyStorage\\historySequentialRead.txt", score, run_time, storage, localTime);
 
@@ -169,11 +169,11 @@ public class HistoryContent extends BorderPane {
         else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster5")){
 
 
-                SelectedFunctionLogicHandle sequentialWrite = new SequentialWriteLogic();
-                run_time = sequentialWrite.getTime();
-                score = String.format(Locale.US,"%.2f",sequentialWrite.getScore());
+            SelectedFunctionLogicHandle sequentialWrite = new SequentialWriteLogic();
+            run_time = sequentialWrite.getTime();
+            score = String.format(Locale.US,"%.2f MB/s",sequentialWrite.getScore());
 
-                writeToFile("src\\Screens\\History\\historyStorage\\historySequentialWrite.txt",getSelectedOption() + "", score, run_time, storage, localTime);
+            writeToFile("src\\Screens\\History\\historyStorage\\historySequentialWrite.txt",getSelectedOption() + "", score, run_time, storage, localTime);
 
 
         }
@@ -214,32 +214,32 @@ public class HistoryContent extends BorderPane {
     }
 
     public void titleBuilder(StackPane realRoot, StackPane root, BorderPane pane, StackPane checkSizeMainScreen, String historyBackgroundScreen){
-       if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster1")){
+        if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster1")){
 
-           setTitle(realRoot, root, pane, checkSizeMainScreen, "checkSizeTitle2");
-       }
-       else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster2")){
+            setTitle(realRoot, root, pane, checkSizeMainScreen, "checkSizeTitle2");
+        }
+        else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster2")){
 
-           setTitle(realRoot, root, pane, checkSizeMainScreen, "randomReadTitle2");
+            setTitle(realRoot, root, pane, checkSizeMainScreen, "randomReadTitle2");
 
-       }
-       else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster3")){
+        }
+        else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster3")){
 
-           setTitle(realRoot, root, pane, checkSizeMainScreen, "randomWriteTitle2");
+            setTitle(realRoot, root, pane, checkSizeMainScreen, "randomWriteTitle2");
 
-       }
-       else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster4")){
+        }
+        else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster4")){
 
-           setTitle(realRoot, root, pane, checkSizeMainScreen, "sequentialReadTitle2");
+            setTitle(realRoot, root, pane, checkSizeMainScreen, "sequentialReadTitle2");
 
-       }
-       else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster5")){
+        }
+        else if(historyBackgroundScreen.substring(0, historyBackgroundScreen.lastIndexOf('.')).equals("monster5")){
 
-           setTitle(realRoot, root, pane, checkSizeMainScreen, "sequentialWriteTitle2");
+            setTitle(realRoot, root, pane, checkSizeMainScreen, "sequentialWriteTitle2");
 
-       }
+        }
 
-   }
+    }
 
     public void populateHistoryTable(String historyBackgroundScreen){
 
