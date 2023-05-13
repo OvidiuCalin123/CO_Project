@@ -2,6 +2,10 @@ package Screens.SelectedFunction.CheckSize;
 
 import Screens.SelectedFunction.SelectedFunctionLogicHandle;
 import java.io.File;
+import java.nio.file.FileStore;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static Shared.Dropbox.getSelectedOption;
 
@@ -20,6 +24,22 @@ public class CheckSizeLogic implements SelectedFunctionLogicHandle {
 
         return bytes / (1024 * 1024 * 1024);
     }
+
+    public static long printRemainingSpace() {
+        try {
+            File hardDrive = new File((String) getSelectedOption());
+
+            long freeSpace = hardDrive.getFreeSpace();
+
+            return freeSpace / (1024 * 1024 * 1024);
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return -1;
+    }
+
+
 
     public void run(){
 
