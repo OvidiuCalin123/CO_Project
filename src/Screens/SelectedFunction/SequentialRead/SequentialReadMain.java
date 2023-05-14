@@ -40,7 +40,6 @@ public class SequentialReadMain {
         new Buttons().addButtonsToScreen(root, sequentialReadMainScreen, pane);
 
         Button b = new Button();
-        dropbox(root, sequentialReadMainScreen, new String[]{"1 GB", "500 MB", "100 MB"}, -400, -45,b);
 
         setTitle(root, pane, sequentialReadMainScreen);
     }

@@ -11,6 +11,7 @@ import java.io.IOException;
 import static Shared.ButtonsHelper.buttonBuilder;
 import static Shared.ButtonsHelper.scaleButton;
 import static Shared.Dropbox.dropbox;
+import static Shared.Dropbox.getSelectedOption;
 
 public class Buttons {
 
@@ -27,15 +28,17 @@ public class Buttons {
 
     public void run(StackPane root, StackPane randomWriteMainScreen, BorderPane pane, String screenName){
         EventHandler<ActionEvent> event = e -> {
-            new LoadingMain(root, randomWriteMainScreen, screenName, pane, new RandomWriteLogic(), "monster3.png");
-            try {
+            if(getSelectedOption()!=null) {
+                new LoadingMain(root, randomWriteMainScreen, screenName, pane, new RandomWriteLogic(), "monster3.png");
+                try {
 
-                RandomWriteLogic r = new RandomWriteLogic();
+                    RandomWriteLogic r = new RandomWriteLogic();
 
-                r.runWarmUp();
-                r.run();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
+                    r.runWarmUp();
+                    r.run();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
             }
         };
 

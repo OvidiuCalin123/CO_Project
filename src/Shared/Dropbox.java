@@ -26,6 +26,7 @@ public class Dropbox {
     }
 
     private static void updateButtonImage(Button b) {
+
         if (selectedOption == null) {
 
             Image image = new Image("file:DesignFiles/Buttons/shadowRun.png");
@@ -131,7 +132,6 @@ public class Dropbox {
                         return Font.font("Snap ITC",fontSize);
                     }, root.widthProperty(), root.heightProperty()));
 
-                    updateButtonImage(b);
 
                     if(text.getText().equals("1 GB")){
 
@@ -164,7 +164,7 @@ public class Dropbox {
                 Text text = new Text(selectedItem);
                 text.setFont(Font.font("Snap ITC", FontWeight.BOLD, 12));
                 text.setFill(Color.ORANGE);
-
+                updateButtonImage(b);
             }
         });
 
