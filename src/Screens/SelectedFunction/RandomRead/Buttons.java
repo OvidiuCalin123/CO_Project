@@ -21,6 +21,10 @@ public class Buttons {
         run(root, randomReadMainScreen, pane, "catchMonster2.png");
     }
 
+    public String[] getPCPartition(){
+        return new String[]{"1 GB", "500 MB", "100 MB"};
+    }
+
     public void run(StackPane root, StackPane randomReadMainScreen, BorderPane pane, String screenName){
         EventHandler<ActionEvent> event = e -> {
             new LoadingMain(root, randomReadMainScreen, screenName, pane, new RandomReadLogic(), "monster2.png");
@@ -42,7 +46,7 @@ public class Buttons {
         double xScale = 2800;
         double yScale = 1915;
 
-        Button b = buttonBuilder("run", randomReadMainScreen, event, pane);
+        Button b = buttonBuilder("shadowRun", randomReadMainScreen, event, pane);
 
         dropbox(root, randomReadMainScreen, new String[]{"1 GB", "500 MB", "100 MB"}, -400, -30, b);
         scaleButton(b,root,xScale,yScale, xCoords, yCoords);

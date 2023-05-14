@@ -28,7 +28,7 @@ public class Dropbox {
     private static void updateButtonImage(Button b) {
         if (selectedOption == null) {
 
-            Image image = new Image("file:DesignFiles/Buttons/run.png");
+            Image image = new Image("file:DesignFiles/Buttons/shadowRun.png");
             ImageView imageView = new ImageView(image);
             b.setGraphic(imageView);
 

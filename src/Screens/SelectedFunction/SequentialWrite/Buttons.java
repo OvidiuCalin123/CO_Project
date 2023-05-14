@@ -10,8 +10,7 @@ import javafx.scene.layout.StackPane;
 import java.io.IOException;
 import static Shared.ButtonsHelper.buttonBuilder;
 import static Shared.ButtonsHelper.scaleButton;
-import static Shared.Dropbox.getSelectedOption;
-import static Shared.Dropbox.resetSelectedOption;
+import static Shared.Dropbox.*;
 
 public class Buttons {
 
@@ -52,6 +51,10 @@ public class Buttons {
         scaleButton(b,root,xScale,yScale, xCoords, yCoords);
     }
 
+    public String[] getPCPartition(){
+        return new String[]{"1 GB", "500 MB", "100 MB"};
+    }
+
     public void run(StackPane root, StackPane sequentialWriteMainScreen, BorderPane pane, String screenName){
 
         EventHandler<ActionEvent> event = e -> {
@@ -78,7 +81,8 @@ public class Buttons {
         double xScale = 2625;
         double yScale = 1920;
 
-        Button b = buttonBuilder("runOption", sequentialWriteMainScreen, event, pane);
+        Button b = buttonBuilder("shadowRun", sequentialWriteMainScreen, event, pane);
+        dropbox(root, sequentialWriteMainScreen, new String[]{"1 GB", "500 MB", "100 MB"}, -115, -14.25,b);
         scaleButton(b,root,xScale,yScale, xCoords, yCoords);
     }
 

@@ -39,10 +39,9 @@ public class ButtonsHelper {
     public static Button buttonBuilder(String buttonName, StackPane root, EventHandler<ActionEvent> event, BorderPane pane){
 
         Image img = new Image("file:DesignFiles/Buttons/" + buttonName + ".png");
-
-        if(buttonName.equals("deadRun1")){
+        Button b = new Button();
+        if(buttonName.equals("shadowRun")){
             ImageView imageView = new ImageView(img);
-            Button b = new Button();
 
             b.setOnAction(event);
 
@@ -80,7 +79,6 @@ public class ButtonsHelper {
             return b;
         } else {
             ImageView imageView = new ImageView(img);
-            Button b = new Button();
 
             b.setOnAction(event);
 

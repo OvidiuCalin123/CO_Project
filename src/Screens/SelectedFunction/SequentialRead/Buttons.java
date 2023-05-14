@@ -10,6 +10,7 @@ import javafx.scene.layout.StackPane;
 import java.io.IOException;
 import static Shared.ButtonsHelper.buttonBuilder;
 import static Shared.ButtonsHelper.scaleButton;
+import static Shared.Dropbox.dropbox;
 
 public class Buttons {
 
@@ -20,6 +21,10 @@ public class Buttons {
         run(root, sequentialReadMainScreen, pane, "catchMonster4.png");
 
 
+    }
+
+    public String[] getPCPartition(){
+        return new String[]{"1 GB", "500 MB", "100 MB"};
     }
 
     public void run(StackPane root, StackPane sequentialReadMainScreen, BorderPane pane, String screenName){
@@ -43,7 +48,8 @@ public class Buttons {
         double xScale = 2800;
         double yScale = 1937.5;
 
-        Button b = buttonBuilder("run", sequentialReadMainScreen, event, pane);
+        Button b = buttonBuilder("shadowRun", sequentialReadMainScreen, event, pane);
+        dropbox(root, sequentialReadMainScreen, new String[]{"1 GB", "500 MB", "100 MB"}, -400, -45,b);
         scaleButton(b,root,xScale,yScale, xCoords, yCoords);
     }
 
