@@ -10,6 +10,7 @@ import javafx.scene.layout.StackPane;
 import java.io.IOException;
 import static Shared.ButtonsHelper.buttonBuilder;
 import static Shared.ButtonsHelper.scaleButton;
+import static Shared.Dropbox.dropbox;
 
 public class Buttons {
 
@@ -42,6 +43,8 @@ public class Buttons {
         double yScale = 1915;
 
         Button b = buttonBuilder("run", randomReadMainScreen, event, pane);
+
+        dropbox(root, randomReadMainScreen, new String[]{"1 GB", "500 MB", "100 MB"}, -400, -30, b);
         scaleButton(b,root,xScale,yScale, xCoords, yCoords);
     }
 

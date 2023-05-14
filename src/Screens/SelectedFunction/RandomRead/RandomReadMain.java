@@ -39,8 +39,6 @@ public class RandomReadMain {
         new Background().setBackgroundImage(root,randomReadMainScreen, "monster2.png");
         new Buttons().addButtonsToScreen(root, randomReadMainScreen, pane);
 
-        dropbox(root, randomReadMainScreen, new String[]{"1 GB", "500 MB", "100 MB"}, -400, -30);
-
         setTitle(root, pane, randomReadMainScreen);
     }
 }

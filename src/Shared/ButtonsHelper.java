@@ -39,7 +39,8 @@ public class ButtonsHelper {
     public static Button buttonBuilder(String buttonName, StackPane root, EventHandler<ActionEvent> event, BorderPane pane){
 
         Image img = new Image("file:DesignFiles/Buttons/" + buttonName + ".png");
-        if(buttonName.equals("runOption")){
+
+        if(buttonName.equals("deadRun1")){
             ImageView imageView = new ImageView(img);
             Button b = new Button();
 
@@ -47,6 +48,7 @@ public class ButtonsHelper {
 
             b.setOnMouseEntered(e -> {
                 if(getSelectedOption()!=null) {
+                    System.out.println("HM");
 
                     b.setStyle("-fx-cursor: hand; -fx-background-color: transparent;");
                     DropShadow dropShadow = new DropShadow();
@@ -83,7 +85,6 @@ public class ButtonsHelper {
             b.setOnAction(event);
 
             b.setOnMouseEntered(e -> {
-
 
                 b.setStyle("-fx-cursor: hand; -fx-background-color: transparent;");
                 DropShadow dropShadow = new DropShadow();

@@ -1,6 +1,7 @@
 package Screens.SelectedFunction.SequentialRead;
 
 import Shared.Background;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -38,7 +39,8 @@ public class SequentialReadMain {
         new Background().setBackgroundImage(root,sequentialReadMainScreen, "monster4.png");
         new Buttons().addButtonsToScreen(root, sequentialReadMainScreen, pane);
 
-        dropbox(root, sequentialReadMainScreen, new String[]{"1 GB", "500 MB", "100 MB"}, -400, -45);
+        Button b = new Button();
+        dropbox(root, sequentialReadMainScreen, new String[]{"1 GB", "500 MB", "100 MB"}, -400, -45,b);
 
         setTitle(root, pane, sequentialReadMainScreen);
     }

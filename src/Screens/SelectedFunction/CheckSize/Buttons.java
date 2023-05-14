@@ -5,15 +5,38 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.AudioClip;
+import javafx.scene.paint.Color;
+
+import java.io.File;
 
 import static Shared.ButtonsHelper.buttonBuilder;
 import static Shared.ButtonsHelper.scaleButton;
-import static Shared.Dropbox.getSelectedOption;
-import static Shared.Dropbox.resetSelectedOption;
+import static Shared.Dropbox.*;
 
 public class Buttons {
+
+    public String[] getPCPartition() {
+        // Get a list of partitions
+        File[] partitions = File.listRoots();
+
+        // Create a String array to hold partition names
+        String[] partitionNames = new String[partitions.length];
+
+        // Iterate over the list of partitions and get the partition name for each one
+        for (int i = 0; i < partitions.length; i++) {
+            partitionNames[i] = partitions[i].getAbsolutePath();
+        }
+
+        // Return the array of partition names
+        return partitionNames;
+    }
+
 
     public void back(StackPane root, StackPane checkSizeMainScreen, BorderPane pane){
         EventHandler<ActionEvent> event = e -> {
@@ -53,6 +76,7 @@ public class Buttons {
     }
 
     public void run(StackPane root, StackPane checkSizeMainScreen, BorderPane pane, String screenName){
+
         EventHandler<ActionEvent> event = e -> {
 
             if(getSelectedOption()!=null){
@@ -71,9 +95,11 @@ public class Buttons {
         double xScale = 2625;
         double yScale = 1915;
 
-        Button b = buttonBuilder("runOption", checkSizeMainScreen, event, pane);
-        scaleButton(b, root, xScale, yScale, xCoords, yCoords);
+        Button b = buttonBuilder("deadRun1", checkSizeMainScreen, event, pane);
 
+
+        scaleButton(b, root, xScale, yScale, xCoords, yCoords);
+        dropbox(root, checkSizeMainScreen, getPCPartition(),-400,-15, b);
     }
 
 

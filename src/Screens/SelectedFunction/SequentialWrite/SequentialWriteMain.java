@@ -1,6 +1,7 @@
 package Screens.SelectedFunction.SequentialWrite;
 
 import Shared.Background;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -38,8 +39,8 @@ public class SequentialWriteMain {
         new Background().setBackgroundImage(root,sequentialWriteMainScreen,"monster5.jpg");
 
         setTitle(root, pane, sequentialWriteMainScreen);
-
-        dropbox(root, sequentialWriteMainScreen, new String[]{"1 GB", "500 MB", "100 MB"}, -115, -14.25);
+        Button b = new Button();
+        dropbox(root, sequentialWriteMainScreen, new String[]{"1 GB", "500 MB", "100 MB"}, -115, -14.25,b);
 
         new Buttons().addButtonsToScreen(root, sequentialWriteMainScreen, pane);
     }

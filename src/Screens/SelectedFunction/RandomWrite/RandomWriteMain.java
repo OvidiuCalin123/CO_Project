@@ -38,8 +38,6 @@ public class RandomWriteMain {
         new Background().setBackgroundImage(root,randomWriteMainScreen, "monster3.png");
         new Buttons().addButtonsToScreen(root, randomWriteMainScreen, pane);
 
-        dropbox(root, randomWriteMainScreen, new String[]{"1 GB", "500 MB", "100 MB"}, -400, -30);
-
         setTitle(root, pane, randomWriteMainScreen);
     }
 }
