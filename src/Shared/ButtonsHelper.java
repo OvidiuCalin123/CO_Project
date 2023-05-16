@@ -36,53 +36,7 @@ public class ButtonsHelper {
         root.heightProperty().addListener((obs, oldVal, newVal) -> b.setTranslateY(yCoords * newVal.doubleValue() / yScale));
     }
 
-    public static Button buttonBuilder(String buttonName, StackPane root, EventHandler<ActionEvent> event, BorderPane pane){
-
-        Image img = new Image("file:DesignFiles/Buttons/" + buttonName + ".png");
-        Button b = new Button();
-        if(buttonName.equals("shadowRun")){
-            ImageView imageView = new ImageView(img);
-
-            b.setOnAction(event);
-
-            b.setOnMouseEntered(e -> {
-                if(getSelectedOption()!=null) {
-                    System.out.println("HM");
-
-                    b.setStyle("-fx-cursor: hand; -fx-background-color: transparent;");
-                    DropShadow dropShadow = new DropShadow();
-                    dropShadow.setRadius(20);
-                    dropShadow.setOffsetX(20);
-                    dropShadow.setOffsetY(20);
-                    dropShadow.setColor(Color.ORANGE);
-                    imageView.setEffect(dropShadow);
-
-                    File file = new File("SoundFiles/OnHoverSound.wav");
-
-                    AudioClip audioClip = new AudioClip(file.toURI().toString());
-                    audioClip.setVolume(3);
-                    audioClip.play();
-                }
-
-            });
-
-            b.setOnMouseExited(e -> {
-                b.setStyle("-fx-background-color: transparent;");
-                imageView.setEffect(null);
-            });
-
-            b.setStyle("-fx-background-color: transparent;");
-            b.setGraphic(imageView);
-            pane.setCenter(b);
-            root.getChildren().add(b);
-
-            return b;
-        } else {
-            ImageView imageView = new ImageView(img);
-
-            b.setOnAction(event);
-
-            b.setOnMouseEntered(e -> {
+    public static void buttonInteraction(Button b, ImageView imageView){
 
                 b.setStyle("-fx-cursor: hand; -fx-background-color: transparent;");
                 DropShadow dropShadow = new DropShadow();
@@ -97,22 +51,48 @@ public class ButtonsHelper {
                 AudioClip audioClip = new AudioClip(file.toURI().toString());
                 audioClip.setVolume(3);
                 audioClip.play();
+    }
+
+    public static Button buttonBuilder(String buttonName, StackPane root, EventHandler<ActionEvent> event, BorderPane pane){
+
+        Image img = new Image("file:DesignFiles/Buttons/" + buttonName + ".png");
+        Button b = new Button();
+        ImageView imageView = new ImageView(img);
+        if(buttonName.equals("shadowRun")){
+
+            b.setOnAction(event);
+
+            b.setOnMouseEntered(e -> {
+                if(getSelectedOption()!=null) {
+
+                   buttonInteraction(b, imageView);
+                }
+
+            });
+
+        } else {
+
+            b.setOnAction(event);
+
+            b.setOnMouseEntered(e -> {
+
+               buttonInteraction(b, imageView);
 
 
             });
 
-            b.setOnMouseExited(e -> {
-                b.setStyle("-fx-background-color: transparent;");
-                imageView.setEffect(null);
-            });
-
-            b.setStyle("-fx-background-color: transparent;");
-            b.setGraphic(imageView);
-            pane.setCenter(b);
-            root.getChildren().add(b);
-
-            return b;
         }
+        b.setOnMouseExited(e -> {
+            b.setStyle("-fx-background-color: transparent;");
+            imageView.setEffect(null);
+        });
+
+        b.setStyle("-fx-background-color: transparent;");
+        b.setGraphic(imageView);
+        pane.setCenter(b);
+        root.getChildren().add(b);
+
+        return b;
 
 
     }

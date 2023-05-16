@@ -42,7 +42,6 @@ public class Dropbox {
 
             b.setOnMouseEntered(e -> {
                 if(getSelectedOption()!=null) {
-                    System.out.println("HM");
 
                     b.setStyle("-fx-cursor: hand; -fx-background-color: transparent;");
                     DropShadow dropShadow = new DropShadow();

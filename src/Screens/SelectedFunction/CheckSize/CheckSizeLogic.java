@@ -57,7 +57,6 @@ public class CheckSizeLogic implements SelectedFunctionLogicHandle {
 
         File hardDrive = new File((String) getSelectedOption());
         double sizeInBytes = getHardDriveSizeInBytes(hardDrive);
-        System.out.println(convertBytesToGB(sizeInBytes));
         double sizeInGB = convertBytesToGB(sizeInBytes);
 
         speed = sizeInGB;

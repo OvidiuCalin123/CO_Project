@@ -14,11 +14,11 @@ public class MainMenuMain {
         imageView.fitWidthProperty().bind(root.widthProperty().multiply(0.38));
         imageView.fitHeightProperty().bind(root.heightProperty().multiply(0.3));
 
-        imageView.setTranslateX(-180 * root.getWidth() / 600);
+        imageView.setTranslateX(-167.5 * root.getWidth() / 600);
         imageView.setTranslateY(-120 * root.getHeight() / 350);
 
         root.widthProperty().addListener((obs, oldVal, newVal) -> {
-            imageView.setTranslateX(-180 * newVal.doubleValue() / 600);
+            imageView.setTranslateX(-167.5 * newVal.doubleValue() / 600);
         });
         root.heightProperty().addListener((obs, oldVal, newVal) -> {
             imageView.setTranslateY(-120 * newVal.doubleValue() / 350);

@@ -94,10 +94,10 @@ public class Buttons {
 
         };
 
-        double xCoords = -400;
+        double xCoords = -425;
         double yCoords = 100;
 
-        double xScale = 2600;
+        double xScale = 2800;
         double yScale = 1500;
 
         Button b = buttonBuilder("sequentialRead", root, event, pane);
@@ -112,11 +112,11 @@ public class Buttons {
             new CheckSizeMain(root, pane);
         };
 
-        double xCoords = -700;
-        double yCoords = 400;
+        double xCoords = -735;
+        double yCoords = 375;
 
-        double xScale = 2600;
-        double yScale = 1600;
+        double xScale = 2775;
+        double yScale = 1500;
 
         Button b = buttonBuilder("checkSize", root, event, pane);
 
@@ -131,7 +131,7 @@ public class Buttons {
             System.exit(0);
         };
 
-        double xCoords = -700;
+        double xCoords = -685;
         double yCoords = 625;
 
         double xScale = 2600;
