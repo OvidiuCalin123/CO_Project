@@ -1,11 +1,8 @@
 package Screens.SelectedFunction.CheckSize;
 
 import Screens.SelectedFunction.SelectedFunctionLogicHandle;
+
 import java.io.File;
-import java.nio.file.FileStore;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import static Shared.Dropbox.getSelectedOption;
 
@@ -13,7 +10,7 @@ public class CheckSizeLogic implements SelectedFunctionLogicHandle {
 
     private static double speed;
     private static double time;
-    private static boolean isCompleted=false;
+    private static boolean isCompleted = false;
 
     public double getHardDriveSizeInBytes(File drive) {
 
@@ -40,8 +37,7 @@ public class CheckSizeLogic implements SelectedFunctionLogicHandle {
     }
 
 
-
-    public void run(){
+    public void run() {
 
         File hardDrive = new File((String) getSelectedOption());
         long startTime = System.currentTimeMillis();
@@ -53,32 +49,31 @@ public class CheckSizeLogic implements SelectedFunctionLogicHandle {
         time = endTime - startTime;
         isCompleted = true;
     }
-    public void runWarmUp(){
+
+    public void runWarmUp() {
 
         File hardDrive = new File((String) getSelectedOption());
         double sizeInBytes = getHardDriveSizeInBytes(hardDrive);
-        double sizeInGB = convertBytesToGB(sizeInBytes);
 
-        speed = sizeInGB;
-
+        speed = convertBytesToGB(sizeInBytes);
     }
 
-    public boolean getIsCompleted(){
+    public boolean getIsCompleted() {
 
-        return isCompleted;
+        return !isCompleted;
     }
 
-    public void setIsCompleted(boolean value){
+    public void setIsCompleted(boolean value) {
 
         isCompleted = value;
     }
 
-    public double getTime(){
+    public double getTime() {
 
-        return time/1000;
+        return time / 1000;
     }
 
-    public double getScore(){
+    public double getScore() {
 
         return speed;
     }

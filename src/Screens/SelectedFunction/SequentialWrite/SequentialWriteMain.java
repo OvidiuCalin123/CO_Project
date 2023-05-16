@@ -6,10 +6,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import static Shared.Dropbox.dropbox;
 
 public class SequentialWriteMain {
-    public void setTitle(StackPane root, BorderPane pane, StackPane sequentialWriteMainScreen){
+    public void setTitle(StackPane root, BorderPane pane, StackPane sequentialWriteMainScreen) {
         Image img = new Image("file:DesignFiles/Buttons/sequentialWriteTitle.png");
         ImageView imageView = new ImageView(img);
 
@@ -19,7 +18,6 @@ public class SequentialWriteMain {
         imageView.setTranslateX(0 * root.getWidth() / 600);
         imageView.setTranslateY(-130 * root.getHeight() / 350);
 
-        // Reposition the button when the root pane dimensions change
         root.widthProperty().addListener((obs, oldVal, newVal) -> imageView.setTranslateX(0 * newVal.doubleValue() / 600));
         root.heightProperty().addListener((obs, oldVal, newVal) -> imageView.setTranslateY(-130 * newVal.doubleValue() / 350));
 
@@ -28,7 +26,7 @@ public class SequentialWriteMain {
         sequentialWriteMainScreen.getChildren().add(imageView);
     }
 
-    public SequentialWriteMain(StackPane root, BorderPane pane){
+    public SequentialWriteMain(StackPane root, BorderPane pane) {
 
         StackPane sequentialWriteMainScreen = new StackPane();
 
@@ -36,7 +34,7 @@ public class SequentialWriteMain {
 
         sequentialWriteMainScreen.toFront();
 
-        new Background().setBackgroundImage(root,sequentialWriteMainScreen,"monster5.jpg");
+        new Background().setBackgroundImage(root, sequentialWriteMainScreen, "monster5.jpg");
 
         setTitle(root, pane, sequentialWriteMainScreen);
         Button b = new Button();

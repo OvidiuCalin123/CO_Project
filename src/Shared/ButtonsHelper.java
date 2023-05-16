@@ -10,13 +10,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
+
 import java.io.File;
 
 import static Shared.Dropbox.getSelectedOption;
 
 public class ButtonsHelper {
-
-    public static void playSoundClick(String sound, double volumeLevel){
+    public static void playSoundClick(String sound, double volumeLevel) {
         File file = new File("SoundFiles/" + sound);
 
         AudioClip audioClip = new AudioClip(file.toURI().toString());
@@ -24,7 +24,7 @@ public class ButtonsHelper {
         audioClip.play();
     }
 
-    public static void scaleButton(Button b, StackPane root, double xScale, double yScale, double xCoords, double yCoords){
+    public static void scaleButton(Button b, StackPane root, double xScale, double yScale, double xCoords, double yCoords) {
 
         b.scaleXProperty().bind(root.widthProperty().divide(xScale));
         b.scaleYProperty().bind(root.heightProperty().divide(yScale));
@@ -36,36 +36,36 @@ public class ButtonsHelper {
         root.heightProperty().addListener((obs, oldVal, newVal) -> b.setTranslateY(yCoords * newVal.doubleValue() / yScale));
     }
 
-    public static void buttonInteraction(Button b, ImageView imageView){
+    public static void buttonInteraction(Button b, ImageView imageView) {
 
-                b.setStyle("-fx-cursor: hand; -fx-background-color: transparent;");
-                DropShadow dropShadow = new DropShadow();
-                dropShadow.setRadius(20);
-                dropShadow.setOffsetX(20);
-                dropShadow.setOffsetY(20);
-                dropShadow.setColor(Color.ORANGE);
-                imageView.setEffect(dropShadow);
+        b.setStyle("-fx-cursor: hand; -fx-background-color: transparent;");
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setRadius(20);
+        dropShadow.setOffsetX(20);
+        dropShadow.setOffsetY(20);
+        dropShadow.setColor(Color.ORANGE);
+        imageView.setEffect(dropShadow);
 
-                File file = new File("SoundFiles/OnHoverSound.wav");
+        File file = new File("SoundFiles/OnHoverSound.wav");
 
-                AudioClip audioClip = new AudioClip(file.toURI().toString());
-                audioClip.setVolume(3);
-                audioClip.play();
+        AudioClip audioClip = new AudioClip(file.toURI().toString());
+        audioClip.setVolume(3);
+        audioClip.play();
     }
 
-    public static Button buttonBuilder(String buttonName, StackPane root, EventHandler<ActionEvent> event, BorderPane pane){
+    public static Button buttonBuilder(String buttonName, StackPane root, EventHandler<ActionEvent> event, BorderPane pane) {
 
         Image img = new Image("file:DesignFiles/Buttons/" + buttonName + ".png");
         Button b = new Button();
         ImageView imageView = new ImageView(img);
-        if(buttonName.equals("shadowRun")){
+        if (buttonName.equals("shadowRun")) {
 
             b.setOnAction(event);
 
             b.setOnMouseEntered(e -> {
-                if(getSelectedOption()!=null) {
+                if (getSelectedOption() != null) {
 
-                   buttonInteraction(b, imageView);
+                    buttonInteraction(b, imageView);
                 }
 
             });
@@ -74,12 +74,7 @@ public class ButtonsHelper {
 
             b.setOnAction(event);
 
-            b.setOnMouseEntered(e -> {
-
-               buttonInteraction(b, imageView);
-
-
-            });
+            b.setOnMouseEntered(e -> buttonInteraction(b, imageView));
 
         }
         b.setOnMouseExited(e -> {
@@ -93,11 +88,9 @@ public class ButtonsHelper {
         root.getChildren().add(b);
 
         return b;
-
-
     }
 
-    public static Button buttonBuilder(StackPane root, EventHandler<ActionEvent> event, BorderPane pane){
+    public static Button buttonBuilder(StackPane root, EventHandler<ActionEvent> event, BorderPane pane) {
 
         Button b = new Button(" Back ");
 
@@ -105,14 +98,13 @@ public class ButtonsHelper {
 
         b.setOnMouseEntered(e -> {
 
-            if(getSelectedOption()!=null) {
+            if (getSelectedOption() != null) {
                 File file = new File("SoundFiles/OnHoverSound.wav");
 
                 AudioClip audioClip = new AudioClip(file.toURI().toString());
                 audioClip.setVolume(3);
                 audioClip.play();
             }
-
         });
 
         pane.setCenter(b);

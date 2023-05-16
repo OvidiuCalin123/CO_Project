@@ -7,10 +7,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
-import static Shared.Dropbox.dropbox;
-
 public class SequentialReadMain {
-    public void setTitle(StackPane root, BorderPane pane, StackPane sequentialReadMainScreen){
+    public void setTitle(StackPane root, BorderPane pane, StackPane sequentialReadMainScreen) {
         Image img = new Image("file:DesignFiles/Buttons/SequentialReadTitle.png");
         ImageView imageView = new ImageView(img);
 
@@ -28,7 +26,7 @@ public class SequentialReadMain {
         sequentialReadMainScreen.getChildren().add(imageView);
     }
 
-    public SequentialReadMain(StackPane root, BorderPane pane){
+    public SequentialReadMain(StackPane root, BorderPane pane) {
 
         StackPane sequentialReadMainScreen = new StackPane();
 
@@ -36,7 +34,7 @@ public class SequentialReadMain {
 
         sequentialReadMainScreen.toFront();
 
-        new Background().setBackgroundImage(root,sequentialReadMainScreen, "monster4.png");
+        new Background().setBackgroundImage(root, sequentialReadMainScreen, "monster4.png");
         new Buttons().addButtonsToScreen(root, sequentialReadMainScreen, pane);
 
         Button b = new Button();

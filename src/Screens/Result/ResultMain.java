@@ -7,29 +7,20 @@ import Screens.SelectedFunction.SelectedFunctionLogicHandle;
 import Screens.SelectedFunction.SequentialRead.SequentialReadLogic;
 import Screens.SelectedFunction.SequentialWrite.SequentialWriteLogic;
 import Shared.Background;
-import javafx.beans.binding.Bindings;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.util.Pair;
 
 import java.util.HashMap;
 
 import static Screens.Result.ResultMeasurement.setScore;
 import static Screens.Result.ResultMeasurement.setTime;
-import static Screens.SelectedFunction.CheckSize.CheckSizeLogic.printRemainingSpace;
-import static Shared.ScaleToScreen.resizeToImage;
-import static Shared.ScaleToScreen.resizeToScreen;
 
 public class ResultMain {
 
-    public static void fillScreenSelector(StackPane r, String screenName, BorderPane pane,
-                                           StackPane resultMainScreen){
+    public static void fillScreenSelector(StackPane r, String screenName, BorderPane pane, StackPane resultMainScreen) {
 
         HashMap<String, Pair<SelectedFunctionLogicHandle, String>> screenLogicMap = new HashMap<>();
         screenLogicMap.put("catchMonster3", new Pair<>(new RandomWriteLogic(), "randomWriteTitle"));
@@ -50,7 +41,6 @@ public class ResultMain {
             setTime(r, pane, resultMainScreen, logic);
             setTitle(r, pane, resultMainScreen, title);
         }
-
     }
 
     public static void setTitle(StackPane root, BorderPane pane, StackPane randomReadMainScreen, String screenTitle) {
@@ -63,12 +53,8 @@ public class ResultMain {
         imageView.setTranslateX(0 * root.getWidth() / 600);
         imageView.setTranslateY(-125 * root.getHeight() / 350);
 
-        root.widthProperty().addListener((obs, oldVal, newVal) -> {
-            imageView.setTranslateX(0 * newVal.doubleValue() / 600);
-        });
-        root.heightProperty().addListener((obs, oldVal, newVal) -> {
-            imageView.setTranslateY(-125 * newVal.doubleValue() / 350);
-        });
+        root.widthProperty().addListener((obs, oldVal, newVal) -> imageView.setTranslateX(0 * newVal.doubleValue() / 600));
+        root.heightProperty().addListener((obs, oldVal, newVal) -> imageView.setTranslateY(-125 * newVal.doubleValue() / 350));
 
         pane.setCenter(imageView);
 

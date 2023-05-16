@@ -5,8 +5,6 @@ import javafx.scene.control.TableView;
 import java.io.*;
 import java.util.Stack;
 
-import static Shared.Dropbox.getSelectedOption;
-
 public class FileOperations {
 
     public static void writeToFile(String filePath, Object... content) {

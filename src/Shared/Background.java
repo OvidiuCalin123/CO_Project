@@ -5,8 +5,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 public class Background {
-
-    public void setBackgroundImage(StackPane root, String backgroundImagePath){
+    public void setBackgroundImage(StackPane root, String backgroundImagePath) {
 
         BorderPane pane = new BorderPane();
         Image img = new Image("file:DesignFiles/Background/" + backgroundImagePath);
@@ -28,7 +27,7 @@ public class Background {
         root.setBackground(bGround);
     }
 
-    public void setBackgroundImage(StackPane root, StackPane currentScreenPane, String backgroundImagePath){
+    public void setBackgroundImage(StackPane root, StackPane currentScreenPane, String backgroundImagePath) {
 
         BorderPane pane = new BorderPane();
         Image img = new Image("file:DesignFiles/Background/" + backgroundImagePath);

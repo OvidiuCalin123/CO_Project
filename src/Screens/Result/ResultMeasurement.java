@@ -19,7 +19,7 @@ import static Shared.ScaleToScreen.resizeToScreen;
 public class ResultMeasurement {
 
     public static void setScore(StackPane root, BorderPane pane, StackPane scoreImage, SelectedFunctionLogicHandle functionLogic) {
-        Text text = new Text("");
+        Text text;
         if (functionLogic.getClass() == CheckSizeLogic.class) {
             text = new Text(String.format("Size: %.2f GB", functionLogic.getScore()));
         } else {
@@ -34,26 +34,26 @@ public class ResultMeasurement {
         ImageView imageView = new ImageView(img);
 
         text.fontProperty().bind(Bindings.createObjectBinding(() -> {
-            double fontSize = 0.05 * Math.min(root.getWidth()*0.65, root.getHeight()*1.25);
-            return Font.font("Snap ITC",fontSize);
+            double fontSize = 0.05 * Math.min(root.getWidth() * 0.65, root.getHeight() * 1.25);
+            return Font.font("Snap ITC", fontSize);
         }, root.widthProperty(), root.heightProperty()));
 
-        resizeToScreen(imageView, root , -150, -65, 0.425);
+        resizeToScreen(imageView, root, -150, -65, 0.425);
         resizeToImage(text, root, -150, -65);
 
         pane.setCenter(imageView);
 
         scoreImage.getChildren().add(imageView);
         scoreImage.getChildren().add(text);
-
     }
 
     public static void setTime(StackPane root, BorderPane pane, StackPane scoreImage, SelectedFunctionLogicHandle functionLogic) {
 
+        Text text;
+        Image img = new Image("file:DesignFiles/Buttons/" + "templateButton" + ".png");
         if (functionLogic.getClass() != CheckSizeLogic.class) {
-            Text text = new Text(String.format("Time: %.2f s", functionLogic.getTime()));
+            text = new Text(String.format("Time: %.2f s", functionLogic.getTime()));
 
-            Image img = new Image("file:DesignFiles/Buttons/" + "templateButton" + ".png");
             text.setFill(Color.ORANGE);
             text.setStroke(Color.BLACK);
             text.setStrokeWidth(1.5);
@@ -71,13 +71,9 @@ public class ResultMeasurement {
             pane.setCenter(imageView);
 
             scoreImage.getChildren().add(imageView);
-            scoreImage.getChildren().add(text);
-        }
-        else
-        {
-            Text text = new Text("Size left: "+printRemainingSpace()+" GB");
+        } else {
+            text = new Text("Size left: " + printRemainingSpace() + " GB");
 
-            Image img = new Image("file:DesignFiles/Buttons/" + "templateButton" + ".png");
             text.setFill(Color.ORANGE);
             text.setStroke(Color.BLACK);
             text.setStrokeWidth(1.5);
@@ -95,8 +91,7 @@ public class ResultMeasurement {
             pane.setCenter(imageView);
 
             scoreImage.getChildren().add(imageView);
-            scoreImage.getChildren().add(text);
         }
+        scoreImage.getChildren().add(text);
     }
-
 }

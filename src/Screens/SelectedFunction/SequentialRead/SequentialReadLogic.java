@@ -1,15 +1,15 @@
 package Screens.SelectedFunction.SequentialRead;
 
 import Screens.SelectedFunction.SelectedFunctionLogicHandle;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
 public class SequentialReadLogic implements SelectedFunctionLogicHandle {
-
     private static double speed;
     private static double time;
-    private static boolean isCompleted=false;
+    private static boolean isCompleted = false;
 
     public void run() throws IOException {
         Thread t2 = new Thread(() -> {
@@ -18,7 +18,7 @@ public class SequentialReadLogic implements SelectedFunctionLogicHandle {
                 File file = new File("testFile");
                 file.deleteOnExit();
 
-                long fileSize =  1024*1024*1024; // 1GB
+                long fileSize = 1024 * 1024 * 1024;
                 int bufferSize = 4096;
 
                 long startTime = System.currentTimeMillis();
@@ -29,7 +29,7 @@ public class SequentialReadLogic implements SelectedFunctionLogicHandle {
 
                 time = endTime - startTime;
 
-                isCompleted=true;
+                isCompleted = true;
 
             } catch (IOException e) {
                 System.out.println(e);
@@ -39,14 +39,14 @@ public class SequentialReadLogic implements SelectedFunctionLogicHandle {
         t2.start();
     }
 
-    public void runWarmUp(){
+    public void runWarmUp() {
         Thread t2 = new Thread(() -> {
             try {
 
                 File file = new File("testFile");
                 file.deleteOnExit();
 
-                long fileSize =  1024*1024*1024; // 1GB
+                long fileSize = 1024 * 1024 * 1024;
                 int bufferSize = 4096;
 
                 SequentialReadLogic.measureSequentialReadSpeed(file, fileSize, bufferSize);
@@ -87,17 +87,19 @@ public class SequentialReadLogic implements SelectedFunctionLogicHandle {
         return fileSize / (1024.0 * 1024.0 * (endTime - startTime) / 1000.0);
     }
 
-    public boolean getIsCompleted(){
-        return isCompleted;
+    public boolean getIsCompleted() {
+        return !isCompleted;
     }
 
-    public void setIsCompleted(boolean value){
+    public void setIsCompleted(boolean value) {
         isCompleted = value;
     }
 
-    public double getTime(){ return time/1000; }
+    public double getTime() {
+        return time / 1000;
+    }
 
-    public double getScore(){
+    public double getScore() {
         return speed;
     }
 }

@@ -7,30 +7,25 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+
 import java.io.IOException;
+
 import static Shared.ButtonsHelper.buttonBuilder;
 import static Shared.ButtonsHelper.scaleButton;
 import static Shared.Dropbox.dropbox;
 import static Shared.Dropbox.getSelectedOption;
 
 public class Buttons {
-
-    public void addButtonsToScreen(StackPane root, StackPane sequentialReadMainScreen, BorderPane pane){
+    public void addButtonsToScreen(StackPane root, StackPane sequentialReadMainScreen, BorderPane pane) {
 
         back(root, sequentialReadMainScreen, pane);
         quit(root, sequentialReadMainScreen, pane);
         run(root, sequentialReadMainScreen, pane, "catchMonster4.png");
-
-
     }
 
-    public String[] getPCPartition(){
-        return new String[]{"1 GB", "500 MB", "100 MB"};
-    }
-
-    public void run(StackPane root, StackPane sequentialReadMainScreen, BorderPane pane, String screenName){
+    public void run(StackPane root, StackPane sequentialReadMainScreen, BorderPane pane, String screenName) {
         EventHandler<ActionEvent> event = e -> {
-            if(getSelectedOption()!=null) {
+            if (getSelectedOption() != null) {
                 new LoadingMain(root, sequentialReadMainScreen, screenName, pane, new SequentialReadLogic(), "monster4.png");
                 try {
 
@@ -52,11 +47,11 @@ public class Buttons {
         double yScale = 1937.5;
 
         Button b = buttonBuilder("shadowRun", sequentialReadMainScreen, event, pane);
-        dropbox(root, sequentialReadMainScreen, new String[]{"1 GB", "500 MB", "100 MB"}, -400, -45,b);
-        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
+        dropbox(root, sequentialReadMainScreen, new String[]{"1 GB", "500 MB", "100 MB"}, -400, -45, b);
+        scaleButton(b, root, xScale, yScale, xCoords, yCoords);
     }
 
-    public void back(StackPane root, StackPane sequentialReadMainScreen, BorderPane pane){
+    public void back(StackPane root, StackPane sequentialReadMainScreen, BorderPane pane) {
         EventHandler<ActionEvent> event = e -> sequentialReadMainScreen.toBack();
 
         double xCoords = -1050;
@@ -67,11 +62,10 @@ public class Buttons {
 
         Button b = buttonBuilder("back", sequentialReadMainScreen, event, pane);
 
-        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
-
+        scaleButton(b, root, xScale, yScale, xCoords, yCoords);
     }
 
-    public void quit(StackPane root, StackPane sequentialReadMainScreen, BorderPane pane){
+    public void quit(StackPane root, StackPane sequentialReadMainScreen, BorderPane pane) {
         EventHandler<ActionEvent> event = e -> {
             Platform.exit();
             System.exit(0);
@@ -83,8 +77,8 @@ public class Buttons {
         double xScale = 2300;
         double yScale = 1300;
 
-        Button b = buttonBuilder("quit",  sequentialReadMainScreen, event, pane);
+        Button b = buttonBuilder("quit", sequentialReadMainScreen, event, pane);
 
-        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
+        scaleButton(b, root, xScale, yScale, xCoords, yCoords);
     }
 }

@@ -10,18 +10,19 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
+
 import java.io.File;
 
 public class SoundButton {
 
     private static Button btn;
 
-    public static void setEvent(EventHandler<ActionEvent> event){
+    public static void setEvent(EventHandler<ActionEvent> event) {
 
         btn.setOnAction(event);
     }
 
-    public static Button buttonBuilder(String buttonName, StackPane root, BorderPane pane){
+    public static Button buttonBuilder(String buttonName, StackPane root, BorderPane pane) {
 
         Image img = new Image("file:DesignFiles/Buttons/" + buttonName + ".png");
         ImageView imageView = new ImageView(img);

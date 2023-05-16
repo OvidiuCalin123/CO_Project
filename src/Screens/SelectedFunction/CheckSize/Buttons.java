@@ -5,13 +5,8 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.media.AudioClip;
-import javafx.scene.paint.Color;
 
 import java.io.File;
 
@@ -22,23 +17,19 @@ import static Shared.Dropbox.*;
 public class Buttons {
 
     public String[] getPCPartition() {
-        // Get a list of partitions
         File[] partitions = File.listRoots();
 
-        // Create a String array to hold partition names
         String[] partitionNames = new String[partitions.length];
 
-        // Iterate over the list of partitions and get the partition name for each one
         for (int i = 0; i < partitions.length; i++) {
             partitionNames[i] = partitions[i].getAbsolutePath();
         }
 
-        // Return the array of partition names
         return partitionNames;
     }
 
 
-    public void back(StackPane root, StackPane checkSizeMainScreen, BorderPane pane){
+    public void back(StackPane root, StackPane checkSizeMainScreen, BorderPane pane) {
         EventHandler<ActionEvent> event = e -> {
 
             resetSelectedOption();
@@ -52,13 +43,12 @@ public class Buttons {
         double xScale = 2800;
         double yScale = 1700;
 
-        Button b = buttonBuilder("back",checkSizeMainScreen, event, pane);
+        Button b = buttonBuilder("back", checkSizeMainScreen, event, pane);
 
-        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
-
+        scaleButton(b, root, xScale, yScale, xCoords, yCoords);
     }
 
-    public void quit(StackPane root, StackPane checkSizeMainScreen, BorderPane pane){
+    public void quit(StackPane root, StackPane checkSizeMainScreen, BorderPane pane) {
 
         EventHandler<ActionEvent> event = e -> {
             Platform.exit();
@@ -72,14 +62,14 @@ public class Buttons {
         double yScale = 1500;
 
         Button b = buttonBuilder("Quit", checkSizeMainScreen, event, pane);
-        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
+        scaleButton(b, root, xScale, yScale, xCoords, yCoords);
     }
 
-    public void run(StackPane root, StackPane checkSizeMainScreen, BorderPane pane, String screenName){
+    public void run(StackPane root, StackPane checkSizeMainScreen, BorderPane pane, String screenName) {
 
         EventHandler<ActionEvent> event = e -> {
 
-            if(getSelectedOption()!=null){
+            if (getSelectedOption() != null) {
 
                 CheckSizeLogic c = new CheckSizeLogic();
 
@@ -99,15 +89,14 @@ public class Buttons {
 
 
         scaleButton(b, root, xScale, yScale, xCoords, yCoords);
-        dropbox(root, checkSizeMainScreen, getPCPartition(),-400,-15, b);
+        dropbox(root, checkSizeMainScreen, getPCPartition(), -400, -15, b);
     }
 
 
-    public void addButtonsToScreen(StackPane root, StackPane checkSizeMainScreen, BorderPane pane){
+    public void addButtonsToScreen(StackPane root, StackPane checkSizeMainScreen, BorderPane pane) {
 
         back(root, checkSizeMainScreen, pane);
         quit(root, checkSizeMainScreen, pane);
         run(root, checkSizeMainScreen, pane, "catchMonster1.jpg");
     }
-
 }

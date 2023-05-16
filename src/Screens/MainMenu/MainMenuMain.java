@@ -1,4 +1,5 @@
 package Screens.MainMenu;
+
 import Shared.Background;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -7,7 +8,7 @@ import javafx.scene.layout.StackPane;
 
 public class MainMenuMain {
 
-    public void setTitle(StackPane root, BorderPane pane){
+    public void setTitle(StackPane root, BorderPane pane) {
         Image img = new Image("file:DesignFiles/Buttons/mainMenuTitle.png");
         ImageView imageView = new ImageView(img);
 
@@ -29,12 +30,12 @@ public class MainMenuMain {
         root.getChildren().add(imageView);
     }
 
-    public MainMenuMain(StackPane root, BorderPane pane){
+    public MainMenuMain(StackPane root, BorderPane pane) {
 
         new Background().setBackgroundImage(root, "menu.jpg");
 
         new Buttons().addButtonsToScreen(root, pane);
 
-        setTitle(root,pane);
+        setTitle(root, pane);
     }
 }

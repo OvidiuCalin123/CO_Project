@@ -1,21 +1,21 @@
 package Screens.SelectedFunction.RandomWrite;
 
 import Screens.SelectedFunction.SelectedFunctionLogicHandle;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
 public class RandomWriteLogic implements SelectedFunctionLogicHandle {
-
     private static double speed;
     private static double time;
-    private static boolean isCompleted=false;
+    private static boolean isCompleted = false;
 
     public void run() throws IOException {
         Thread t2 = new Thread(() -> {
             try {
 
-                File file = new File("testfile");
+                File file = new File("testing");
                 file.deleteOnExit();
 
                 long fileSize = 1024 * 1024 * 1024;
@@ -28,7 +28,7 @@ public class RandomWriteLogic implements SelectedFunctionLogicHandle {
                 long endTime = System.currentTimeMillis();
 
                 time = endTime - startTime;
-                isCompleted=true;
+                isCompleted = true;
 
             } catch (IOException e) {
                 System.out.println(e);
@@ -43,7 +43,7 @@ public class RandomWriteLogic implements SelectedFunctionLogicHandle {
         Thread t2 = new Thread(() -> {
             try {
 
-                File file = new File("testfile");
+                File file = new File("testing");
                 file.deleteOnExit();
 
                 long fileSize = 1024 * 1024 * 1024;
@@ -82,22 +82,22 @@ public class RandomWriteLogic implements SelectedFunctionLogicHandle {
         return fileSize / (1024.0 * 1024.0 * timeTaken / 1000.0);
     }
 
-    public boolean getIsCompleted(){
+    public boolean getIsCompleted() {
 
-        return isCompleted;
+        return !isCompleted;
     }
 
-    public void setIsCompleted(boolean value){
+    public void setIsCompleted(boolean value) {
 
         isCompleted = value;
     }
 
-    public double getTime(){
+    public double getTime() {
 
-        return time/1000;
+        return time / 1000;
     }
 
-    public double getScore(){
+    public double getScore() {
 
         return speed;
     }

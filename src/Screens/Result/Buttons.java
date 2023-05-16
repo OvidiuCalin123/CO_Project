@@ -9,13 +9,14 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+
 import static Shared.ButtonsHelper.buttonBuilder;
 import static Shared.ButtonsHelper.scaleButton;
 import static Shared.Dropbox.resetSelectedOption;
 
 public class Buttons {
 
-    public void addButtonsToScreen(StackPane root, BorderPane pane, String historyBackgroundScreen){
+    public void addButtonsToScreen(StackPane root, BorderPane pane, String historyBackgroundScreen) {
 
         back(root, pane);
         quit(root, pane);
@@ -23,7 +24,7 @@ public class Buttons {
 
     }
 
-    public void history(StackPane sequentialReadMainScreen, BorderPane pane, String historyBackgroundScreen){
+    public void history(StackPane sequentialReadMainScreen, BorderPane pane, String historyBackgroundScreen) {
         EventHandler<ActionEvent> event = e -> new HistoryMain(sequentialReadMainScreen, pane, historyBackgroundScreen);
 
         double xCoords = 0;
@@ -32,12 +33,12 @@ public class Buttons {
         double xScale = 3250;
         double yScale = 2000;
 
-        Button b = buttonBuilder("history",  sequentialReadMainScreen, event, pane);
+        Button b = buttonBuilder("history", sequentialReadMainScreen, event, pane);
 
-        scaleButton(b,sequentialReadMainScreen,xScale,yScale, xCoords, yCoords);
+        scaleButton(b, sequentialReadMainScreen, xScale, yScale, xCoords, yCoords);
     }
 
-    public void back(StackPane sequentialReadMainScreen, BorderPane pane){
+    public void back(StackPane sequentialReadMainScreen, BorderPane pane) {
         EventHandler<ActionEvent> event = e -> {
 
             resetSelectedOption();
@@ -61,11 +62,11 @@ public class Buttons {
 
         Button b = buttonBuilder("backToHome", sequentialReadMainScreen, event, pane);
 
-        scaleButton(b,sequentialReadMainScreen,xScale,yScale, xCoords, yCoords);
+        scaleButton(b, sequentialReadMainScreen, xScale, yScale, xCoords, yCoords);
 
     }
 
-    public void quit(StackPane sequentialReadMainScreen, BorderPane pane){
+    public void quit(StackPane sequentialReadMainScreen, BorderPane pane) {
         EventHandler<ActionEvent> event = e -> {
             Platform.exit();
             System.exit(0);
@@ -77,8 +78,8 @@ public class Buttons {
         double xScale = 2400;
         double yScale = 1300;
 
-        Button b = buttonBuilder("quit",  sequentialReadMainScreen, event, pane);
+        Button b = buttonBuilder("quit", sequentialReadMainScreen, event, pane);
 
-        scaleButton(b,sequentialReadMainScreen,xScale,yScale, xCoords, yCoords);
+        scaleButton(b, sequentialReadMainScreen, xScale, yScale, xCoords, yCoords);
     }
 }

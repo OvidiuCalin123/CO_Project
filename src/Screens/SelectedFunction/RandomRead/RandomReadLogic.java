@@ -1,12 +1,12 @@
 package Screens.SelectedFunction.RandomRead;
 
 import Screens.SelectedFunction.SelectedFunctionLogicHandle;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
 public class RandomReadLogic implements SelectedFunctionLogicHandle {
-
     private static double speed;
     private static double time;
     private static boolean isCompleted = false;
@@ -14,7 +14,7 @@ public class RandomReadLogic implements SelectedFunctionLogicHandle {
     public void run() throws IOException {
         Thread t2 = new Thread(() -> {
             try {
-                File file = new File("testfile");
+                File file = new File("testing");
                 file.deleteOnExit();
                 long fileSize = 1024 * 1024 * 1024;
                 int bufferSize = 4096;
@@ -22,11 +22,11 @@ public class RandomReadLogic implements SelectedFunctionLogicHandle {
                 long startTime = System.currentTimeMillis();
 
                 speed = RandomReadLogic.measureRandomReadSpeed(file, fileSize, bufferSize);
-                isCompleted=true;
+                isCompleted = true;
 
                 long endTime = System.currentTimeMillis();
 
-                time = endTime-startTime;
+                time = endTime - startTime;
 
             } catch (IOException e) {
                 System.out.println(e);
@@ -38,11 +38,11 @@ public class RandomReadLogic implements SelectedFunctionLogicHandle {
         t2.start();
     }
 
-    public void runWarmUp(){
+    public void runWarmUp() {
         Thread t2 = new Thread(() -> {
             try {
 
-                File file = new File("testfile");
+                File file = new File("testing");
                 file.deleteOnExit();
 
                 long fileSize = 1024 * 1024 * 1024;
@@ -90,22 +90,22 @@ public class RandomReadLogic implements SelectedFunctionLogicHandle {
         return fileSize / (1024.0 * 1024.0 * (endTime - startTime) / 1000.0);
     }
 
-    public boolean getIsCompleted(){
+    public boolean getIsCompleted() {
 
-        return isCompleted;
+        return !isCompleted;
     }
 
-    public void setIsCompleted(boolean value){
+    public void setIsCompleted(boolean value) {
 
         isCompleted = value;
     }
 
-    public double getTime(){
+    public double getTime() {
 
-        return time/1000;
+        return time / 1000;
     }
 
-    public double getScore(){
+    public double getScore() {
 
         return speed;
     }

@@ -6,12 +6,13 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
 import static Icons.IconsLogic.setAppIcon;
 
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage){
+    public void start(Stage primaryStage) {
         StackPane root = new StackPane();
         BorderPane pane = new BorderPane();
         Scene scene = new Scene(root, 1285, 655);

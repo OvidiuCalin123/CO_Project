@@ -7,14 +7,15 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+
 import java.io.IOException;
+
 import static Shared.ButtonsHelper.buttonBuilder;
 import static Shared.ButtonsHelper.scaleButton;
 import static Shared.Dropbox.*;
 
 public class Buttons {
-
-    public void back(StackPane root, StackPane sequentialWriteMainScreen, BorderPane pane){
+    public void back(StackPane root, StackPane sequentialWriteMainScreen, BorderPane pane) {
         EventHandler<ActionEvent> event = e -> {
 
             resetSelectedOption();
@@ -30,11 +31,10 @@ public class Buttons {
 
         Button b = buttonBuilder("back", sequentialWriteMainScreen, event, pane);
 
-        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
-
+        scaleButton(b, root, xScale, yScale, xCoords, yCoords);
     }
 
-    public void quit(StackPane root, StackPane sequentialWriteMainScreen, BorderPane pane){
+    public void quit(StackPane root, StackPane sequentialWriteMainScreen, BorderPane pane) {
         EventHandler<ActionEvent> event = e -> {
             Platform.exit();
             System.exit(0);
@@ -46,20 +46,16 @@ public class Buttons {
         double xScale = 2300;
         double yScale = 1300;
 
-        Button b = buttonBuilder("quit",  sequentialWriteMainScreen, event, pane);
+        Button b = buttonBuilder("quit", sequentialWriteMainScreen, event, pane);
 
-        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
+        scaleButton(b, root, xScale, yScale, xCoords, yCoords);
     }
 
-    public String[] getPCPartition(){
-        return new String[]{"1 GB", "500 MB", "100 MB"};
-    }
-
-    public void run(StackPane root, StackPane sequentialWriteMainScreen, BorderPane pane, String screenName){
+    public void run(StackPane root, StackPane sequentialWriteMainScreen, BorderPane pane, String screenName) {
 
         EventHandler<ActionEvent> event = e -> {
 
-            if(getSelectedOption()!=null) {
+            if (getSelectedOption() != null) {
 
                 new LoadingMain(root, sequentialWriteMainScreen, screenName, pane, new SequentialWriteLogic(), "monster5.jpg");
                 try {
@@ -82,11 +78,11 @@ public class Buttons {
         double yScale = 1920;
 
         Button b = buttonBuilder("shadowRun", sequentialWriteMainScreen, event, pane);
-        dropbox(root, sequentialWriteMainScreen, new String[]{"1 GB", "500 MB", "100 MB"}, -115, -14.25,b);
-        scaleButton(b,root,xScale,yScale, xCoords, yCoords);
+        dropbox(root, sequentialWriteMainScreen, new String[]{"1 GB", "500 MB", "100 MB"}, -115, -14.25, b);
+        scaleButton(b, root, xScale, yScale, xCoords, yCoords);
     }
 
-    public void addButtonsToScreen(StackPane root, StackPane sequentialWriteMainScreen, BorderPane pane){
+    public void addButtonsToScreen(StackPane root, StackPane sequentialWriteMainScreen, BorderPane pane) {
 
         back(root, sequentialWriteMainScreen, pane);
         quit(root, sequentialWriteMainScreen, pane);

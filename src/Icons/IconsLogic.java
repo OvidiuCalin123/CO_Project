@@ -5,7 +5,7 @@ import javafx.stage.Stage;
 
 public class IconsLogic {
 
-    public static void setAppIcon(Stage primaryStage){
+    public static void setAppIcon(Stage primaryStage) {
 
         Image icon = new Image("file:DesignFiles/Icons/AppIconShadow.jpg");
         primaryStage.getIcons().add(icon);

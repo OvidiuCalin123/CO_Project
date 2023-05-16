@@ -18,10 +18,9 @@ import javafx.scene.text.Text;
 import java.io.File;
 
 public class Dropbox {
+    private static Object selectedOption = null;
 
-    private static Object selectedOption=null;
-
-    public static void resetSelectedOption(){
+    public static void resetSelectedOption() {
         selectedOption = null;
     }
 
@@ -41,7 +40,7 @@ public class Dropbox {
             b.setGraphic(imageView);
 
             b.setOnMouseEntered(e -> {
-                if(getSelectedOption()!=null) {
+                if (getSelectedOption() != null) {
 
                     b.setStyle("-fx-cursor: hand; -fx-background-color: transparent;");
                     DropShadow dropShadow = new DropShadow();
@@ -67,7 +66,7 @@ public class Dropbox {
         }
     }
 
-    public static void dropbox(StackPane root, StackPane sequentialWriteMainScreen, String[] options, double xCoords, double yCoords, Button b){
+    public static void dropbox(StackPane root, StackPane sequentialWriteMainScreen, String[] options, double xCoords, double yCoords, Button b) {
 
         ComboBox<String> dropdown = new ComboBox<>();
 
@@ -105,8 +104,8 @@ public class Dropbox {
                     text.setStyle("-fx-fill: orange; -fx-stroke: black; -fx-stroke-width: 1.75px;");
 
                     text.fontProperty().bind(Bindings.createObjectBinding(() -> {
-                        double fontSize = 0.03 * Math.min(root.getWidth()*0.65, root.getHeight()*1.25);
-                        return Font.font("Snap ITC",fontSize);
+                        double fontSize = 0.03 * Math.min(root.getWidth() * 0.65, root.getHeight() * 1.25);
+                        return Font.font("Snap ITC", fontSize);
                     }, root.widthProperty(), root.heightProperty()));
 
                     setGraphic(text);
@@ -127,27 +126,26 @@ public class Dropbox {
                     text.setStyle("-fx-fill: orange; -fx-stroke: black; -fx-stroke-width: 2px;");
 
                     text.fontProperty().bind(Bindings.createObjectBinding(() -> {
-                        double fontSize = 0.04 * Math.min(root.getWidth()*0.7, root.getHeight()*1.25);
-                        return Font.font("Snap ITC",fontSize);
+                        double fontSize = 0.04 * Math.min(root.getWidth() * 0.7, root.getHeight() * 1.25);
+                        return Font.font("Snap ITC", fontSize);
                     }, root.widthProperty(), root.heightProperty()));
 
 
-                    if(text.getText().equals("1 GB")){
+                    if (text.getText().equals("1 GB")) {
 
-                        selectedOption=(long)1024*1024*1024;
+                        selectedOption = (long) 1024 * 1024 * 1024;
 
-                    }else if(text.getText().equals("500 MB")){
+                    } else if (text.getText().equals("500 MB")) {
 
-                        selectedOption=Math.round(1024*1024*1024*0.5);
+                        selectedOption = Math.round(1024 * 1024 * 1024 * 0.5);
 
 
-                    }else if(text.getText().equals("100 MB")){
+                    } else if (text.getText().equals("100 MB")) {
 
-                        selectedOption=Math.round(1024*1024*1024*0.1);
+                        selectedOption = Math.round(1024 * 1024 * 1024 * 0.1);
 
-                    }
-                    else{
-                        selectedOption=text.getText();
+                    } else {
+                        selectedOption = text.getText();
 
                     }
 
@@ -158,7 +156,7 @@ public class Dropbox {
 
         dropdown.setOnAction(event -> {
             String selectedItem = dropdown.getSelectionModel().getSelectedItem();
-                        if (selectedItem != null) {
+            if (selectedItem != null) {
 
                 Text text = new Text(selectedItem);
                 text.setFont(Font.font("Snap ITC", FontWeight.BOLD, 12));
@@ -175,8 +173,8 @@ public class Dropbox {
         sequentialWriteMainScreen.getChildren().add(dropdown);
     }
 
-   public static Object getSelectedOption(){
+    public static Object getSelectedOption() {
 
         return selectedOption;
-   }
+    }
 }

@@ -196,7 +196,6 @@ public class Buttons {
             volumePane.setTranslateX(180 * root.getWidth() / 600);
             volumePane.setTranslateY(-150 * root.getHeight() / 350);
 
-            // Reposition the button when the root pane dimensions change
             root.widthProperty().addListener((obs, oldVal, newVal) -> {
                 volumePane.setTranslateX(180 * newVal.doubleValue() / 600);
                 volumeLabel.setTranslateX(180 * newVal.doubleValue() / 600);

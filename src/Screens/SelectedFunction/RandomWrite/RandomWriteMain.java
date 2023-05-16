@@ -6,10 +6,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
-import static Shared.Dropbox.dropbox;
-
 public class RandomWriteMain {
-    public void setTitle(StackPane root, BorderPane pane, StackPane randomWriteMainScreen){
+    public void setTitle(StackPane root, BorderPane pane, StackPane randomWriteMainScreen) {
         Image img = new Image("file:DesignFiles/Buttons/randomWriteTitle.png");
         ImageView imageView = new ImageView(img);
 
@@ -27,7 +25,7 @@ public class RandomWriteMain {
         randomWriteMainScreen.getChildren().add(imageView);
     }
 
-    public RandomWriteMain(StackPane root, BorderPane pane){
+    public RandomWriteMain(StackPane root, BorderPane pane) {
 
         StackPane randomWriteMainScreen = new StackPane();
 
@@ -35,7 +33,7 @@ public class RandomWriteMain {
 
         randomWriteMainScreen.toFront();
 
-        new Background().setBackgroundImage(root,randomWriteMainScreen, "monster3.png");
+        new Background().setBackgroundImage(root, randomWriteMainScreen, "monster3.png");
         new Buttons().addButtonsToScreen(root, randomWriteMainScreen, pane);
 
         setTitle(root, pane, randomWriteMainScreen);
